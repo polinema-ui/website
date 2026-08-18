@@ -33,7 +33,7 @@ Ensure you have **Node.js** (v18 or higher) and **npm** installed on your system
 Clone the repository:
 
 ```bash
-git clone [https://github.com/a6iyyu/polinema-ui.git](https://github.com/a6iyyu/polinema-ui.git)
+git clone https://github.com/polinema-ui/website
 cd polinema-ui
 ```
 
@@ -49,7 +49,7 @@ Start the development server:
 npm run dev
 ```
 
-Open `http://localhost:5173` in your browser to view the documentation website.
+Open `http://localhost:4000` in your browser to view the documentation website.
 
 ## Project Structure
 

@@ -14,6 +14,9 @@ export default defineConfig({
 		sveltekit(),
 		tailwindcss(),
 	],
+	server: {
+		port: 4000,
+	},
 	test: {
 		expect: { requireAssertions: true },
 		projects: [
