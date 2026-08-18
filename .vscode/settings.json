@@ -1,0 +1,31 @@
+{
+	"editor.tabSize": 2,
+	"files.associations": {
+		"*.css": "tailwindcss",
+		"*.svx": "markdown"
+	},
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.DS_Store": true,
+		"**/.svelte-kit": true,
+		"**/build": true,
+		"**/dist": true,
+		"**/node_modules": true,
+		"**/out": true,
+		"**/Thumbs.db": true
+	},
+	"json.schemas": [
+		{
+			"fileMatch": ["bun.lock"],
+			"schema": {
+				"allowTrailingCommas": true
+			}
+		}
+	],
+	"material-icon-theme.folders.associations": {
+		"project.inlang": "i18n"
+	},
+	"tailwindCSS.classFunctions": ["cn", "tv"],
+	"tailwindCSS.lint.invalidConfigPath": "ignore"
+}

@@ -1,0 +1,7 @@
+.svelte-kit/
+build/
+coverage/
+dist/
+node_modules/
+out/
+static/

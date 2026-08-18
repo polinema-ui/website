@@ -1,0 +1,16 @@
+{
+	"overrides": [
+		{
+			"files": "*.svelte",
+			"options": {
+				"parser": "svelte"
+			}
+		}
+	],
+	"plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
+	"printWidth": 120,
+	"singleQuote": false,
+	"tabWidth": 2,
+	"tailwindStylesheet": "./src/routes/layout.css",
+	"useTabs": true
+}

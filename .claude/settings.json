@@ -1,0 +1,13 @@
+{
+	"extraKnownMarketplaces": {
+		"enabledPlugins": {
+			"svelte@svelte": true
+		},
+		"svelte": {
+			"source": {
+				"repo": "sveltejs/ai-tools",
+				"source": "github"
+			}
+		}
+	}
+}

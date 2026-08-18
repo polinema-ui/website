@@ -1,0 +1,2 @@
+**/*.html linguist-detectable=true linguist-language=HTML
+**/*.js linguist-detectable=true linguist-language=JavaScript

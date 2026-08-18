@@ -1,0 +1,48 @@
+<script lang="ts">
+	import type { HTMLAttributes } from "svelte/elements";
+	import {
+		SIDEBAR_COOKIE_MAX_AGE,
+		SIDEBAR_COOKIE_NAME,
+		SIDEBAR_WIDTH,
+		SIDEBAR_WIDTH_ICON,
+	} from "$lib/components/sidebar/constants";
+	import { setSidebar } from "$lib/components/sidebar/context.svelte";
+	import { Provider } from "$lib/components/tooltip/index";
+	import { cn, type WithElementRef } from "$lib/utils/shadcn";
+
+	let {
+		ref = $bindable(null),
+		open = $bindable(true),
+		onOpenChange = () => {},
+		class: className,
+		style,
+		children,
+		...restProps
+	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
+		open?: boolean;
+		onOpenChange?: (open: boolean) => void;
+	} = $props();
+
+	const sidebar = setSidebar({
+		open: () => open,
+		setOpen: (value: boolean) => {
+			open = value;
+			onOpenChange(value);
+			document.cookie = `${SIDEBAR_COOKIE_NAME}=${open}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;
+		},
+	});
+</script>
+
+<svelte:window onkeydown={sidebar.handleShortcutKeydown} />
+
+<Provider delayDuration={0}>
+	<div
+		data-slot="sidebar-wrapper"
+		style="--sidebar-width: {SIDEBAR_WIDTH}; --sidebar-width-icon: {SIDEBAR_WIDTH_ICON}; {style}"
+		class={cn("group/sidebar-wrapper flex min-h-svh w-full has-data-[variant=inset]:bg-sidebar", className)}
+		bind:this={ref}
+		{...restProps}
+	>
+		{@render children?.()}
+	</div>
+</Provider>
