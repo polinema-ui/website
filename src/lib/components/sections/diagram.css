@@ -1,0 +1,82 @@
+.about-cable {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+}
+.about-cable-base {
+	stroke: #e2e8f0;
+	stroke-width: 1.5;
+	fill: none;
+}
+.about-cable-line {
+	fill: none;
+	stroke: url(#cableGradient);
+	stroke-width: 2px;
+	stroke-linecap: round;
+	stroke-dasharray: 1;
+	stroke-dashoffset: 1;
+	animation: about-draw 4s linear infinite;
+}
+@keyframes about-draw {
+	from {
+		stroke-dashoffset: 1;
+	}
+	to {
+		stroke-dashoffset: -1;
+	}
+}
+.about-arrow-line {
+	stroke: #2563eb;
+	stroke-width: 1.5;
+	fill: none;
+}
+.about-hub {
+	position: absolute;
+	left: 550px;
+	top: 0;
+	transform: translate(-50%, -50%);
+	width: 56px;
+	height: 56px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 16px;
+	background: linear-gradient(135deg, #60a5fa, #2563eb);
+	color: white;
+	box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+	z-index: 10;
+}
+.about-hub-mark {
+	width: 24px;
+	height: 24px;
+}
+.about-featured {
+	position: absolute;
+	left: 550px;
+	top: 121px;
+	transform: translateX(-50%);
+	width: 240px;
+	z-index: 10;
+}
+.about-metric {
+	position: absolute;
+	width: 240px;
+	z-index: 10;
+}
+.about-metric-left {
+	left: 0;
+	top: 121px;
+}
+.about-metric-right {
+	right: 0;
+	top: 121px;
+}
+.about-metric-bottom-left {
+	left: 155px;
+	top: 352px;
+}
+.about-metric-bottom-right {
+	right: 155px;
+	top: 352px;
+}

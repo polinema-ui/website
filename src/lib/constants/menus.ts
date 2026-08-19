@@ -20,5 +20,8 @@ export const menus = () => {};
 
 export const DEFAULT_NAV_ITEMS: NavItem[] = [
 	{ label: "Home", href: "#home" },
+	{ label: "Features", href: "#features" },
+	{ label: "About", href: "#about" },
+	{ label: "FAQ", href: "#faq" },
 	{ label: "Docs", href: "#docs" },
 ];
