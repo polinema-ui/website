@@ -5,6 +5,7 @@
 	import * as DropdownMenu from "$lib/components/dropdown-menu";
 	import { fetchGithubStars } from "$lib/utils/github";
 	import { TailwindLogo, BootstrapLogo } from "$lib/components/icons";
+	import { Button } from "$lib/components/button";
 	import type { NavItem } from "$lib/types/navbar";
 	import { DEFAULT_NAV_ITEMS } from "$lib/constants/menus";
 
@@ -76,15 +77,16 @@
 
 		<div class="flex items-center gap-2">
 			<!-- Github Star Button -->
-			<a
+			<Button
 				href={localizeHref("https://github.com/polinema-ui/website")}
 				target="_blank"
 				rel="noopener noreferrer"
-				class="flex items-center gap-2 rounded-lg border border-gray-100 bg-white px-3 py-2 text-[13px] font-medium text-[#1a1a1a] transition-all duration-200 hover:bg-gray-100 active:scale-[0.97]"
+				variant="outline"
+				class="flex h-auto items-center gap-2 rounded-lg border border-gray-100 bg-white px-3 py-2 text-[13px] font-medium text-[#1a1a1a] transition-all duration-200 hover:bg-gray-100 active:scale-[0.97]"
 			>
 				<HugeiconsIcon icon={GithubIcon} size={15} color="#1a1a1a" />
 				<span class="min-w-2.5 text-center">{githubStars}</span>
-			</a>
+			</Button>
 
 			<!-- Framework Dropdown -->
 			<DropdownMenu.Root bind:open={dropdownOpen}>

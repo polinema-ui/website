@@ -3,6 +3,7 @@
 	import { Copy01Icon, Tick01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";
 	import { Tabs } from "bits-ui";
 	import { Navbar } from "$lib/components/navbar";
+	import { Button } from "$lib/components/button";
 	import { PKG_MANAGERS } from "$lib/constants/pkg-managers";
 
 	let activeTab = $state("pnpm");
@@ -64,10 +65,9 @@
 		</p>
 	</section>
 
-	<button
-		type="button"
+	<Button
 		onclick={handleTrialStart}
-		class="group relative flex flex-[0_0_auto] cursor-pointer items-center gap-2.5 rounded-2xl
+		class="group relative flex h-auto flex-[0_0_auto] cursor-pointer items-center gap-2.5 rounded-2xl
 			bg-blue-700 px-7 py-3.5 text-[15px] leading-normal font-medium tracking-normal
 			text-white shadow-[0_1px_0_rgba(255,255,255,0.15)_inset,0_-2px_0_rgba(0,0,0,0.2)_inset,0_6px_20px_rgba(29,78,216,0.4)] transition-all
 			duration-200
@@ -79,7 +79,7 @@
 		<span class="transition-transform duration-200">
 			<HugeiconsIcon icon={ArrowRight01Icon} size={16} color="currentColor" />
 		</span>
-	</button>
+	</Button>
 
 	<Tabs.Root
 		bind:value={activeTab}
@@ -103,7 +103,7 @@
 				type="button"
 				onclick={copyCmd}
 				aria-label="Copy command"
-				class="rounded-md p-1.5 text-[#7c8079] transition-all hover:bg-[#f4f4f0] hover:text-[#1a1a1a]"
+				class="cursor-pointer rounded-md p-1.5 text-[#7c8079] transition-all hover:bg-[#f4f4f0] hover:text-[#1a1a1a]"
 			>
 				<HugeiconsIcon icon={copied ? Tick01Icon : Copy01Icon} size={15} color="currentColor" />
 			</button>
