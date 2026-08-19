@@ -11,8 +11,12 @@
 </svelte:head>
 
 <main class="flex min-h-screen flex-col items-center justify-center px-4 text-center">
-	<img src="/logo.png" alt="Polinema UI Logo" class="mb-8 h-16 select-none opacity-90 grayscale transition-all duration-500 hover:grayscale-0" />
-	<h1 class="select-none text-9xl font-black text-gray-200">
+	<img
+		src="/logo.png"
+		alt="Polinema UI Logo"
+		class="mb-8 h-16 opacity-90 grayscale transition-all duration-500 select-none hover:grayscale-0"
+	/>
+	<h1 class="text-9xl font-black text-gray-200 select-none">
 		{page.status}
 	</h1>
 	<div class="relative z-10 -mt-8 space-y-2">
@@ -34,7 +38,10 @@
 		</p>
 	</div>
 	<span class="mt-8">
-		<Button href={Routes.HOME} class="rounded-xl bg-blue-600 px-6 py-5 text-sm font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg focus:ring-4 focus:ring-blue-200">
+		<Button
+			href={Routes.HOME}
+			class="rounded-xl bg-blue-600 px-6 py-5 text-sm font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg focus:ring-4 focus:ring-blue-200"
+		>
 			<HugeiconsIcon icon={ArrowLeft01Icon} class="mr-2 h-5 w-5" />
 			Kembali
 		</Button>
