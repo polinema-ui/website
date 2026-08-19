@@ -35,8 +35,8 @@ To fix the example above:
 This API can also be used to provide access to random or time-based values that are stable between server rendering and hydration. For example, to get a random number that doesn't update on hydration:
 
 ```ts
-import { hydratable } from 'svelte';
-const rand = hydratable('random', () => Math.random());
+import { hydratable } from "svelte";
+const rand = hydratable("random", () => Math.random());
 ```
 
 If you're a library author, be sure to prefix the keys of your `hydratable` values with the name of your library so that your keys don't conflict with other libraries.
