@@ -41,7 +41,12 @@
 </svelte:head>
 
 {#if sidebar}
-	<button type="button" aria-label="Tutup menu navigasi" class="fixed inset-0 z-40 bg-slate-900/20 backdrop-blur-sm transition-opacity md:hidden" onclick={() => (sidebar = false)}></button>
+	<button
+		type="button"
+		aria-label="Tutup menu navigasi"
+		class="fixed inset-0 z-40 bg-slate-900/20 backdrop-blur-sm transition-opacity md:hidden"
+		onclick={() => (sidebar = false)}
+	></button>
 {/if}
 
 <!-- prettier-ignore -->
