@@ -1,5 +1,4 @@
-import { Archive01Icon, CalendarCheck, Database01Icon, Factory01Icon, type HugeiconsIcon, LegalDocument01Icon } from "@hugeicons/core-free-icons";
-import { Routes } from "$lib/constants/routes";
+import { type HugeiconsIcon } from "@hugeicons/core-free-icons";
 
 export interface Navigation {
 	title: string;

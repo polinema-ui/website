@@ -9,7 +9,7 @@
  * ```
  */
 export const Routes = {
-  // Common Routes
-  DOCS: "/docs",
-  HOME: "/",
+	// Common Routes
+	DOCS: "/docs",
+	HOME: "/",
 } as const;
