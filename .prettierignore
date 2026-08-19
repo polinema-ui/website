@@ -5,3 +5,9 @@ dist/
 node_modules/
 out/
 static/
+src/lib/paraglide/
+src/paraglide/
+.cursor/
+.gemini/
+.github/
+project.inlang/

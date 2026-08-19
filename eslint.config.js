@@ -8,6 +8,9 @@ import ts from "typescript-eslint";
 
 export default defineConfig(
 	includeIgnoreFile(resolve(import.meta.dirname, ".gitignore")),
+	{
+		ignores: ["src/lib/paraglide/**", "src/paraglide/**"],
+	},
 	js.configs.recommended,
 	ts.configs.recommended,
 	svelte.configs.recommended,
@@ -17,6 +20,7 @@ export default defineConfig(
 		languageOptions: { globals: { ...globals.browser, ...globals.node } },
 		rules: {
 			"no-undef": "off",
+			"svelte/no-navigation-without-resolve": "off",
 		},
 	},
 	{

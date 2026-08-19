@@ -20,6 +20,7 @@
 	},
 	"dependencies": {
 		"@fontsource-variable/inter": "^5.3.0",
+		"@fontsource-variable/plus-jakarta-sans": "^5.3.0",
 		"@hugeicons/core-free-icons": "^4.2.3",
 		"@hugeicons/svelte": "^1.1.4",
 		"@tanstack/table-core": "^8.21.2",
@@ -63,5 +64,6 @@
 		"vite": "^8.0.16",
 		"vitest": "^4.1.8",
 		"vitest-browser-svelte": "^2.1.1"
-	}
+	},
+	"packageManager": "pnpm@9.15.6+sha512.139cab068fdf0b751268179ac5f909b5be72afb4a75c513d1905d151befc8977b593d3cf8671ed83d4d6637c5c94b98ffbce108125de4a5a27a31233601a99de"
 }
