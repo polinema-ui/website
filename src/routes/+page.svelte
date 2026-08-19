@@ -16,12 +16,6 @@
 		copied = true;
 		setTimeout(() => (copied = false), 2000);
 	}
-
-	let trialStarted = $state(false);
-
-	function handleTrialStart() {
-		trialStarted = true;
-	}
 </script>
 
 <svelte:head>
@@ -66,7 +60,6 @@
 	</section>
 
 	<Button
-		onclick={handleTrialStart}
 		class="group relative flex h-auto flex-[0_0_auto] cursor-pointer items-center gap-2.5 rounded-2xl
 			bg-blue-700 px-7 py-3.5 text-[15px] leading-normal font-medium tracking-normal
 			text-white shadow-[0_1px_0_rgba(255,255,255,0.15)_inset,0_-2px_0_rgba(0,0,0,0.2)_inset,0_6px_20px_rgba(29,78,216,0.4)] transition-all
@@ -75,7 +68,7 @@
 			focus-visible:outline-2 focus-visible:outline-offset-4
 			focus-visible:outline-blue-500 active:scale-[0.97] active:shadow-[0_3px_0_rgba(255,255,255,0.1)_inset,0_-1px_0_rgba(0,0,0,0.2)_inset]"
 	>
-		<span>{trialStarted ? "Trial Started!" : "Start Free Trial"}</span>
+		<span>Coming Soon!</span>
 		<span class="transition-transform duration-200">
 			<HugeiconsIcon icon={ArrowRight01Icon} size={16} color="currentColor" />
 		</span>

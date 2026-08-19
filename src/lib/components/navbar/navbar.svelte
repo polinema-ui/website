@@ -50,7 +50,7 @@
 			: 'border-white/50 bg-white/65 shadow-[0_4px_16px_rgba(0,0,0,0.04),0_1px_0_rgba(255,255,255,0.7)_inset] backdrop-blur-md'}"
 	>
 		<a href={localizeHref("#home")} aria-label="Polinema UI home" class="shrink-0">
-			<span class="font-sans text-[17px] leading-none font-bold tracking-tight text-[#0f0f0f]"> Polinema UI </span>
+			<span class="font-sans text-[17px] leading-none font-medium tracking-tight text-[#0f0f0f]"> Polinema UI </span>
 		</a>
 
 		<nav aria-label="Primary navigation">
