@@ -49,8 +49,8 @@
 			? 'border-black/[0.07] bg-white/85 shadow-[0_8px_32px_rgba(0,0,0,0.08),0_1px_0_rgba(255,255,255,0.8)_inset] backdrop-blur-xl'
 			: 'border-white/50 bg-white/65 shadow-[0_4px_16px_rgba(0,0,0,0.04),0_1px_0_rgba(255,255,255,0.7)_inset] backdrop-blur-md'}"
 	>
-		<a href={localizeHref("#home")} aria-label="Polinema UI home" class="shrink-0">
-			<span class="font-sans text-[17px] leading-none font-medium tracking-tight text-[#0f0f0f]"> Polinema UI </span>
+		<a href={localizeHref("#home")} aria-label="Polinema UI home" class="flex shrink-0 items-center">
+			<img src="/logo.png" alt="Polinema UI Logo" class="h-5 w-auto object-contain" />
 		</a>
 
 		<nav aria-label="Primary navigation">
