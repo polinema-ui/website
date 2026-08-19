@@ -1,21 +1,16 @@
 <script lang="ts">
 	import { HugeiconsIcon } from "@hugeicons/svelte";
-	import { Copy01Icon, Tick01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";
+	import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
 	import { Tabs } from "bits-ui";
 	import { Navbar } from "$lib/components/navbar";
 	import { Button } from "$lib/components/button";
+	import { CopyButton } from "$lib/components/copy";
 	import { PKG_MANAGERS } from "$lib/constants/pkg-managers";
+	import { About } from "$lib/components/sections";
 
 	let activeTab = $state("pnpm");
-	let copied = $state(false);
 
 	let activeCmd = $derived(PKG_MANAGERS.find((p) => p.id === activeTab)?.cmd ?? "");
-
-	function copyCmd() {
-		navigator.clipboard.writeText(activeCmd);
-		copied = true;
-		setTimeout(() => (copied = false), 2000);
-	}
 </script>
 
 <svelte:head>
@@ -33,7 +28,7 @@
 	>
 		<div
 			class="relative aspect-[2.38] w-full self-stretch mask-[linear-gradient(180deg,transparent_0%,black_25%,black_72%,transparent_100%)] bg-cover bg-center"
-			style="background-image: url('/polinema-building.webp')"
+			style="background-image: url('/elon-musk-migren.webp')"
 		></div>
 	</section>
 
@@ -92,14 +87,7 @@
 				{/each}
 			</Tabs.List>
 
-			<button
-				type="button"
-				onclick={copyCmd}
-				aria-label="Copy command"
-				class="cursor-pointer rounded-md p-1.5 text-[#7c8079] transition-all hover:bg-[#f4f4f0] hover:text-[#1a1a1a]"
-			>
-				<HugeiconsIcon icon={copied ? Tick01Icon : Copy01Icon} size={15} color="currentColor" />
-			</button>
+			<CopyButton content={activeCmd} />
 		</div>
 
 		{#each PKG_MANAGERS as pm (pm.id)}
@@ -111,3 +99,5 @@
 		{/each}
 	</Tabs.Root>
 </main>
+
+<About />
