@@ -6,7 +6,7 @@
 	import { fetchGithubStars } from "$lib/utils/github";
 	import { TailwindLogo, BootstrapLogo } from "$lib/components/icons";
 	import type { NavItem } from "$lib/types/navbar";
-	import { DEFAULT_NAV_ITEMS } from "$lib/constants/navbar";
+	import { DEFAULT_NAV_ITEMS } from "$lib/constants/menus";
 
 	interface Props {
 		items?: NavItem[];
