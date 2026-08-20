@@ -8,5 +8,9 @@
 	],
 	"plugin.inlang.messageFormat": {
 		"pathPattern": "./messages/{locale}.json"
+	},
+	"plugin.inlang.paraglideJs": {
+		"project": "./project.inlang",
+		"outdir": "./src/lib/paraglide"
 	}
 }
