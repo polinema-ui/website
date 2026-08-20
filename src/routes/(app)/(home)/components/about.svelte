@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Card } from "$lib/components/card";
-	import { MetricCard } from "$routes/(app)/(home)/atoms";
+	import { InteractiveGrid, MetricCard } from "$routes/(app)/(home)/atoms";
 	import { METRICS } from "$routes/(app)/(home)/constants/metrics";
 	import type { Metrics } from "$routes/(app)/(home)/types/metrics";
 
@@ -17,7 +17,8 @@
 </script>
 
 <section class="relative w-full scroll-mt-28 bg-[#fbfbfb] px-6 py-16">
-	<div class="mx-auto flex max-w-7xl flex-col gap-16">
+	<InteractiveGrid />
+	<div class="relative z-10 mx-auto flex max-w-7xl flex-col gap-16">
 		<header class="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-16">
 			<h2
 				class="font-sans text-3xl font-bold tracking-tight text-neutral-950 sm:text-4xl md:text-[44px] md:leading-tight lg:col-span-5"
@@ -69,7 +70,7 @@
 			<div
 				class="absolute top-0 left-1/2 z-10 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-2xl bg-linear-to-br from-blue-400 to-blue-600 text-white shadow-[0_10px_25px_rgba(37,99,235,0.2)]"
 			>
-				<img src="/logo-white.png" alt="Polinema UI Mark" class="h-6 w-6 object-contain" />
+				<img src="/icon.png" alt="Polinema UI Mark" class="h-6 w-6 object-contain" />
 			</div>
 			<div class="absolute top-30.25 left-1/2 z-10 w-60 -translate-x-1/2">
 				<MetricCard metric={featured} />
@@ -87,7 +88,7 @@
 			<div
 				class="flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-b from-blue-400 to-blue-600 shadow-lg shadow-blue-500/10"
 			>
-				<img src="/logo-white.png" alt="Polinema UI Mark" class="h-7 w-7 object-contain" />
+				<img src="/icon.png" alt="Polinema UI Mark" class="h-7 w-7 object-contain" />
 			</div>
 			<Card
 				class="w-full overflow-hidden rounded-xl border border-blue-100/60 bg-linear-to-b from-white to-[#e0f2fe]/40 px-6 py-5 text-center shadow-[0_12px_40px_rgba(59,130,246,0.08)]"

@@ -1,112 +1,103 @@
 <h1 align="center">Polinema UI</h1>
 
-An open-source UI component collection built with **Svelte 5 (Runes)** and **Tailwind CSS v4**.
+<br />
 
-Polinema UI adopts the philosophy of **shadcn/ui**—components are not installed as a monolithic dependency, but instead added directly into your codebase. Component designs and layouts are structured for enterprise applications, admin dashboards, and academic information systems (inspired by Bootstrap and Metronic conventions).
+<div align="center">
+  <img src="static/logo.png" />
+</div>
 
-> **Project Status:** We are currently building the core documentation website. The distribution package is coming soon!
+<br />
 
-## Features
+<p align="center">
+  An open-source UI component ecosystem combining the structural simplicity of Bootstrap 5 with the utility power of Tailwind CSS v4. Built on a copy-and-paste architecture for total code ownership.
+</p>
 
-- **Svelte 5 Native:** Built entirely with Runes (`$state`, `$derived`, `$props`, `$effect`) for optimal reactivity and performance.
-- **Tailwind CSS v4:** Powered by the latest Tailwind CSS v4 engine.
-- **Dashboard-Oriented:** Structured, clean, and rigid UI elements designed specifically for data-heavy applications and admin panels.
-- **Type Safe:** First-class TypeScript support for an enhanced developer experience.
-- **Internationalization (i18n):** Integrated with Paraglide-js for smooth multi-language support.
+## Overview
+
+Polinema UI is designed for building accessible, high-performance web applications—ranging from academic portals and admin dashboards to enterprise platforms. Inspired by the **shadcn/ui** distribution model, components are not installed as a monolithic NPM dependency. Instead, you copy the component source code directly into your codebase, granting you 100% control over design, markup, and functionality.
+
+## Philosophy
+
+Our core principle is straightforward: **the code belongs to you, not us.**
+
+Monolithic package dependencies create rigid black boxes that break when custom requirements emerge. For academic institutions and enterprise systems with distinct branding or complex workflows, adaptability is mandatory. Polinema UI provides a transparent, unopinionated foundation that is easy to read, modify, and extend without theme lock-ins.
+
+## Key Features
+
+| Feature                         | Description                                                                                            |
+| :------------------------------ | :----------------------------------------------------------------------------------------------------- |
+| **Hybrid Architecture**         | Merges the predictable grid layout of Bootstrap 5 with the flexibility of Tailwind CSS v4 utilities.   |
+| **Copy & Paste Model**          | Zero rigid package setup. Paste source code directly into your project and maintain full ownership.    |
+| **Enterprise & Academic Focus** | Structured out of the box for data tables, multi-step forms, analytics dashboards, and portal systems. |
+| **Fully Customizable**          | Unlocked styling with no restrictive design themes—modify utility classes and markup directly.         |
+| **Type-Safe & i18n Ready**      | Built with first-class TypeScript support and Paraglide-js internationalization.                       |
 
 ## Tech Stack
 
-- **Framework:** [SvelteKit](https://kit.svelte.dev/)
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) & [shadcn-svelte](https://shadcn-svelte.com/)
-- **Icons:** [Hugeicons Svelte](https://hugeicons.com/)
-- **Testing:** [Vitest](https://vitest.dev/) (Unit) & [Playwright](https://playwright.dev/) (E2E)
-- **Code Quality:** ESLint, Prettier, and [Knip](https://knip.dev/)
+- **Styling Engine:** Tailwind CSS v4 & shadcn-svelte conventions
+- **Icons:** Hugeicons Svelte
+- **Internationalization:** Paraglide-js
+- **Validation & Testing:** Vitest (Unit) & Playwright (E2E)
+- **Code Quality:** ESLint, Prettier, and Knip
 
 ## Getting Started
 
 ### Prerequisites
 
-Ensure you have **Node.js** (v18 or higher) and **npm** installed on your system.
+- Node.js (v18+) or Bun runtime
+- Package manager (`bun`, `pnpm`, or `npm`)
 
-### Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/polinema-ui/website
-cd polinema-ui
-```
-
-Install dependencies:
+### Local Setup
 
 ```bash
-npm install
+# Clone the repository
+git clone https://github.com/polinema-ui/website.git
+cd website
+
+# Install dependencies
+bun install
+
+# Start local development server
+bun run dev
 ```
 
-Start the development server:
+Open `http://localhost:4000` in your browser to view the documentation portal.
 
-```bash
-npm run dev
-```
+## Verification Scripts
 
-Open `http://localhost:4000` in your browser to view the documentation website.
+Execute these validation commands before committing changes:
+
+| Command             | Action                                                                           |
+| :------------------ | :------------------------------------------------------------------------------- |
+| `bun run check`     | Compiles Paraglide translations, syncs SvelteKit, and verifies TypeScript types. |
+| `bun run lint`      | Audits code formatting (Prettier) and code style rules (ESLint).                 |
+| `bun run format`    | Automatically formats the entire codebase.                                       |
+| `bun run test:unit` | Executes unit tests via Vitest.                                                  |
+| `bun run knip`      | Audits unused files, exports, and dependencies.                                  |
 
 ## Project Structure
 
 ```text
-├── docs/                 # Documentation pages (MDSvex / .svx format)
+├── messages/             # i18n translation files
+├── project.inlang/       # Paraglide internationalization settings
 ├── src/
 │   ├── lib/
-│   │   ├── components/   # Atomic UI components (Button, Dialog, Sidebar, etc.)
-│   │   ├── constants/    # Menu items and route definitions
-│   │   ├── hooks/        # Reactive hooks and utilities
-│   │   └── utils/        # Helper functions (class merging, etc.)
-│   └── routes/           # SvelteKit application routes and layouts
-```
-
-## Scripts & Verification
-
-Run these validation commands before committing changes:
-
-Check code formatting and linting rules:
-
-```bash
-npm run lint
-```
-
-Format codebase automatically:
-
-```bash
-npm run format
-```
-
-Run TypeScript and Svelte type-checking:
-
-```bash
-npm run check
-```
-
-Analyze unused files, exports, and dependencies:
-
-```bash
-npm run knip
-```
-
-Execute unit and end-to-end tests:
-
-```bash
-npm run test
+│   │   ├── components/   # Atomic & compound UI components
+│   │   ├── constants/    # Route definitions & system configurations
+│   │   ├── paraglide/    # Compiled multi-language runtime
+│   │   └── utils/        # Helper utilities & class merging logic
+│   └── routes/           # Application routes and documentation pages
 ```
 
 ## Contributing
 
-Contributions are welcome! Whether you are fixing documentation typos, reporting bugs, or building new components, please read our [CONTRIBUTING.md](./CONTRIBUTING.md) guide before submitting a pull request.
-
-## License
-
-This project is licensed under the **MIT License**. See the [LICENSE](./LICENSE) file for details.
+Contributions are welcome! Please review our [CONTRIBUTING.md](./CONTRIBUTING.md) guide before submitting pull requests.
 
 ## Maintainers
 
 - [@a6iyyu](https://github.com/a6iyyu)
 - [@ckckckcz](https://github.com/ckckckcz)
+
+## License
+
+Distributed under the **MIT License**. See [LICENSE](./LICENSE) for details.

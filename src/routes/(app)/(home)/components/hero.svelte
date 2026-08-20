@@ -10,7 +10,7 @@
 </script>
 
 <section
-	class="relative flex min-h-screen w-full flex-col items-center justify-between overflow-hidden bg-[linear-gradient(180deg,rgba(253,253,252,1)_0%,rgba(244,246,242,1)_100%)] px-4 pt-28 pb-10 sm:px-6 sm:pt-36 sm:pb-12 md:pt-40"
+	class="relative flex min-h-screen w-full flex-col items-center justify-center gap-8 overflow-hidden bg-[linear-gradient(180deg,rgba(253,253,252,1)_0%,rgba(244,246,242,1)_100%)] px-4 pt-28 pb-12 sm:px-6 sm:pt-36 sm:pb-16 md:pt-40"
 >
 	<figure
 		aria-hidden="true"
@@ -20,7 +20,7 @@
 	<div
 		class="pointer-events-none absolute inset-x-0 bottom-0 z-1 h-16 bg-linear-to-b from-transparent to-[#fbfbfb]"
 	></div>
-	<article class="relative z-10 my-auto flex flex-col items-center gap-4 text-center sm:my-0 sm:gap-6">
+	<article class="relative z-10 flex flex-col items-center gap-4 text-center sm:gap-6">
 		<h1
 			class="max-w-3xl font-sans text-3xl font-bold tracking-tight text-balance text-neutral-900 sm:text-5xl md:text-[56px] md:leading-[1.15]"
 		>
@@ -30,12 +30,12 @@
 			</span>
 		</h1>
 		<p
-			class="max-w-md font-sans text-sm leading-relaxed font-normal text-balance text-white sm:max-w-lg sm:text-base md:text-lg"
+			class="max-w-md font-sans text-sm leading-relaxed font-normal text-balance text-neutral-900 sm:max-w-lg sm:text-base md:text-lg md:text-white"
 		>
 			Nggak perlu bikin semuanya dari nol. Cari component yang kamu butuhin, lihat contohnya, dan tinggal pakai sesuai
 			kebutuhan 😉
 		</p>
-		<div class="mt-4 flex flex-col items-center gap-3 sm:flex-row sm:gap-4">
+		<div class="mt-2 flex flex-col items-center gap-3 sm:flex-row sm:gap-4">
 			<Button
 				href={ROUTES.DOCS}
 				class="flex cursor-pointer items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-medium text-white shadow-[0_1px_0_rgba(255,255,255,0.2)_inset,0_8px_20px_rgba(37,99,235,0.35)] transition-all duration-200 hover:bg-blue-700 hover:shadow-[0_1px_0_rgba(255,255,255,0.2)_inset,0_12px_24px_rgba(37,99,235,0.4)] active:scale-95 sm:px-7 sm:py-3.5 sm:text-[15px]"
@@ -57,7 +57,7 @@
 	</article>
 	<Tabs.Root
 		bind:value={activeTab}
-		class="relative z-10 mt-8 w-full max-w-85 overflow-hidden rounded-2xl border border-neutral-200/90 bg-white/95 shadow-[0_8px_30px_rgb(0,0,0,0.06)] backdrop-blur-md sm:mt-10 sm:max-w-md md:max-w-lg"
+		class="relative z-10 w-full max-w-85 overflow-hidden rounded-2xl border border-neutral-200/90 bg-white/95 shadow-[0_8px_30px_rgb(0,0,0,0.06)] backdrop-blur-md sm:max-w-md md:max-w-lg"
 	>
 		<header class="flex items-center justify-between border-b border-neutral-200/80 px-3 py-1.5 sm:px-4 sm:py-2">
 			<Tabs.List class="flex gap-1">
