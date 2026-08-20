@@ -15,35 +15,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup pnpm environment
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v4
+      - name: Setup Bun environment
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: 22
-          cache: pnpm
+          bun-version: latest
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: bun install --frozen-lockfile
 
-      - name: Build project
-        run: pnpm run build
-
-      # - name: Run code linting
-      #   run: bun run lint
+      - name: Run code linting
+        run: bun run lint
 
       - name: Run TypeScript and Svelte type-checks
-        run: pnpm run check
+        run: bun run check
 
       - name: Execute unit tests
-        run: pnpm run test:unit -- --run
+        run: bun run test:unit -- --run
 
-      # - name: Install Playwright system dependencies
-      #   run: bunx playwright install --with-deps
-
-      # - name: Run end-to-end tests
-      #   run: bun run test:e2e
+      - name: Build project
+        run: bun run build
 
   # deploy:
   #   name: Continuous Deployment (CD)
