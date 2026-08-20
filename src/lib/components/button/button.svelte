@@ -36,10 +36,7 @@
 	});
 
 	export type ButtonProps = WithElementRef<HTMLButtonAttributes> &
-		WithElementRef<HTMLAnchorAttributes> & {
-			variant?: ButtonVariant;
-			size?: ButtonSize;
-		};
+		WithElementRef<HTMLAnchorAttributes> & { size?: ButtonSize; variant?: ButtonVariant };
 	export type ButtonSize = VariantProps<typeof buttonVariants>["size"];
 	export type ButtonVariant = VariantProps<typeof buttonVariants>["variant"];
 </script>

@@ -8,8 +8,10 @@
  * console.log(Routes.HOME); // Output: "/"
  * ```
  */
-export const Routes = {
-	// Common Routes
-	DOCS: "/docs",
+export const ROUTES = {
+	ABOUT: "/about",
+	DOCS: "/docs/getting-started/introduction",
+	FAQ: "/faq",
+	FEATURES: "/features",
 	HOME: "/",
 } as const;

@@ -1,27 +1,16 @@
-import { type HugeiconsIcon } from "@hugeicons/core-free-icons";
-import type { NavItem } from "$lib/types/navbar";
-
-export interface Navigation {
-	title: string;
-	icon: typeof HugeiconsIcon;
-	prefix: string;
-	items: {
-		title: string;
-		url: string;
-	}[];
-}
+import { ROUTES } from "$lib/constants/routes";
 
 /**
- * @constant
- * @description Generates the navigation menu.
- * @returns Object containing main menus and admin-specific menus.
+ * @description Defines the navigation menu items for the website.
+ * @type {Array<{ label: string; href: string }>}
  */
-export const menus = () => {};
-
-export const DEFAULT_NAV_ITEMS: NavItem[] = [
-	{ label: "Home", href: "#home" },
-	{ label: "Features", href: "#features" },
-	{ label: "About", href: "#about" },
-	{ label: "FAQ", href: "#faq" },
-	{ label: "Docs", href: "#docs" },
-];
+export const MENUS = [
+	{ label: "Home", href: ROUTES.HOME },
+	{ label: "Features", href: ROUTES.FEATURES },
+	{ label: "About", href: ROUTES.ABOUT },
+	{ label: "FAQ", href: ROUTES.FAQ },
+	{ label: "Docs", href: ROUTES.DOCS },
+] as const satisfies readonly {
+	label: string;
+	href: string;
+}[];

@@ -1,6 +1,0 @@
----
-title: "Arsitektur & Tech Stack"
-description: ""
-section: "developer"
-order: 2
----

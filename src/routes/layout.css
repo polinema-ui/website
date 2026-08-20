@@ -1,16 +1,10 @@
 @custom-variant dark (&:is(.dark *));
-@import "@fontsource-variable/inter";
 @import "@fontsource-variable/plus-jakarta-sans";
-
 @import "shadcn-svelte/tailwind.css";
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
-
-@theme {
-	--font-sans: "Plus Jakarta Sans Variable", sans-serif;
-}
 
 :root {
 	--accent: oklch(0.97 0 0);
@@ -113,7 +107,7 @@
 	--color-sidebar-primary: var(--sidebar-primary);
 	--color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
 	--color-sidebar-ring: var(--sidebar-ring);
-	--font-sans: "Figtree Variable", sans-serif;
+	--font-sans: "Plus Jakarta Sans Variable", sans-serif;
 	--radius-2xl: calc(var(--radius) * 1.8);
 	--radius-3xl: calc(var(--radius) * 2.2);
 	--radius-4xl: calc(var(--radius) * 2.6);
@@ -128,10 +122,7 @@
 		@apply border-border outline-ring/50;
 	}
 	body {
-		@apply bg-background text-foreground;
-	}
-	html {
-		@apply font-sans;
+		@apply bg-background font-sans text-foreground;
 	}
 }
 

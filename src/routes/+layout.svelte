@@ -1,3 +1,5 @@
+<!-- Don't delete this file. This layout is used to wrap all pages in this current directory. -->
+
 <script lang="ts">
 	import "$routes/layout.css";
 
@@ -5,7 +7,3 @@
 </script>
 
 {@render children()}
-
-<svelte:head>
-	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-</svelte:head>

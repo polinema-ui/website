@@ -1,20 +1,23 @@
 import type { LayoutLoad } from "./$types";
 
 export const load: LayoutLoad = async () => {
-	const rawMenus = import.meta.glob(["/src/docs/**/*.{md,svx}"], { eager: true });
+	const modules = import.meta.glob("/src/docs/**/*.svx", { eager: true });
+	const menus: { title: string; url: string; category: string; order?: number }[] = [];
 
-	const menus = Object.entries(rawMenus).map(([path]) => {
-		const url = path.replace("/src/docs", "/docs").replace(/\.(md|svx)$/, "");
-		const parts = path.replace("/src/docs/", "").split("/");
-		const category = parts.length > 1 ? parts[0] : "Umum";
-		const title =
-			parts
-				.pop()
-				?.replace(/\.(md|svx)$/, "")
-				.replace(/-/g, " ") || "Tanpa Judul";
+	for (const path in modules) {
+		const module = modules[path] as { metadata?: { title?: string; category?: string; order?: number } };
+		const slug = path.replace("/src/docs/", "").replace(".svx", "");
+		const segments = slug.split("/");
 
-		return { url, title, category };
-	});
+		const folderName = segments.length > 1 ? segments[0].replace(/-/g, " ") : "Getting Started";
+		const fallbackCategory = folderName.charAt(0).toUpperCase() + folderName.slice(1);
+
+		const title = module.metadata?.title || segments[segments.length - 1].replace(/-/g, " ");
+		const category = module.metadata?.category || fallbackCategory;
+		const order = module.metadata?.order ?? 99;
+
+		menus.push({ title, url: `/docs/${slug}`, category, order });
+	}
 
 	return { menus };
 };
