@@ -1,7 +1,25 @@
 ---
 title: Introduction
-description:
+description: Bangun interface Polinema UI yang accessible pake Svelte 5 dan Tailwind CSS.
 order: 1
+author: Polinema UI
+authorUrl: https://github.com/polinema-ui
+lastUpdated: 20/8/2026
 ---
 
-Hi, it's from MDsveX.
+## Siapa Kitaaaaaaaaaaaaa ?
+
+Polinema UI adalah kumpulan komponen UI open-source yang gabungin kesederhanaan Bootstrap 5 sama kekuatan utility class-nya Tailwind CSS v4. Terinspirasi dari model komponen shadcn di mana lo punya kepemilikan penuh atas kode, bukan cuma nempel dependency NPM yang kaku Polinema UI ngasih developer kontrol 100% buat kustomisasi desain, cocok banget buat portal akademik, admin dashboard, sampe platform enterprise.
+
+**Fitur utama:**
+
+- **Hybrid Architecture** — gabungin grid struktural Bootstrap sama fleksibilitas utility class-nya Tailwind CSS v4.
+- **Copy & Paste Model** — nggak perlu setup package yang ribet, tinggal copy source code komponennya langsung ke project lo.
+- **Enterprise & Academic Focus** — udah didesain dari awal buat kebutuhan kompleks kayak data table, multi-step form, sampe analytics dashboard.
+- **Fully Customizable** — nggak ada theme yang ngunci lo. Markup dan utility class-nya bebas diubah langsung sesuka hati.
+
+## Philosophy
+
+Filosofi kita simpel: kode itu punya lo, bukan punya kita. Daripada maksa lo install dependency berat yang susah di-custom pas requirement berubah, kita kasih source code komponennya langsung biar lo bisa bongkar-pasang sesuka hati — nggak ada black box.
+
+Ini krusial buat project akademik dan enterprise yang butuh fleksibilitas tinggi: desainnya yang harus nyesuain sama identitas kampus atau brand institusi, bukan sebaliknya. Kita percaya nggak ada satu design system yang cocok buat semua orang, jadi Polinema UI dibangun biar gampang dibaca, gampang diubah, dan nggak theme-locked. Lo yang pegang kendali penuh — kita cuma nyediain fondasinya.

@@ -1,7 +1,14 @@
 <script lang="ts">
-	import { Cancel01Icon, Menu01Icon, Search01Icon } from "@hugeicons/core-free-icons";
+	import {
+		ArrowLeft01Icon,
+		ArrowRight01Icon,
+		Cancel01Icon,
+		Menu01Icon,
+		RightToLeftListBulletIcon,
+		Search01Icon,
+	} from "@hugeicons/core-free-icons";
 	import { HugeiconsIcon } from "@hugeicons/svelte";
-	import type { Snippet } from "svelte";
+	import { onMount, tick, type Snippet } from "svelte";
 	import { page } from "$app/state";
 	import { Button } from "$lib/components/button";
 	import { Input } from "$lib/components/input";
@@ -9,25 +16,28 @@
 	import { ROUTES } from "$lib/constants/routes";
 	import type { LayoutData } from "./$types";
 
+	type Menu = LayoutData["menus"][number];
+	type TocItem = { id: string; title: string; level: number };
+
 	let { data, children }: { data: LayoutData; children: Snippet } = $props();
 
-	/** Page metadata derived from active doc */
-	let title = $derived(page.data.meta?.title);
-	let description = $derived(page.data.meta?.description);
-
-	/** Sidebar visibility and search query state */
+	let articleElement: HTMLElement;
 	let sidebarOpen = $state(false);
 	let searchQuery = $state("");
+	let tocItems = $state<TocItem[]>([]);
+	let activeHeadingId = $state("");
 
-	/** Standard category priority order */
+	let title = $derived(page.data.meta?.title);
+	let description = $derived(page.data.meta?.description);
+	let author = $derived(page.data.meta?.author);
+	let authorUrl = $derived(page.data.meta?.authorUrl);
+	let lastUpdated = $derived(page.data.meta?.lastUpdated);
 	const CATEGORY_ORDER = ["Getting started", "Guides", "Components"];
 
-	/** Filtered menu list based on search */
 	let filteredMenus = $derived(
 		data.menus.filter((menu) => menu.title.toLowerCase().includes(searchQuery.toLowerCase())),
 	);
 
-	/** Menus grouped by category */
 	let groupedMenus = $derived(
 		filteredMenus.reduce(
 			(acc, menu) => {
@@ -35,11 +45,10 @@
 				acc[menu.category].push(menu);
 				return acc;
 			},
-			{} as Record<string, typeof data.menus>,
+			{} as Record<string, Menu[]>,
 		),
 	);
 
-	/** Sorted categories based on predefined priority */
 	let sortedCategories = $derived(
 		Object.keys(groupedMenus).sort((a, b) => {
 			const indexA = CATEGORY_ORDER.indexOf(a);
@@ -50,6 +59,62 @@
 			return a.localeCompare(b);
 		}),
 	);
+
+	let orderedMenus = $derived(
+		sortedCategories.flatMap((category) =>
+			[...(groupedMenus[category] ?? [])].sort((a, b) => (a.order ?? 99) - (b.order ?? 99)),
+		),
+	);
+	let currentMenuIndex = $derived(orderedMenus.findIndex((menu) => menu.url === page.url.pathname));
+	let previousMenu = $derived(currentMenuIndex > 0 ? orderedMenus[currentMenuIndex - 1] : undefined);
+	let nextMenu = $derived(
+		currentMenuIndex !== -1 && currentMenuIndex < orderedMenus.length - 1
+			? orderedMenus[currentMenuIndex + 1]
+			: undefined,
+	);
+
+	function slugify(value: string) {
+		return value
+			.toLowerCase()
+			.trim()
+			.replace(/[^a-z0-9\s-]/g, "")
+			.replace(/\s+/g, "-")
+			.replace(/-+/g, "-");
+	}
+
+	function updateActiveHeading() {
+		const headings = Array.from(articleElement?.querySelectorAll<HTMLElement>("h2[id], h3[id]") ?? []);
+		activeHeadingId =
+			headings.findLast((heading) => heading.getBoundingClientRect().top <= 120)?.id ?? headings[0]?.id ?? "";
+	}
+
+	function updateToc() {
+		const usedIds: string[] = [];
+		const headings = Array.from(articleElement?.querySelectorAll<HTMLHeadingElement>("h2, h3") ?? []);
+
+		tocItems = headings.map((heading) => {
+			const baseId = heading.id || slugify(heading.textContent ?? "section");
+			let id = baseId;
+			let count = 2;
+
+			while (usedIds.includes(id)) id = `${baseId}-${count++}`;
+			usedIds.push(id);
+			heading.id = id;
+
+			return { id, title: heading.textContent ?? "", level: Number(heading.tagName.slice(1)) };
+		});
+		updateActiveHeading();
+	}
+
+	onMount(() => {
+		window.addEventListener("scroll", updateActiveHeading, { passive: true });
+		return () => window.removeEventListener("scroll", updateActiveHeading);
+	});
+
+	$effect(() => {
+		void page.url.pathname;
+		void tick().then(updateToc);
+	});
 </script>
 
 <svelte:head>
@@ -90,7 +155,7 @@
 			</div>
 			<nav aria-label="Documentation navigation" class="px-3 pb-8">
 				{#each sortedCategories as category (category)}
-					{@const menus = groupedMenus[category].sort((a, b) => (a.order ?? 99) - (b.order ?? 99))}
+					{@const menus = [...(groupedMenus[category] ?? [])].sort((a, b) => (a.order ?? 99) - (b.order ?? 99))}
 					<section class="mb-4">
 						<h3 class="px-3 py-1.5 text-xs font-semibold tracking-wider text-neutral-400 uppercase">
 							{category}
@@ -119,7 +184,8 @@
 			</nav>
 		</ScrollArea>
 	</aside>
-	<main class="flex min-h-screen w-full min-w-0 flex-1 flex-col">
+
+	<main class="mx-auto flex min-h-screen max-w-380 min-w-0 flex-1 flex-col">
 		<header
 			class="sticky top-0 z-30 flex items-center justify-between border-b border-neutral-100 bg-white/80 px-6 py-3.5 backdrop-blur-md md:hidden"
 		>
@@ -139,13 +205,128 @@
 				{/if}
 			</button>
 		</header>
-		<article
-			class="mx-auto prose max-w-4xl flex-1 px-6 py-8 prose-slate md:px-12 md:py-12 prose-headings:scroll-mt-20 prose-a:text-blue-600"
+
+		<div
+			class="mx-auto grid w-full flex-1 grid-cols-1 gap-10 px-6 py-8 lg:grid-cols-[minmax(0,1fr)_15rem] lg:px-10 xl:grid-cols-[minmax(0,4xl)_17rem] xl:gap-12"
 		>
-			{@render children()}
-		</article>
-		<footer class="mx-auto w-full max-w-4xl border-t border-neutral-100 px-6 py-6 text-xs text-neutral-400 md:px-12">
-			<p>&copy; {new Date().getFullYear()} Polinema UI. Built with SvelteKit & MDsveX.</p>
-		</footer>
+			<div class="min-w-0">
+				<div class="mb-6 flex items-center justify-between">
+					<h1 class="font-serif text-4xl font-extralight tracking-tighter sm:text-5xl">{title}</h1>
+					<nav aria-label="Documentation pagination" class="hidden gap-2 lg:flex">
+						{#if previousMenu}
+							<a
+								href={previousMenu.url}
+								class="inline-flex size-9 items-center justify-center rounded-lg bg-neutral-100 text-neutral-700 transition-colors hover:bg-neutral-200 hover:text-neutral-950"
+								aria-label={`Previous page: ${previousMenu.title}`}
+							>
+								<HugeiconsIcon icon={ArrowLeft01Icon} size={18} />
+							</a>
+						{:else}
+							<button
+								disabled
+								class="inline-flex size-9 cursor-not-allowed items-center justify-center rounded-lg bg-neutral-50 text-neutral-300"
+								aria-label="Previous page"
+							>
+								<HugeiconsIcon icon={ArrowLeft01Icon} size={18} />
+							</button>
+						{/if}
+						{#if nextMenu}
+							<a
+								href={nextMenu.url}
+								class="inline-flex size-9 items-center justify-center rounded-lg bg-neutral-100 text-neutral-700 transition-colors hover:bg-neutral-200 hover:text-neutral-950"
+								aria-label={`Next page: ${nextMenu.title}`}
+							>
+								<HugeiconsIcon icon={ArrowRight01Icon} size={18} />
+							</a>
+						{:else}
+							<button
+								disabled
+								class="inline-flex size-9 cursor-not-allowed items-center justify-center rounded-lg bg-neutral-50 text-neutral-300"
+								aria-label="Next page"
+							>
+								<HugeiconsIcon icon={ArrowRight01Icon} size={18} />
+							</button>
+						{/if}
+					</nav>
+				</div>
+
+				<article
+					bind:this={articleElement}
+					class="prose max-w-none min-w-0 flex-1 prose-slate prose-headings:scroll-mt-24 prose-h2:mt-8 prose-h2:mb-1 prose-h2:text-2xl prose-h2:font-semibold prose-a:text-blue-600"
+				>
+					{@render children()}
+				</article>
+			</div>
+
+			<aside class="hidden lg:block">
+				<div class="sticky top-8 space-y-8">
+					<nav aria-label="On this page" class="border-l border-neutral-200 pl-4 text-sm">
+						<div class="mb-3 flex items-center gap-2 font-medium text-neutral-600">
+							<HugeiconsIcon icon={RightToLeftListBulletIcon} size={16} />
+							<span>On this page</span>
+						</div>
+						{#if tocItems.length}
+							<ul class="space-y-2">
+								{#each tocItems as item (item.id)}
+									<li class={item.level === 3 ? "pl-4" : undefined}>
+										<a
+											href={`#${item.id}`}
+											class="block border-l-2 py-0.5 pl-3 transition-colors {activeHeadingId === item.id
+												? '-ml-4.25 border-neutral-950 font-medium text-neutral-950'
+												: '-ml-4.25 border-transparent text-neutral-500 hover:text-neutral-900'}"
+										>
+											{item.title}
+										</a>
+									</li>
+								{/each}
+							</ul>
+						{:else}
+							<p class="text-neutral-400">No sections.</p>
+						{/if}
+					</nav>
+
+					<section class="rounded-2xl bg-neutral-100 p-5">
+						<h2 class="text-lg leading-tight font-semibold text-neutral-950">
+							Gas kalo mau jadi contributor di open source ini
+						</h2>
+						<p class="mt-3 text-sm leading-relaxed text-neutral-600">
+							Bantu bikin Polinema UI makin rapi, kepake, dan enak dipakai bareng-bareng.
+						</p>
+						<a
+							href="https://github.com/polinema-ui"
+							class="mt-4 inline-flex rounded-lg bg-neutral-900 px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-neutral-700"
+						>
+							Contribute on GitHub
+						</a>
+					</section>
+				</div>
+			</aside>
+		</div>
+		{#if author || lastUpdated}
+			<footer
+				class="mx-auto flex w-full max-w-380 flex-col gap-4 px-6 py-6 text-sm text-neutral-500 sm:flex-row sm:items-center sm:justify-between lg:px-10"
+			>
+				<div>
+					{#if author}
+						Built by
+						<a
+							href={authorUrl || "#"}
+							class="font-medium text-neutral-900 underline underline-offset-4 hover:text-neutral-700"
+						>
+							{author}
+						</a>
+					{/if}
+				</div>
+				<div>
+					{#if lastUpdated}
+						Last updated: <span
+							class="ml-1.5 rounded-md bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-800"
+						>
+							{lastUpdated}
+						</span>
+					{/if}
+				</div>
+			</footer>
+		{/if}
 	</main>
 </div>
