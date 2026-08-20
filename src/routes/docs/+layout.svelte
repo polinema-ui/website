@@ -20,7 +20,7 @@
 	let searchQuery = $state("");
 
 	/** Standard category priority order */
-	const CATEGORY_ORDER = ["Getting Started", "Components", "Guides", "Community"];
+	const CATEGORY_ORDER = ["Getting started", "Guides", "Components"];
 
 	/** Filtered menu list based on search */
 	let filteredMenus = $derived(
