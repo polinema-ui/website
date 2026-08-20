@@ -1,9 +1,10 @@
-@custom-variant dark (&:is(.dark *));
 @import "@fontsource-variable/plus-jakarta-sans";
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap");
 @import "shadcn-svelte/tailwind.css";
 @import "tailwindcss";
 @import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
 

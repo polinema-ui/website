@@ -10,6 +10,7 @@ import adapter from "@sveltejs/adapter-vercel";
 const config = {
 	compilerOptions: {
 		runes: ({ filename }) => (filename.split(/[/\\]/).includes("node_modules") ? undefined : true),
+		warningFilter: (warning) => warning.code !== "script_context_deprecated",
 	},
 	extensions: [".svelte", ".svx", ".md"],
 	kit: {
