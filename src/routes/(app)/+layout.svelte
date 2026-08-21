@@ -319,7 +319,7 @@
 		</div>
 
 		<div
-			class="overflow-hidden bg-linear-to-b from-black via-black to-[#ffff] bg-clip-text text-[clamp(5rem,8vw,12rem)] leading-[.75] font-bold -tracking-widest text-transparent"
+			class="overflow-hidden bg-linear-to-b from-black via-black to-[#ffff] bg-clip-text text-[clamp(5rem,8vw,9rem)] leading-[.75] font-bold -tracking-widest text-transparent"
 		>
 			POLINEMA UI
 		</div>
