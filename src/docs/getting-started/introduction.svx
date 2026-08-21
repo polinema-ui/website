@@ -7,7 +7,7 @@ authorUrl: https://github.com/polinema-ui
 lastUpdated: 20/8/2026
 ---
 
-## Siapa Kitaaaaaaaaaaaaa ?
+## Siapa Kitaaaaaaaaaaaaa?
 
 Polinema UI adalah kumpulan komponen UI open-source yang gabungin kesederhanaan Bootstrap 5 sama kekuatan utility class-nya Tailwind CSS v4. Terinspirasi dari model komponen shadcn di mana lo punya kepemilikan penuh atas kode, bukan cuma nempel dependency NPM yang kaku Polinema UI ngasih developer kontrol 100% buat kustomisasi desain, cocok banget buat portal akademik, admin dashboard, sampe platform enterprise.
 

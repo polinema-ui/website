@@ -10,11 +10,11 @@
 </script>
 
 <section
-	class="relative flex min-h-screen w-full flex-col items-center justify-center gap-8 overflow-hidden bg-[linear-gradient(180deg,rgba(253,253,252,1)_0%,rgba(244,246,242,1)_100%)] px-4 pt-28 pb-12 sm:px-6 sm:pt-36 sm:pb-16 md:pt-40"
+	class="relative flex w-full flex-col items-center justify-center gap-8 overflow-hidden bg-[linear-gradient(180deg,rgba(253,253,252,1)_0%,rgba(244,246,242,1)_100%)] px-4 pt-32 pb-20 sm:px-6 sm:pt-40 sm:pb-28"
 >
 	<figure
 		aria-hidden="true"
-		class="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-96 w-full mask-[linear-gradient(180deg,transparent_0%,black_15%,black_65%,transparent_98%)] bg-cover bg-position-[center_top] opacity-80 sm:h-120 sm:opacity-90 md:h-135 lg:h-145"
+		class="pointer-events-none absolute inset-0 top-20 z-0 h-full w-full mask-[linear-gradient(180deg,transparent_0%,black_10%,black_80%,transparent_100%)] bg-cover bg-position-[center_bottom] opacity-80 sm:opacity-90"
 		style="background-image: url('/elon-musk-migren.webp')"
 	></figure>
 	<div
@@ -30,7 +30,7 @@
 			</span>
 		</h1>
 		<p
-			class="max-w-md font-sans text-sm leading-relaxed font-normal text-balance text-neutral-900 sm:max-w-lg sm:text-base md:text-lg md:text-white"
+			class="max-w-md font-sans text-sm leading-relaxed font-medium text-balance text-white sm:max-w-lg sm:text-base md:text-lg"
 		>
 			Nggak perlu bikin semuanya dari nol. Cari component yang kamu butuhin, lihat contohnya, dan tinggal pakai sesuai
 			kebutuhan 😉

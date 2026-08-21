@@ -103,6 +103,7 @@
 
 			return { id, title: heading.textContent ?? "", level: Number(heading.tagName.slice(1)) };
 		});
+
 		updateActiveHeading();
 	}
 
@@ -184,7 +185,6 @@
 			</nav>
 		</ScrollArea>
 	</aside>
-
 	<main class="mx-auto flex min-h-screen max-w-380 min-w-0 flex-1 flex-col">
 		<header
 			class="sticky top-0 z-30 flex items-center justify-between border-b border-neutral-100 bg-white/80 px-6 py-3.5 backdrop-blur-md md:hidden"
@@ -205,7 +205,6 @@
 				{/if}
 			</button>
 		</header>
-
 		<div
 			class="mx-auto grid w-full flex-1 grid-cols-1 gap-10 px-6 py-8 lg:grid-cols-[minmax(0,1fr)_15rem] lg:px-10 xl:grid-cols-[minmax(0,4xl)_17rem] xl:gap-12"
 		>
@@ -249,7 +248,6 @@
 						{/if}
 					</nav>
 				</div>
-
 				<article
 					bind:this={articleElement}
 					class="prose max-w-none min-w-0 flex-1 prose-slate prose-headings:scroll-mt-24 prose-h2:mt-8 prose-h2:mb-1 prose-h2:text-2xl prose-h2:font-semibold prose-a:text-blue-600"
@@ -257,7 +255,6 @@
 					{@render children()}
 				</article>
 			</div>
-
 			<aside class="hidden lg:block">
 				<div class="sticky top-8 space-y-8">
 					<nav aria-label="On this page" class="border-l border-neutral-200 pl-4 text-sm">
@@ -284,7 +281,6 @@
 							<p class="text-neutral-400">No sections.</p>
 						{/if}
 					</nav>
-
 					<section class="rounded-2xl bg-neutral-100 p-5">
 						<h2 class="text-lg leading-tight font-semibold text-neutral-950">
 							Gas kalo mau jadi contributor di open source ini

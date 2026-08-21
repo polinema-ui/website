@@ -3,7 +3,7 @@
 <br />
 
 <div align="center">
-  <img src="static/logo.png" />
+  <img src="static/icon.png" height="60" />
 </div>
 
 <br />
