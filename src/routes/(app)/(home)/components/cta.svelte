@@ -2,19 +2,22 @@
 	import { Github01Icon } from "@hugeicons/core-free-icons";
 	import { HugeiconsIcon } from "@hugeicons/svelte";
 	import { Button } from "$lib/components/button";
-	import { InteractiveGrid } from "$routes/(app)/(home)/atoms";
 	import { ROUTES } from "$lib/constants/routes";
 </script>
 
-<section class="relative w-full scroll-mt-28 overflow-hidden bg-white px-6 py-20 sm:py-24">
-	<InteractiveGrid />
+<section class="relative w-full scroll-mt-28 overflow-hidden bg-blue-600 px-6 py-20 sm:py-24">
+	<div
+		aria-hidden="true"
+		class="pointer-events-none absolute inset-0 z-0"
+		style="background-image: radial-gradient(ellipse 75% 65% at 50% 0%, white 0%, white 70%, rgb(255 255 255 / 0) 80%), radial-gradient(ellipse 75% 65% at 50% 100%, white 0%, white 70%, rgb(255 255 255 / 0) 80%);"
+	></div>
 	<div class="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-5 text-center">
 		<h2
-			class="text-black-950 max-w-2xl font-sans text-3xl font-bold tracking-tight text-balance sm:text-4xl md:text-[44px] md:leading-tight"
+			class="max-w-2xl font-sans text-3xl font-bold tracking-tight text-balance text-neutral-950 sm:text-4xl md:text-[44px] md:leading-tight"
 		>
 			Zaman sekarang masih nulis component dari nol?
 		</h2>
-		<p class="text-black-600 max-w-xl font-sans text-base leading-relaxed font-normal md:text-[17px]">
+		<p class="max-w-xl font-sans text-base leading-relaxed font-normal text-neutral-600 md:text-[17px]">
 			Copy perintahnya, paste di terminal, langsung pakai. Nggak ada setup ribet, nggak ada konfigurasi panjang.
 		</p>
 		<div class="mt-2 flex flex-col items-center gap-3 sm:flex-row sm:gap-4">

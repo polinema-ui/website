@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Card } from "$lib/components/card";
-	import { MetricCard } from "$routes/(app)/(home)/atoms";
+	import { InteractiveGrid, MetricCard } from "$routes/(app)/(home)/atoms";
 	import { METRICS } from "$routes/(app)/(home)/constants/metrics";
 	import type { Metrics } from "$routes/(app)/(home)/types/metrics";
 
@@ -17,7 +17,7 @@
 </script>
 
 <section class="relative w-full scroll-mt-28 bg-white px-6 py-16">
-	<!-- <InteractiveGrid /> -->
+	<InteractiveGrid />
 	<div class="relative z-10 mx-auto flex max-w-7xl flex-col gap-16">
 		<header class="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-16">
 			<h2
@@ -33,7 +33,7 @@
 				</p>
 			</div>
 		</header>
-		<figure class="relative mt-10 hidden h-118.25 w-275 self-center md:block">
+		<figure class="relative mt-10 hidden h-118.25 w-275 max-w-full self-center xl:block">
 			<svg class="absolute inset-0 h-full w-full" viewBox="0 0 1000 430" preserveAspectRatio="none" aria-hidden="true">
 				<defs>
 					<linearGradient id="cableGradient" x1="0" y1="0" x2="1" y2="0">
@@ -84,7 +84,7 @@
 				{/if}
 			{/each}
 		</figure>
-		<section class="flex w-full max-w-sm flex-col items-center gap-6 self-center md:hidden">
+		<article class="flex w-full max-w-sm flex-col items-center gap-6 self-center xl:hidden">
 			<div
 				class="flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-b from-blue-400 to-blue-600 shadow-lg shadow-blue-500/10"
 			>
@@ -108,6 +108,6 @@
 					</li>
 				{/each}
 			</ul>
-		</section>
+		</article>
 	</div>
 </section>
