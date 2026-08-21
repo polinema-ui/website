@@ -9,7 +9,7 @@
 	<div
 		aria-hidden="true"
 		class="pointer-events-none absolute inset-0 z-0"
-		style="background-image: radial-gradient(ellipse 75% 65% at 50% 0%, white 0%, white 70%, rgb(255 255 255 / 0) 80%), radial-gradient(ellipse 75% 65% at 50% 100%, white 0%, white 70%, rgb(255 255 255 / 0) 80%);"
+		style="background-image: radial-gradient(ellipse 75% 75% at 50% 0%, white 0%, white 70%, rgb(255 255 255 / 0) 80%), radial-gradient(ellipse 75% 75% at 50% 100%, white 0%, white 70%, rgb(255 255 255 / 0) 80%);"
 	></div>
 	<div class="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-5 text-center">
 		<h2
