@@ -16,7 +16,7 @@
 	let subMetrics = $derived(metrics.filter((m) => m.position !== "featured"));
 </script>
 
-<section class="relative w-full scroll-mt-28 bg-[#fbfbfb] px-6 py-16">
+<section class="relative w-full scroll-mt-28 bg-white px-6 py-16">
 	<!-- <InteractiveGrid /> -->
 	<div class="relative z-10 mx-auto flex max-w-7xl flex-col gap-16">
 		<header class="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-16">
