@@ -2,4 +2,41 @@
 title: Installation
 description:
 order: 2
+author: Polinema UI
+authorUrl: https://github.com/polinema-ui
+lastUpdated: 22/8/2026
 ---
+
+<script lang="ts">
+	import { Block, Step } from "$lib/components/docs/installation-steps";
+
+	const usageCode = `<script>
+	import { Button } from "$lib/components/button";
+<\/script>
+
+<Button onclick={() => alert("Haloo!")}>Klik aku</Button>`;
+</script>
+
+Panduan ini ngebantu lo setup Polinema UI dari nol. Prosesnya cuma butuh beberapa menit — pilih package manager favorit lo, jalanin CLI-nya, terus komponen siap dipake.
+
+<div class="not-prose my-6 flex flex-col">
+
+<Step step={1} title="Bikin project baru">
+Buat project SvelteKit baru kalo lo belum punya. Ikuti prompt-nya, terus pilih template sesuai kebutuhan.
+
+<Block command="npx sv create my-app" />
+</Step>
+
+<Step step={2} title="Tambahin Polinema UI">
+Jalanin init CLI-nya. CLI bakal nanya mau pake komponen mana, terus langsung copy source code-nya ke project lo.
+
+<Block />
+</Step>
+
+<Step step={3} title="Pake komponennya" last>
+Komponen yang lo pilih udah ada di folder `$lib/components`. Tinggal import dan pakai.
+
+<Block code={usageCode} lang="svelte" />
+</Step>
+
+</div>
