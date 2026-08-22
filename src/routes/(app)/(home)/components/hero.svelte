@@ -10,7 +10,7 @@
 </script>
 
 <section
-	class="relative flex w-full flex-col items-center justify-center gap-8 overflow-hidden bg-[linear-gradient(180deg,rgba(253,253,252,1)_0%,rgba(244,246,242,1)_100%)] px-4 pt-32 pb-20 sm:px-6 sm:pt-40 sm:pb-28"
+	class="relative flex w-full flex-col items-center justify-center gap-8 overflow-hidden bg-[linear-gradient(180deg,rgba(253,253,252,1)_0%,rgba(244,246,242,1)_100%)] px-4 pt-32 pb-20 sm:px-6 sm:pt-40 sm:pb-28 lg:min-h-screen"
 >
 	<figure
 		aria-hidden="true"
@@ -25,9 +25,7 @@
 			class="max-w-3xl font-sans text-3xl font-bold tracking-tight text-balance text-neutral-900 sm:text-5xl md:text-[56px] md:leading-[1.15]"
 		>
 			Cari Component?<br />
-			<span class="bg-linear-to-r from-blue-700 via-blue-600 to-indigo-600 bg-clip-text text-transparent">
-				Hust... Tinggal Pilih
-			</span>
+			<span class="text-blue-600"> Hust... Tinggal Pilih </span>
 		</h1>
 		<p
 			class="max-w-md font-sans text-sm leading-relaxed font-medium text-balance text-white sm:max-w-lg sm:text-base md:text-lg"
