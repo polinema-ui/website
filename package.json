@@ -4,6 +4,9 @@
 	"private": true,
 	"version": "0.0.1",
 	"type": "module",
+	"lint-staged": {
+		"*.{js,ts,svelte}": ["bunx eslint --fix"]
+	},
 	"scripts": {
 		"build": "vite build",
 		"check": "paraglide-js compile --project ./project.inlang --outdir ./src/lib/paraglide && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -14,7 +17,7 @@
 		"lint": "prettier --check . && eslint .",
 		"prepare": "paraglide-js compile --project ./project.inlang --outdir ./src/lib/paraglide && svelte-kit sync && husky || echo ''",
 		"preview": "vite preview",
-		"test": "npm run test:unit -- --run && npm run test:e2e",
+		"test": "bun run test:unit -- --run && bun run test:e2e",
 		"test:unit": "vitest --passWithNoTests",
 		"test:e2e": "playwright install && playwright test"
 	},
@@ -28,6 +31,7 @@
 		"@xyflow/svelte": "^1.6.3",
 		"bits-ui": "^2.18.1",
 		"clsx": "^2.1.1",
+		"dompurify": "^3.4.14",
 		"embla-carousel-autoplay": "^8.6.0",
 		"embla-carousel-svelte": "^8.6.0",
 		"mode-watcher": "^1.1.0",
@@ -48,6 +52,7 @@
 		"@tailwindcss/forms": "^0.5.11",
 		"@tailwindcss/typography": "^0.5.19",
 		"@tailwindcss/vite": "^4.3.0",
+		"@types/dompurify": "^3.2.0",
 		"@types/node": "^26.2.0",
 		"@vitest/browser-playwright": "^4.1.8",
 		"eslint": "^10.4.1",
@@ -71,14 +76,5 @@
 		"vite": "^8.0.16",
 		"vitest": "^4.1.8",
 		"vitest-browser-svelte": "^2.1.1"
-	},
-	"lint-staged": {
-		"*.{js,ts,svelte}": [
-			"eslint --fix",
-			"prettier --write"
-		],
-		"*.{json,md,css,html}": [
-			"prettier --write"
-		]
 	}
 }

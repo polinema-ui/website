@@ -2,19 +2,11 @@
 	import { SidebarLeftIcon } from "@hugeicons/core-free-icons";
 	import { HugeiconsIcon } from "@hugeicons/svelte";
 	import type { ComponentProps } from "svelte";
-	import { Button } from "$lib/components/button/index";
-	import { useSidebar } from "$lib/components/sidebar/context.svelte";
+	import { Button } from "$lib/components/button";
+	import { useSidebar } from "$lib/components/sidebar";
 	import { cn } from "$lib/utils/shadcn";
 
-	let {
-		ref = $bindable(null),
-		class: className,
-		onclick,
-		...restProps
-	}: ComponentProps<typeof Button> & {
-		onclick?: (e: MouseEvent) => void;
-	} = $props();
-
+	let { ref = $bindable(null), class: className, onclick, ...restProps }: ComponentProps<typeof Button> & { onclick?: (e: MouseEvent) => void } = $props();
 	const sidebar = useSidebar();
 </script>
 

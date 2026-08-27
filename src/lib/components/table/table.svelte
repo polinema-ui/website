@@ -2,12 +2,7 @@
 	import type { HTMLTableAttributes } from "svelte/elements";
 	import { cn, type WithElementRef } from "$lib/utils/shadcn";
 
-	let {
-		ref = $bindable(null),
-		class: className,
-		children,
-		...restProps
-	}: WithElementRef<HTMLTableAttributes> = $props();
+	let { ref = $bindable(null), class: className, children, ...restProps }: WithElementRef<HTMLTableAttributes> = $props();
 </script>
 
 <div data-slot="table-container" class="relative w-full overflow-x-auto">

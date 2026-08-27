@@ -1,13 +1,8 @@
 <script lang="ts">
 	import type { HTMLAttributes } from "svelte/elements";
-	import {
-		SIDEBAR_COOKIE_MAX_AGE,
-		SIDEBAR_COOKIE_NAME,
-		SIDEBAR_WIDTH,
-		SIDEBAR_WIDTH_ICON,
-	} from "$lib/components/sidebar/constants";
+	import { SIDEBAR_COOKIE_MAX_AGE, SIDEBAR_COOKIE_NAME, SIDEBAR_WIDTH, SIDEBAR_WIDTH_ICON } from "$lib/components/sidebar/constants";
 	import { setSidebar } from "$lib/components/sidebar/context.svelte";
-	import { Provider } from "$lib/components/tooltip/index";
+	import { Provider } from "$lib/components/tooltip";
 	import { cn, type WithElementRef } from "$lib/utils/shadcn";
 
 	let {
@@ -18,10 +13,7 @@
 		style,
 		children,
 		...restProps
-	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
-		open?: boolean;
-		onOpenChange?: (open: boolean) => void;
-	} = $props();
+	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & { open?: boolean; onOpenChange?: (open: boolean) => void } = $props();
 
 	const sidebar = setSidebar({
 		open: () => open,

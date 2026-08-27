@@ -1,19 +1,19 @@
-import Root from "$lib/components/dropdown-menu/dropdown-menu.svelte";
 import CheckboxGroup from "$lib/components/dropdown-menu/dropdown-menu-checkbox-group.svelte";
 import CheckboxItem from "$lib/components/dropdown-menu/dropdown-menu-checkbox-item.svelte";
 import Content from "$lib/components/dropdown-menu/dropdown-menu-content.svelte";
-import Group from "$lib/components/dropdown-menu/dropdown-menu-group.svelte";
 import GroupHeading from "$lib/components/dropdown-menu/dropdown-menu-group-heading.svelte";
+import Group from "$lib/components/dropdown-menu/dropdown-menu-group.svelte";
 import Item from "$lib/components/dropdown-menu/dropdown-menu-item.svelte";
 import Label from "$lib/components/dropdown-menu/dropdown-menu-label.svelte";
 import Portal from "$lib/components/dropdown-menu/dropdown-menu-portal.svelte";
 import RadioGroup from "$lib/components/dropdown-menu/dropdown-menu-radio-group.svelte";
 import RadioItem from "$lib/components/dropdown-menu/dropdown-menu-radio-item.svelte";
+import Root from "$lib/components/dropdown-menu/dropdown-menu.svelte";
 import Separator from "$lib/components/dropdown-menu/dropdown-menu-separator.svelte";
 import Shortcut from "$lib/components/dropdown-menu/dropdown-menu-shortcut.svelte";
-import Sub from "$lib/components/dropdown-menu/dropdown-menu-sub.svelte";
 import SubContent from "$lib/components/dropdown-menu/dropdown-menu-sub-content.svelte";
 import SubTrigger from "$lib/components/dropdown-menu/dropdown-menu-sub-trigger.svelte";
+import Sub from "$lib/components/dropdown-menu/dropdown-menu-sub.svelte";
 import Trigger from "$lib/components/dropdown-menu/dropdown-menu-trigger.svelte";
 
 export {
@@ -23,10 +23,10 @@ export {
 	CheckboxItem as DropdownMenuCheckboxItem,
 	Content,
 	Content as DropdownMenuContent,
-	Group,
-	Group as DropdownMenuGroup,
 	GroupHeading,
 	GroupHeading as DropdownMenuGroupHeading,
+	Group,
+	Group as DropdownMenuGroup,
 	Item,
 	Item as DropdownMenuItem,
 	Label,
@@ -43,12 +43,12 @@ export {
 	Separator as DropdownMenuSeparator,
 	Shortcut,
 	Shortcut as DropdownMenuShortcut,
-	Sub,
-	Sub as DropdownMenuSub,
 	SubContent,
 	SubContent as DropdownMenuSubContent,
 	SubTrigger,
 	SubTrigger as DropdownMenuSubTrigger,
+	Sub,
+	Sub as DropdownMenuSub,
 	Trigger,
 	Trigger as DropdownMenuTrigger,
 };

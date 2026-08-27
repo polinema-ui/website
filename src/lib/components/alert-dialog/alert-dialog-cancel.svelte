@@ -9,15 +9,7 @@
 		variant = "outline",
 		size = "default",
 		...restProps
-	}: AlertDialogPrimitive.CancelProps & {
-		variant?: ButtonVariant;
-		size?: ButtonSize;
-	} = $props();
+	}: AlertDialogPrimitive.CancelProps & { size?: ButtonSize; variant?: ButtonVariant } = $props();
 </script>
 
-<AlertDialogPrimitive.Cancel
-	bind:ref
-	data-slot="alert-dialog-cancel"
-	class={cn(buttonVariants({ variant, size }), "cn-alert-dialog-cancel", className)}
-	{...restProps}
-/>
+<AlertDialogPrimitive.Cancel bind:ref data-slot="alert-dialog-cancel" class={cn(buttonVariants({ variant, size }), "cn-alert-dialog-cancel", className)} {...restProps} />

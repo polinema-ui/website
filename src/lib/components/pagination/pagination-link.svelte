@@ -11,10 +11,7 @@
 		page,
 		children,
 		...restProps
-	}: PaginationPrimitive.PageProps & {
-		size?: ButtonSize;
-		isActive: boolean;
-	} = $props();
+	}: PaginationPrimitive.PageProps & { isActive: boolean; size?: ButtonSize } = $props();
 </script>
 
 {#snippet Fallback()}

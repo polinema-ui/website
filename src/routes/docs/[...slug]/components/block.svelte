@@ -5,15 +5,21 @@
 	import { createHighlighterCore } from "shiki/core";
 	import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 	import { PKG_MANAGERS } from "$lib/constants/pkg-managers";
-	import { docsState } from "$lib/states/docs.svelte";
+	import { docsState } from "$routes/docs/[...slug]/context/docs.svelte";
+	import DOMPurify from "dompurify";
 
 	const highlighterPromise = createHighlighterCore({
-		themes: [import("@shikijs/themes/vitesse-light")],
-		langs: [import("@shikijs/langs/typescript"), import("@shikijs/langs/svelte")],
 		engine: createJavaScriptRegexEngine({ forgiving: true }),
+		langs: [
+			import("@shikijs/langs/typescript"),
+			import("@shikijs/langs/svelte"),
+			import("@shikijs/langs/tsx"),
+			import("@shikijs/langs/html"),
+		],
+		themes: [import("@shikijs/themes/vitesse-light")],
 	});
 
-	let { command, code, lang = "ts" }: { command?: string; code?: string; lang?: "ts" | "svelte" } = $props();
+	let { command, code, lang = "ts" }: { command?: string; code?: string; lang?: "ts" | "svelte" | "tsx" | "html" } = $props();
 
 	let copied = $state(false);
 	let activeCommand = $derived(command ?? docsState.activeCmd);
@@ -30,9 +36,7 @@
 
 {#if code !== undefined}
 	{#await highlighterPromise then highlighter}
-		<div
-			class="group not-prose relative my-6 w-full overflow-hidden rounded-lg border border-neutral-200 bg-neutral-50"
-		>
+		<div class="group not-prose relative my-6 w-full overflow-hidden rounded-lg border border-neutral-200 bg-neutral-50">
 			<button
 				type="button"
 				onclick={handleCopy}
@@ -47,7 +51,7 @@
 			</button>
 			<div class="overflow-x-auto px-4 py-4 text-[13px] [&_pre]:bg-transparent!">
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-				{@html highlighter.codeToHtml(code.trim(), { lang, theme: "vitesse-light" })}
+				{@html DOMPurify.sanitize(highlighter.codeToHtml(code.trim(), { lang, theme: "vitesse-light" }))}
 			</div>
 		</div>
 	{/await}

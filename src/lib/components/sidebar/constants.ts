@@ -20,7 +20,7 @@ export const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
  * @description The width of the sidebar when it is open.
  * @type {string}
  */
-export const SIDEBAR_WIDTH = "16rem";
+export const SIDEBAR_WIDTH = "12rem";
 
 /**
  * @constant

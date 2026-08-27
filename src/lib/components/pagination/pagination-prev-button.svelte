@@ -5,12 +5,7 @@
 	import { buttonVariants } from "$lib/components/button";
 	import { cn } from "$lib/utils/shadcn";
 
-	let {
-		ref = $bindable(null),
-		class: className,
-		children,
-		...restProps
-	}: PaginationPrimitive.PrevButtonProps = $props();
+	let { ref = $bindable(null), class: className, children, ...restProps }: PaginationPrimitive.PrevButtonProps = $props();
 </script>
 
 {#snippet Fallback()}
@@ -18,12 +13,7 @@
 	<span>Previous</span>
 {/snippet}
 
-<PaginationPrimitive.PrevButton
-	bind:ref
-	aria-label="Go to previous page"
-	class={cn(buttonVariants({ variant: "ghost" }), "pl-2!", className)}
-	{...restProps}
->
+<PaginationPrimitive.PrevButton bind:ref aria-label="Go to previous page" class={cn(buttonVariants({ variant: "ghost" }), "pl-2!", className)} {...restProps}>
 	{#if children}
 		{@render children?.()}
 	{:else}

@@ -1,42 +1,52 @@
 ---
 title: Installation
-description:
+description: Panduan instalasi Polinema UI untuk HTML, PHP, Blade, dan React/Next.js.
 order: 2
 author: Polinema UI
 authorUrl: https://github.com/polinema-ui
-lastUpdated: 22/8/2026
+lastUpdated: 27/8/2026
 ---
 
 <script lang="ts">
-	import { Block, Step } from "$lib/components/docs/installation-steps";
+	import { Block, Step } from "$routes/docs/[...slug]/components";
 
-	const usageCode = `<script>
-	import { Button } from "$lib/components/button";
-<\/script>
+	const reactUsage = `import { Button } from "@/components/ui/button";
 
-<Button onclick={() => alert("Haloo!")}>Klik aku</Button>`;
+export default function Page() {
+  return <Button onClick={() => alert("Haloo!")}>Klik aku</Button>
+}`;
+
+	const htmlUsage = `<button class="inline-flex items-center justify-center rounded-md text-sm font-medium bg-neutral-900 text-white h-10 px-4 py-2">
+  Klik aku
+</button>`;
 </script>
 
-Panduan ini ngebantu lo setup Polinema UI dari nol. Prosesnya cuma butuh beberapa menit — pilih package manager favorit lo, jalanin CLI-nya, terus komponen siap dipake.
+Panduan ini ngebantu lo setup Polinema UI. Karena target Project Based Learning (PBL) bahasanya beragam, pilih pendekatan di bawah ini sesuai dengan _stack_ yang kelompok lo pake.
 
 <div class="not-prose my-6 flex flex-col">
 
-<Step step={1} title="Bikin project baru">
-Buat project SvelteKit baru kalo lo belum punya. Ikuti prompt-nya, terus pilih template sesuai kebutuhan.
-
-<Block command="npx sv create my-app" />
+<Step step={1} title="Siapkan Project Lo">
+Pastikan lo udah punya struktur project awal dan Tailwind CSS v4 sudah terkonfigurasi. Kalo belum, setup Tailwind sesuai environment project PBL kalian.
 </Step>
 
-<Step step={2} title="Tambahin Polinema UI">
-Jalanin init CLI-nya. CLI bakal nanya mau pake komponen mana, terus langsung copy source code-nya ke project lo.
+<Step step={2} title="Ambil Komponen Sesuai Stack">
+Polinema UI mengusung konsep copy-paste, bukan package NPM. Ikuti panduan di bawah sesuai bahasa yang lo pake:
 
-<Block />
+- **Untuk HTML / PHP Native:** Copy markup dari dokumentasi komponen langsung ke file `.html` atau `.php` lo. Semua sub-komponen (seperti `thead`, `th` pada tabel) sudah terstruktur utuh secara berurutan.
+- **Untuk Laravel Blade:** Bikin subfolder untuk komponen di `resources/views/components/` (misal: `components/table/head.blade.php`). Ingat, kita tetap mempertahankan tag HTML asli (seperti `<table>` atau `<button>`) alih-alih membuat custom tag biar _auto-completion_ di text editor lo nggak rusak.
+- **Untuk React / Next.js:** Lo bisa copy source code manual atau pakai CLI bawaan buat nge-generate komponen langsung ke folder project lo.
+
+<Block command="npx polinema-ui add button" />
 </Step>
 
 <Step step={3} title="Pake komponennya" last>
-Komponen yang lo pilih udah ada di folder `$lib/components`. Tinggal import dan pakai.
+Setelah di-copy, komponen siap dipakai.
 
-<Block code={usageCode} lang="svelte" />
+**Contoh di React:**
+<Block code={reactUsage} lang="tsx" />
+
+**Contoh di HTML/PHP/Blade:**
+<Block code={htmlUsage} lang="html" />
 </Step>
 
 </div>

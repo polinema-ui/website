@@ -6,13 +6,12 @@
 		variants: {
 			variant: {
 				default: "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-				outline:
-					"bg-background hover:bg-sidebar-accent hover:text-sidebar-accent-foreground shadow-[0_0_0_1px_var(--sidebar-border)] hover:shadow-[0_0_0_1px_var(--sidebar-accent)]",
+				outline: "bg-background hover:bg-sidebar-accent hover:text-sidebar-accent-foreground shadow-[0_0_0_1px_var(--sidebar-border)] hover:shadow-[0_0_0_1px_var(--sidebar-accent)]",
 			},
 			size: {
 				default: "h-9 text-sm",
-				sm: "h-8 text-xs",
 				lg: "h-14 px-3 text-sm group-data-[collapsible=icon]:p-0!",
+				sm: "h-8 text-xs",
 			},
 		},
 		defaultVariants: {
@@ -29,8 +28,8 @@
 	import { mergeProps } from "bits-ui";
 	import type { ComponentProps, Snippet } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";
-	import { useSidebar } from "$lib/components/sidebar/context.svelte";
-	import { Content, Root, Trigger } from "$lib/components/tooltip/index";
+	import { useSidebar } from "$lib/components/sidebar";
+	import { Content, Root, Trigger } from "$lib/components/tooltip";
 	import { cn, type WithElementRef, type WithoutChildrenOrChild } from "$lib/utils/shadcn";
 
 	let {
@@ -85,12 +84,7 @@
 				{@render Button({ props })}
 			{/snippet}
 		</Trigger>
-		<Content
-			side="right"
-			align="center"
-			hidden={sidebar.state !== "collapsed" || sidebar.isMobile}
-			{...tooltipContentProps}
-		>
+		<Content side="right" align="center" hidden={sidebar.state !== "collapsed" || sidebar.isMobile} {...tooltipContentProps}>
 			{#if typeof tooltipContent === "string"}
 				{tooltipContent}
 			{:else if tooltipContent}

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { PKG_MANAGERS } from "$lib/constants/pkg-managers";
-	import { About, Cta, Features, Hero, Showcase, Testimonials } from "$routes/(app)/(home)/components";
+	import { About, Cta, Hero, Showcase, Testimonials } from "$routes/(app)/(home)/components";
 
 	/** Set the active package manager tab */
 	let activeCmd = $derived(PKG_MANAGERS.find((p) => p.id === activeTab)?.cmd ?? "");
@@ -30,7 +30,6 @@
 <main class="relative flex w-full flex-col overflow-hidden">
 	<Hero {activeTab} {copied} {handleCopy} />
 	<About />
-	<Features />
 	<Showcase />
 	<Testimonials />
 	<Cta />

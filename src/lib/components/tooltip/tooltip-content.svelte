@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Tooltip } from "bits-ui";
 	import type { ComponentProps } from "svelte";
-	import TooltipPortal from "$lib/components/tooltip/tooltip-portal.svelte";
+	import { TooltipPortal } from "$lib/components/tooltip";
 	import { cn, type WithoutChildrenOrChild } from "$lib/utils/shadcn";
 
 	let {
@@ -13,10 +13,7 @@
 		arrowClasses,
 		portalProps,
 		...restProps
-	}: Tooltip.ContentProps & {
-		arrowClasses?: string;
-		portalProps?: WithoutChildrenOrChild<ComponentProps<typeof TooltipPortal>>;
-	} = $props();
+	}: Tooltip.ContentProps & { arrowClasses?: string; portalProps?: WithoutChildrenOrChild<ComponentProps<typeof TooltipPortal>> } = $props();
 </script>
 
 <TooltipPortal {...portalProps}>
@@ -25,16 +22,14 @@
 		data-slot="tooltip-content"
 		{sideOffset}
 		{side}
-		class={cn(
-			"z-50 inline-flex w-fit max-w-xs origin-(--bits-tooltip-content-transform-origin) items-center gap-1.5 rounded-2xl bg-foreground px-3 py-1.5 text-xs text-background has-data-[slot=kbd]:pr-1.5 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 **:data-[slot=kbd]:relative **:data-[slot=kbd]:isolate **:data-[slot=kbd]:z-50 **:data-[slot=kbd]:rounded-4xl data-[state=delayed-open]:animate-in data-[state=delayed-open]:fade-in-0 data-[state=delayed-open]:zoom-in-95 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
-			className,
-		)}
+		class={cn("z-50 inline-flex w-fit max-w-xs origin-(--bits-tooltip-content-transform-origin) items-center gap-1.5 rounded-2xl bg-foreground px-3 py-1.5 text-xs text-background has-data-[slot=kbd]:pr-1.5 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 **:data-[slot=kbd]:relative **:data-[slot=kbd]:isolate **:data-[slot=kbd]:z-50 **:data-[slot=kbd]:rounded-4xl data-[state=delayed-open]:animate-in data-[state=delayed-open]:fade-in-0 data-[state=delayed-open]:zoom-in-95 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95", className)}
 		{...restProps}
 	>
 		{@render children?.()}
 		<Tooltip.Arrow>
 			{#snippet child({ props })}
 				<div
+					{...props}
 					class={cn(
 						"z-50 size-2.5 translate-y-[calc(-50%-2px)] rotate-45 rounded-xs bg-foreground fill-foreground data-[side=left]:translate-x-[-1.5px] data-[side=right]:translate-x-[1.5px]",
 						"data-[side=top]:translate-x-1/2 data-[side=top]:translate-y-[calc(-50%+2px)]",
@@ -43,7 +38,6 @@
 						"data-[side=left]:-translate-y-[calc(50%-3px)]",
 						arrowClasses,
 					)}
-					{...props}
 				></div>
 			{/snippet}
 		</Tooltip.Arrow>
