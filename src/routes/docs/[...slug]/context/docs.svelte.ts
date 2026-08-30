@@ -5,6 +5,8 @@ export type PackageManagerId = (typeof PKG_MANAGERS)[number]["id"];
 class DocsState {
 	pkgManager = $state<PackageManagerId>(PKG_MANAGERS[0].id);
 
+	searchQuery = $state("");
+
 	get activeCmd(): string {
 		return PKG_MANAGERS.find((pm) => pm.id === this.pkgManager)?.cmd ?? "";
 	}

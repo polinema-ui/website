@@ -5,15 +5,14 @@
 		Cancel01Icon,
 		Menu01Icon,
 		RightToLeftListBulletIcon,
-		Search01Icon,
 	} from "@hugeicons/core-free-icons";
 	import { HugeiconsIcon } from "@hugeicons/svelte";
 	import { onMount, tick, type Snippet } from "svelte";
 	import { page } from "$app/state";
 	import { Button } from "$lib/components/button";
-	import { Input } from "$lib/components/input";
+	import { Navbar } from "$lib/components/navbar";
 	import { ScrollArea } from "$lib/components/scroll-area";
-	import { ROUTES } from "$lib/constants/routes";
+	import { docsState } from "$routes/docs/[...slug]/context/docs.svelte";
 	import type { LayoutData } from "./$types";
 
 	type Menu = LayoutData["menus"][number];
@@ -23,7 +22,6 @@
 
 	let articleElement: HTMLElement;
 	let sidebarOpen = $state(false);
-	let searchQuery = $state("");
 	let tocItems = $state<TocItem[]>([]);
 	let activeHeadingId = $state("");
 
@@ -35,7 +33,7 @@
 	const CATEGORY_ORDER = ["Getting started", "Guides", "Components"];
 
 	let filteredMenus = $derived(
-		data.menus.filter((menu) => menu.title.toLowerCase().includes(searchQuery.toLowerCase())),
+		data.menus.filter((menu) => menu.title.toLowerCase().includes(docsState.searchQuery.toLowerCase())),
 	);
 
 	let groupedMenus = $derived(
@@ -131,30 +129,40 @@
 	></Button>
 {/if}
 
+<Navbar variant="docs">
+	{#snippet trailing()}
+		<button
+			type="button"
+			class="flex size-8 cursor-pointer items-center justify-center rounded-lg text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 active:scale-95 md:hidden"
+			onclick={() => (sidebarOpen = !sidebarOpen)}
+			aria-label="Toggle navigation menu"
+			aria-expanded={sidebarOpen}
+		>
+			{#if sidebarOpen}
+				<HugeiconsIcon icon={Cancel01Icon} size={18} />
+			{:else}
+				<HugeiconsIcon icon={Menu01Icon} size={18} />
+			{/if}
+		</button>
+	{/snippet}
+</Navbar>
+
 <div class="flex min-h-screen bg-white">
 	<aside
 		class="{sidebarOpen
 			? 'translate-x-0'
-			: '-translate-x-full'} fixed top-0 left-0 z-50 flex h-screen w-64 shrink-0 flex-col overflow-hidden border-r border-neutral-200 bg-white transition-transform duration-300 ease-in-out md:sticky md:translate-x-0 md:bg-neutral-50/50"
+			: '-translate-x-full'} fixed top-0 left-0 z-50 flex h-screen w-64 shrink-0 flex-col overflow-hidden bg-white transition-transform duration-300 ease-in-out md:sticky md:top-24 md:z-0 md:h-[calc(100dvh-4rem)] md:translate-x-0"
 	>
+		<button
+			type="button"
+			class="absolute top-3 right-3 cursor-pointer rounded-lg p-1.5 text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 active:scale-95 md:hidden"
+			onclick={() => (sidebarOpen = false)}
+			aria-label="Close navigation menu"
+		>
+			<HugeiconsIcon icon={Cancel01Icon} size={18} />
+		</button>
 		<ScrollArea class="h-full w-full">
-			<header class="px-6 pt-6">
-				<a href={ROUTES.HOME} aria-label="Back to home" class="block">
-					<img src="/logo.png" alt="Polinema UI Logo" class="h-5 w-auto object-contain" />
-				</a>
-			</header>
-			<div class="relative my-4 flex items-center px-5">
-				<span class="pointer-events-none absolute left-9 text-neutral-400">
-					<HugeiconsIcon icon={Search01Icon} size={14} />
-				</span>
-				<Input
-					type="search"
-					placeholder="Search docs..."
-					bind:value={searchQuery}
-					class="w-full rounded-lg border border-neutral-200 bg-white py-1.5 pr-3 pl-10 text-xs placeholder-neutral-400 transition-all focus:border-blue-500 focus:outline-none"
-				/>
-			</div>
-			<nav aria-label="Documentation navigation" class="px-3 pb-8">
+			<nav aria-label="Documentation navigation" class="px-3 pt-10 pb-8 md:pt-0">
 				{#each sortedCategories as category (category)}
 					{@const menus = [...(groupedMenus[category] ?? [])].sort((a, b) => (a.order ?? 99) - (b.order ?? 99))}
 					<section class="mb-4">
@@ -186,25 +194,6 @@
 		</ScrollArea>
 	</aside>
 	<main class="mx-auto flex min-h-screen max-w-380 min-w-0 flex-1 flex-col">
-		<header
-			class="sticky top-0 z-30 flex items-center justify-between border-b border-neutral-100 bg-white/80 px-6 py-3.5 backdrop-blur-md md:hidden"
-		>
-			<a href={ROUTES.HOME} aria-label="Polinema UI Home">
-				<img src="/logo.png" alt="Polinema UI Logo" class="h-4.5 w-auto object-contain" />
-			</a>
-			<button
-				type="button"
-				class="cursor-pointer rounded-lg p-1.5 text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 active:scale-95"
-				onclick={() => (sidebarOpen = !sidebarOpen)}
-				aria-label="Toggle navigation menu"
-			>
-				{#if sidebarOpen}
-					<HugeiconsIcon icon={Cancel01Icon} size={18} />
-				{:else}
-					<HugeiconsIcon icon={Menu01Icon} size={18} />
-				{/if}
-			</button>
-		</header>
 		<div
 			class="mx-auto grid w-full flex-1 grid-cols-1 gap-10 px-6 py-8 lg:grid-cols-[minmax(0,1fr)_15rem] lg:px-10 xl:grid-cols-[minmax(0,4xl)_17rem] xl:gap-12"
 		>
@@ -256,7 +245,7 @@
 				</article>
 			</div>
 			<aside class="hidden lg:block">
-				<div class="sticky top-8 space-y-8">
+				<div class="sticky top-22 space-y-8">
 					<nav aria-label="On this page" class="border-l border-neutral-200 pl-4 text-sm">
 						<div class="mb-3 flex items-center gap-2 font-medium text-neutral-600">
 							<HugeiconsIcon icon={RightToLeftListBulletIcon} size={16} />
