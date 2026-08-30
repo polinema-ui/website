@@ -8,7 +8,12 @@
 	let { ref = $bindable(null), class: className, ...restProps }: PaginationPrimitive.PrevButtonProps = $props();
 </script>
 
-<PaginationPrimitive.PrevButton bind:ref aria-label="Go to previous page" class={cn(buttonVariants({ variant: "ghost", size: "default" }), "pl-2!", className)} {...restProps}>
+<PaginationPrimitive.PrevButton
+	bind:ref
+	aria-label="Go to previous page"
+	class={cn(buttonVariants({ variant: "ghost", size: "default" }), "pl-2!", className)}
+	{...restProps}
+>
 	<HugeiconsIcon icon={ArrowLeft01Icon} strokeWidth={2} data-icon="inline-start" />
 	<span class="cn-pagination-previous-text hidden sm:block">Previous</span>
 </PaginationPrimitive.PrevButton>

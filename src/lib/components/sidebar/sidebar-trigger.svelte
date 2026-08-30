@@ -6,7 +6,12 @@
 	import { useSidebar } from "$lib/components/sidebar";
 	import { cn } from "$lib/utils/shadcn";
 
-	let { ref = $bindable(null), class: className, onclick, ...restProps }: ComponentProps<typeof Button> & { onclick?: (e: MouseEvent) => void } = $props();
+	let {
+		ref = $bindable(null),
+		class: className,
+		onclick,
+		...restProps
+	}: ComponentProps<typeof Button> & { onclick?: (e: MouseEvent) => void } = $props();
 	const sidebar = useSidebar();
 </script>
 

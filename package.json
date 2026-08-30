@@ -5,7 +5,9 @@
 	"version": "0.0.1",
 	"type": "module",
 	"lint-staged": {
-		"*.{js,ts,svelte}": ["bunx eslint --fix"]
+		"*.{js,ts,svelte}": [
+			"bunx eslint --fix"
+		]
 	},
 	"scripts": {
 		"build": "vite build",

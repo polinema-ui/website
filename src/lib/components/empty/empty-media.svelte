@@ -30,6 +30,12 @@
 	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & { variant?: EmptyMediaVariant } = $props();
 </script>
 
-<div bind:this={ref} data-slot="empty-icon" data-variant={variant} class={cn(emptyMediaVariants({ variant }), className)} {...restProps}>
+<div
+	bind:this={ref}
+	data-slot="empty-icon"
+	data-variant={variant}
+	class={cn(emptyMediaVariants({ variant }), className)}
+	{...restProps}
+>
 	{@render children?.()}
 </div>

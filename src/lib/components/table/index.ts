@@ -7,4 +7,21 @@ import Header from "$lib/components/table/table-header.svelte";
 import Root from "$lib/components/table/table.svelte";
 import Row from "$lib/components/table/table-row.svelte";
 
-export { Body, Body as TableBody, Caption, Caption as TableCaption, Cell, Cell as TableCell, Footer, Footer as TableFooter, Head, Head as TableHead, Header, Header as TableHeader, Root, Root as Table, Row, Row as TableRow };
+export {
+	Body,
+	Body as TableBody,
+	Caption,
+	Caption as TableCaption,
+	Cell,
+	Cell as TableCell,
+	Footer,
+	Footer as TableFooter,
+	Head,
+	Head as TableHead,
+	Header,
+	Header as TableHeader,
+	Root,
+	Root as Table,
+	Row,
+	Row as TableRow,
+};

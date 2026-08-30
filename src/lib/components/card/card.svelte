@@ -13,6 +13,15 @@
 	} = $props();
 </script>
 
-<div bind:this={ref} data-slot="card" data-size={size} class={cn("group/card flex flex-col overflow-hidden rounded-2xl bg-card text-sm text-card-foreground ring-1 ring-foreground/10 has-[>img:first-child]:pt-0 data-[size=sm]:gap-4 data-[size=sm]:py-4 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl", className)} {...restProps}>
+<div
+	bind:this={ref}
+	data-slot="card"
+	data-size={size}
+	class={cn(
+		"group/card flex flex-col overflow-hidden rounded-2xl bg-card text-sm text-card-foreground ring-1 ring-foreground/10 has-[>img:first-child]:pt-0 data-[size=sm]:gap-4 data-[size=sm]:py-4 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl",
+		className,
+	)}
+	{...restProps}
+>
 	{@render children?.()}
 </div>

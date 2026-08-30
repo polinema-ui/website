@@ -9,4 +9,25 @@ import Root from "$lib/components/dialog/dialog.svelte";
 import Title from "$lib/components/dialog/dialog-title.svelte";
 import Trigger from "$lib/components/dialog/dialog-trigger.svelte";
 
-export { Close, Close as DialogClose, Content, Content as DialogContent, Description, Description as DialogDescription, Footer, Footer as DialogFooter, Header, Header as DialogHeader, Overlay, Overlay as DialogOverlay, Portal, Portal as DialogPortal, Root, Root as Dialog, Title, Title as DialogTitle, Trigger, Trigger as DialogTrigger };
+export {
+	Close,
+	Close as DialogClose,
+	Content,
+	Content as DialogContent,
+	Description,
+	Description as DialogDescription,
+	Footer,
+	Footer as DialogFooter,
+	Header,
+	Header as DialogHeader,
+	Overlay,
+	Overlay as DialogOverlay,
+	Portal,
+	Portal as DialogPortal,
+	Root,
+	Root as Dialog,
+	Title,
+	Title as DialogTitle,
+	Trigger,
+	Trigger as DialogTrigger,
+};

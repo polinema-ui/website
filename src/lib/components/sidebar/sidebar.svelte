@@ -13,13 +13,21 @@
 		class: className,
 		children,
 		...restProps
-	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & { collapsible?: "offcanvas" | "icon" | "none"; side?: "left" | "right"; variant?: "sidebar" | "floating" | "inset" } = $props();
+	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
+		collapsible?: "offcanvas" | "icon" | "none";
+		side?: "left" | "right";
+		variant?: "sidebar" | "floating" | "inset";
+	} = $props();
 
 	const sidebar = useSidebar();
 </script>
 
 {#if collapsible === "none"}
-	<div class={cn("flex h-full w-(--sidebar-width) flex-col bg-sidebar text-sidebar-foreground", className)} bind:this={ref} {...restProps}>
+	<div
+		class={cn("flex h-full w-(--sidebar-width) flex-col bg-sidebar text-sidebar-foreground", className)}
+		bind:this={ref}
+		{...restProps}
+	>
 		{@render children?.()}
 	</div>
 {:else if sidebar.isMobile}
@@ -58,7 +66,9 @@
 				"relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear",
 				"group-data-[collapsible=offcanvas]:w-0",
 				"group-data-[side=right]:rotate-180",
-				variant === "floating" || variant === "inset" ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]" : "group-data-[collapsible=icon]:w-(--sidebar-width-icon)",
+				variant === "floating" || variant === "inset"
+					? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]"
+					: "group-data-[collapsible=icon]:w-(--sidebar-width-icon)",
 			)}
 		></div>
 		<div
@@ -67,8 +77,12 @@
 			class={cn(
 				"fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex",
 				className,
-				side === "left" ? "inset-s-0 group-data-[collapsible=offcanvas]:-inset-s-(--sidebar-width)" : "inset-e-0 group-data-[collapsible=offcanvas]:-inset-e-(--sidebar-width)",
-				variant === "floating" || variant === "inset" ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]" : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-e group-data-[side=right]:border-s",
+				side === "left"
+					? "inset-s-0 group-data-[collapsible=offcanvas]:-inset-s-(--sidebar-width)"
+					: "inset-e-0 group-data-[collapsible=offcanvas]:-inset-e-(--sidebar-width)",
+				variant === "floating" || variant === "inset"
+					? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
+					: "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-e group-data-[side=right]:border-s",
 			)}
 		>
 			<div

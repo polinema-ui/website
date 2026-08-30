@@ -73,7 +73,10 @@ export class RenderSnippetConfig<TProps> {
  * ```
  * @see {@link https://tanstack.com/table/latest/docs/guide/column-defs}
  */
-export function renderComponent<T extends Component<Record<string, unknown>>, Props extends ComponentProps<T>>(component: T, props: Props = {} as Props) {
+export function renderComponent<T extends Component<Record<string, unknown>>, Props extends ComponentProps<T>>(
+	component: T,
+	props: Props = {} as Props,
+) {
 	return new RenderComponentConfig(component, props);
 }
 

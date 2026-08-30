@@ -8,4 +8,23 @@ import PrevButton from "$lib/components/pagination/pagination-prev-button.svelte
 import Previous from "$lib/components/pagination/pagination-previous.svelte";
 import Root from "$lib/components/pagination/pagination.svelte";
 
-export { Content, Content as PaginationContent, Ellipsis, Ellipsis as PaginationEllipsis, Item, Item as PaginationItem, Link, Link as PaginationLink, NextButton, NextButton as PaginationNextButton, Next, Next as PaginationNext, PrevButton, PrevButton as PaginationPrevButton, Previous, Previous as PaginationPrevious, Root, Root as Pagination };
+export {
+	Content,
+	Content as PaginationContent,
+	Ellipsis,
+	Ellipsis as PaginationEllipsis,
+	Item,
+	Item as PaginationItem,
+	Link,
+	Link as PaginationLink,
+	NextButton,
+	NextButton as PaginationNextButton,
+	Next,
+	Next as PaginationNext,
+	PrevButton,
+	PrevButton as PaginationPrevButton,
+	Previous,
+	Previous as PaginationPrevious,
+	Root,
+	Root as Pagination,
+};

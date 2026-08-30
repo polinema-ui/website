@@ -13,7 +13,12 @@
 	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & { showCloseButton?: boolean } = $props();
 </script>
 
-<div bind:this={ref} data-slot="dialog-footer" class={cn("flex flex-col-reverse gap-2 sm:flex-row sm:justify-end", className)} {...restProps}>
+<div
+	bind:this={ref}
+	data-slot="dialog-footer"
+	class={cn("flex flex-col-reverse gap-2 sm:flex-row sm:justify-end", className)}
+	{...restProps}
+>
 	{@render children?.()}
 	{#if showCloseButton}
 		<DialogPrimitive.Close>

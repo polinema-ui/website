@@ -6,4 +6,19 @@ import Page from "$lib/components/breadcrumb/breadcrumb-page.svelte";
 import Root from "$lib/components/breadcrumb/breadcrumb.svelte";
 import Separator from "$lib/components/breadcrumb/breadcrumb-separator.svelte";
 
-export { Ellipsis, Ellipsis as BreadcrumbEllipsis, Item, Item as BreadcrumbItem, Link, Link as BreadcrumbLink, List, List as BreadcrumbList, Page, Page as BreadcrumbPage, Root, Root as Breadcrumb, Separator, Separator as BreadcrumbSeparator };
+export {
+	Ellipsis,
+	Ellipsis as BreadcrumbEllipsis,
+	Item,
+	Item as BreadcrumbItem,
+	Link,
+	Link as BreadcrumbLink,
+	List,
+	List as BreadcrumbList,
+	Page,
+	Page as BreadcrumbPage,
+	Root,
+	Root as Breadcrumb,
+	Separator,
+	Separator as BreadcrumbSeparator,
+};

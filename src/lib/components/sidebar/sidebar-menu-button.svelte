@@ -6,7 +6,8 @@
 		variants: {
 			variant: {
 				default: "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-				outline: "bg-background hover:bg-sidebar-accent hover:text-sidebar-accent-foreground shadow-[0_0_0_1px_var(--sidebar-border)] hover:shadow-[0_0_0_1px_var(--sidebar-accent)]",
+				outline:
+					"bg-background hover:bg-sidebar-accent hover:text-sidebar-accent-foreground shadow-[0_0_0_1px_var(--sidebar-border)] hover:shadow-[0_0_0_1px_var(--sidebar-accent)]",
 			},
 			size: {
 				default: "h-9 text-sm",
@@ -84,7 +85,12 @@
 				{@render Button({ props })}
 			{/snippet}
 		</Trigger>
-		<Content side="right" align="center" hidden={sidebar.state !== "collapsed" || sidebar.isMobile} {...tooltipContentProps}>
+		<Content
+			side="right"
+			align="center"
+			hidden={sidebar.state !== "collapsed" || sidebar.isMobile}
+			{...tooltipContentProps}
+		>
 			{#if typeof tooltipContent === "string"}
 				{tooltipContent}
 			{:else if tooltipContent}

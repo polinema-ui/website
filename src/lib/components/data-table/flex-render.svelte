@@ -5,7 +5,11 @@
 
 	type Props = {
 		attach?: Attachment;
-		content?: TContext extends HeaderContext<TData, TValue> ? ColumnDefTemplate<HeaderContext<TData, TValue>> : TContext extends CellContext<TData, TValue> ? ColumnDefTemplate<CellContext<TData, TValue>> : never;
+		content?: TContext extends HeaderContext<TData, TValue>
+			? ColumnDefTemplate<HeaderContext<TData, TValue>>
+			: TContext extends CellContext<TData, TValue>
+				? ColumnDefTemplate<CellContext<TData, TValue>>
+				: never;
 		context: TContext;
 	};
 

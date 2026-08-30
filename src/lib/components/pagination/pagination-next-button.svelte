@@ -5,7 +5,12 @@
 	import { buttonVariants } from "$lib/components/button";
 	import { cn } from "$lib/utils/shadcn";
 
-	let { ref = $bindable(null), class: className, children, ...restProps }: PaginationPrimitive.NextButtonProps = $props();
+	let {
+		ref = $bindable(null),
+		class: className,
+		children,
+		...restProps
+	}: PaginationPrimitive.NextButtonProps = $props();
 </script>
 
 {#snippet Fallback()}
@@ -13,7 +18,12 @@
 	<HugeiconsIcon icon={ArrowRightIcon} strokeWidth={2} class={cn("size-4", className)} />
 {/snippet}
 
-<PaginationPrimitive.NextButton bind:ref aria-label="Go to next page" class={cn(buttonVariants({ variant: "ghost" }), "pr-2!", className)} {...restProps}>
+<PaginationPrimitive.NextButton
+	bind:ref
+	aria-label="Go to next page"
+	class={cn(buttonVariants({ variant: "ghost" }), "pr-2!", className)}
+	{...restProps}
+>
 	{#if children}
 		{@render children?.()}
 	{:else}

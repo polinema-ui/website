@@ -19,7 +19,11 @@
 		themes: [import("@shikijs/themes/vitesse-light")],
 	});
 
-	let { command, code, lang = "ts" }: { command?: string; code?: string; lang?: "ts" | "svelte" | "tsx" | "html" } = $props();
+	let {
+		command,
+		code,
+		lang = "ts",
+	}: { command?: string; code?: string; lang?: "ts" | "svelte" | "tsx" | "html" } = $props();
 
 	let copied = $state(false);
 	let activeCommand = $derived(command ?? docsState.activeCmd);
@@ -36,7 +40,9 @@
 
 {#if code !== undefined}
 	{#await highlighterPromise then highlighter}
-		<div class="group not-prose relative my-6 w-full overflow-hidden rounded-lg border border-neutral-200 bg-neutral-50">
+		<div
+			class="group not-prose relative my-6 w-full overflow-hidden rounded-lg border border-neutral-200 bg-neutral-50"
+		>
 			<button
 				type="button"
 				onclick={handleCopy}
