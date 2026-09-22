@@ -67,8 +67,8 @@
 		{#each colIndices as c (c)}
 			{@const isHovered = hoveredCell && Math.abs(hoveredCell.x - c) <= 1 && Math.abs(hoveredCell.y - r) <= 1}
 			<div
-				class="border-r border-b border-neutral-200/60 transition-colors {isHovered
-					? 'bg-neutral-800/15 duration-75'
+				class="border-r border-b border-white/10 transition-colors {isHovered
+					? 'bg-white/10 duration-75'
 					: 'bg-transparent duration-500'}"
 			></div>
 		{/each}

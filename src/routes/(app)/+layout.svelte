@@ -21,7 +21,7 @@
 
 {@render children()}
 
-<footer class="bg-white px-5 pt-12 pb-6 text-black sm:px-10 sm:pt-20 lg:px-18">
+<footer class="bg-[#0a0d13] px-5 pt-12 pb-6 text-white sm:px-10 sm:pt-20 lg:px-18">
 	<div class="mx-auto grid max-w-295 gap-10 md:grid-cols-[1.5fr_.65fr_.85fr] md:gap-20 lg:gap-32">
 		<section>
 			<h2
@@ -36,7 +36,7 @@
 					type="email"
 					placeholder="Enter email address"
 					required
-					class="text-blackbg-black focus:border-blackbg-black w-full border-0 border-b border-[#686868] bg-transparent px-0 py-3 text-[15px] outline-none placeholder:text-[#a0a0a0]"
+					class="w-full border-0 border-b border-neutral-700 bg-transparent px-0 py-3 text-[15px] text-white outline-none placeholder:text-[#a0a0a0]"
 				/>
 				<Button
 					class="mt-5 flex cursor-pointer items-center gap-2 rounded-lg border-none bg-blue-600 px-6 py-2! text-xs font-medium text-white shadow-[0_1px_0_rgba(255,255,255,0.2)_inset,0_8px_20px_rgba(37,99,235,0.35)] transition-all duration-200 hover:bg-blue-700 hover:shadow-[0_1px_0_rgba(255,255,255,0.2)_inset,0_12px_24px_rgba(37,99,235,0.4)] active:scale-95 sm:px-7! sm:py-3.5! sm:text-sm"
@@ -74,14 +74,14 @@
 		</section>
 	</div>
 	<div class="mx-auto mt-14 grid max-w-295 items-end gap-10 md:grid-cols-[245px_1fr] md:gap-20 lg:gap-32">
-		<ul class="border-t border-black/10">
+		<ul class="border-t border-white/10">
 			{#each socials as social (social.label)}
 				<li>
 					<a
 						href={social.href}
 						target={social.label === "Github" ? "_blank" : undefined}
 						rel={social.label === "Github" ? "noopener noreferrer" : undefined}
-						class="flex justify-between border-b border-black/10 py-3 text-sm transition-opacity hover:opacity-50"
+						class="flex justify-between border-b border-white/10 py-3 text-sm transition-opacity hover:opacity-50"
 					>
 						<span class="flex items-center gap-2">
 							<HugeiconsIcon icon={social.icon} size={16} strokeWidth={1.8} aria-hidden="true" />
@@ -93,12 +93,12 @@
 			{/each}
 		</ul>
 		<h2
-			class="overflow-hidden bg-linear-to-b from-black via-black to-[#ffff] bg-clip-text text-center text-[clamp(3.5rem,11.5vw,8rem)] leading-[.75] font-bold -tracking-widest whitespace-nowrap text-transparent"
+			class="overflow-hidden bg-linear-to-b from-white via-white to-transparent bg-clip-text text-center text-[clamp(3.5rem,11.5vw,8rem)] leading-[.75] font-bold -tracking-widest whitespace-nowrap text-transparent"
 		>
 			POLINEMA UI
 		</h2>
 	</div>
-	<h6 class="mx-auto mt-12 max-w-295 border-t border-black/10 pt-4 text-center text-xs text-black">
+	<h6 class="mx-auto mt-12 max-w-295 border-t border-white/10 pt-4 text-center text-xs text-neutral-400">
 		Copyright © Polinema UI. All Rights Reserved
 	</h6>
 </footer>

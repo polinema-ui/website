@@ -52,15 +52,15 @@
 <header
 	class="{isFloating
 		? 'fixed top-3 left-1/2 z-50 flex w-[calc(100%-1.5rem)] max-w-6xl -translate-x-1/2 items-center justify-between rounded-2xl border px-4 py-2.5 transition-all duration-300 sm:top-4 sm:px-6 sm:py-3.5'
-		: 'sticky top-0 z-30 flex items-center justify-between border-b border-neutral-100 bg-white/80 px-4 py-3 backdrop-blur-md sm:px-6'} {isFloating &&
+		: 'sticky top-0 z-30 flex items-center justify-between border-b border-white/10 bg-neutral-950/80 px-4 py-3 backdrop-blur-md sm:px-6'} {isFloating &&
 	(scrolled || mobileMenuOpen)
-		? 'border-black/8 bg-white/90 shadow-[0_8px_30px_rgba(0,0,0,0.06),0_1px_0_rgba(255,255,255,0.8)_inset] backdrop-blur-xl'
+		? 'border-white/10 bg-neutral-950/90 shadow-[0_8px_30px_rgba(0,0,0,0.4),0_1px_0_rgba(255,255,255,0.1)_inset] backdrop-blur-xl'
 		: isFloating
-			? 'border-white/60 bg-white/70 shadow-[0_4px_20px_rgba(0,0,0,0.03),0_1px_0_rgba(255,255,255,0.7)_inset] backdrop-blur-md'
+			? 'border-white/10 bg-neutral-950/70 shadow-[0_4px_20px_rgba(0,0,0,0.3),0_1px_0_rgba(255,255,255,0.1)_inset] backdrop-blur-md'
 			: ''}"
 >
 	<a href={localizeHref("#home")} aria-label="Polinema UI home" class="flex shrink-0 items-center">
-		<img src="/logo.png" alt="Polinema UI Logo" class="h-4.5 w-auto object-contain sm:h-5" />
+		<img src="/logo.png" alt="Polinema UI Logo" class="h-4.5 w-auto object-contain brightness-0 invert sm:h-5" />
 	</a>
 
 	{#if !isFloating}
@@ -86,30 +86,30 @@
 					target="_blank"
 					rel="noopener noreferrer"
 					variant="outline"
-					class="h-8 gap-1.5 rounded-lg border-gray-200/80 bg-white px-2.5 text-xs font-medium text-neutral-800 transition-all hover:bg-gray-100 active:scale-95 sm:h-9 sm:px-3 sm:text-[13px]"
+					class="h-8 gap-1.5 rounded-lg border-white/10 bg-white/10 px-2.5 text-xs font-medium text-neutral-100 transition-all hover:bg-white/20 active:scale-95 sm:h-9 sm:px-3 sm:text-[13px]"
 				>
-					<HugeiconsIcon icon={GithubIcon} size={14} color="#1a1a1a" />
+					<HugeiconsIcon icon={GithubIcon} size={14} color="#fafafa" />
 					<span class="font-medium">{githubStars}</span>
 				</Button>
 			{/if}
 			{#if showFrameworkSelector}
 				<FrameworkDropdown
 					bind:open={dropdownOpen}
-					triggerClass="flex h-8 cursor-pointer items-center gap-1.5 rounded-lg border border-gray-200/80 bg-white px-2.5 text-xs font-medium text-neutral-800 transition-all hover:bg-gray-100 active:scale-95 sm:h-9 sm:gap-2 sm:px-3 sm:text-[13px]"
+					triggerClass="flex h-8 cursor-pointer items-center gap-1.5 rounded-lg border border-white/10 bg-white/10 px-2.5 text-xs font-medium text-neutral-100 transition-all hover:bg-white/20 active:scale-95 sm:h-9 sm:gap-2 sm:px-3 sm:text-[13px]"
 				/>
 			{/if}
 		</aside>
 		<button
 			type="button"
 			onclick={() => (mobileMenuOpen = !mobileMenuOpen)}
-			class="flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg border border-neutral-200/80 bg-white text-neutral-800 transition-all hover:bg-neutral-100 active:scale-95 md:hidden"
+			class="flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg border border-white/10 bg-white/10 text-neutral-100 transition-all hover:bg-white/20 active:scale-95 md:hidden"
 			aria-label="Toggle mobile menu"
 			aria-expanded={mobileMenuOpen}
 		>
 			{#if mobileMenuOpen}
-				<HugeiconsIcon icon={Cancel01Icon} size={16} color="#171717" />
+				<HugeiconsIcon icon={Cancel01Icon} size={16} color="#fafafa" />
 			{:else}
-				<HugeiconsIcon icon={Menu01Icon} size={16} color="#171717" />
+				<HugeiconsIcon icon={Menu01Icon} size={16} color="#fafafa" />
 			{/if}
 		</button>
 	{:else}
@@ -125,14 +125,14 @@
 					type="search"
 					bind:value={docsState.searchQuery}
 					placeholder="Cari dokumentasi..."
-					class="h-9 w-full min-w-0 rounded-lg border border-neutral-200 bg-white pr-14 pl-9 text-sm text-neutral-800 transition outline-none placeholder:text-neutral-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-100"
+					class="h-9 w-full min-w-0 rounded-lg border border-white/10 bg-white/5 pr-14 pl-9 text-sm text-neutral-100 transition outline-none placeholder:text-neutral-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
 				/>
 				<Kbd class="absolute right-1.5 z-10 hidden sm:inline-flex">Ctrl K</Kbd>
 			</label>
 			{#if showFrameworkSelector}
 				<FrameworkDropdown
 					bind:open={dropdownOpen}
-					triggerClass="hidden h-9 cursor-pointer items-center gap-1.5 rounded-lg border border-neutral-200 bg-white px-2.5 text-xs font-medium text-neutral-800 transition-all hover:bg-neutral-100 active:scale-95 sm:flex sm:px-3 sm:text-[13px]"
+					triggerClass="hidden h-9 cursor-pointer items-center gap-1.5 rounded-lg border border-white/10 bg-white/10 px-2.5 text-xs font-medium text-neutral-100 transition-all hover:bg-white/20 active:scale-95 sm:flex sm:px-3 sm:text-[13px]"
 				/>
 			{/if}
 			{#if showGithub}
@@ -155,17 +155,17 @@
 
 {#if isFloating && mobileMenuOpen}
 	<aside
-		class="fixed inset-0 z-40 flex flex-col justify-between bg-white/95 px-6 pt-24 pb-8 backdrop-blur-2xl md:hidden"
+		class="fixed inset-0 z-40 flex flex-col justify-between bg-neutral-950/95 px-6 pt-24 pb-8 backdrop-blur-2xl md:hidden"
 	>
 		<nav aria-label="Mobile navigation links" class="flex flex-col">
-			<ul class="flex flex-col divide-y divide-neutral-100">
+			<ul class="flex flex-col divide-y divide-white/10">
 				{#each menuItems as item (item.label)}
 					{@const isActive = activeItem === item.label}
 					<li>
 						<a
 							class="flex items-center justify-between py-4 text-lg font-semibold tracking-tight transition-colors {isActive
-								? 'text-blue-600'
-								: 'text-neutral-900 hover:text-blue-600'}"
+								? 'text-blue-400'
+								: 'text-white hover:text-blue-400'}"
 							href={localizeHref(item.href)}
 							onclick={() => (mobileMenuOpen = false)}
 						>
@@ -178,32 +178,32 @@
 				{/each}
 			</ul>
 		</nav>
-		<section class="flex flex-col gap-3 border-t border-neutral-200/80 pt-5">
+		<section class="flex flex-col gap-3 border-t border-white/10 pt-5">
 			{#if showGithub}
 				<Button
 					href={localizeHref("https://github.com/polinema-ui/website")}
 					target="_blank"
 					rel="noopener noreferrer"
 					variant="outline"
-					class="flex h-11 w-full items-center justify-between rounded-xl border-neutral-200 bg-white px-4 text-sm font-semibold text-neutral-800 shadow-xs"
+					class="flex h-11 w-full items-center justify-between rounded-xl border-white/10 bg-white/10 px-4 text-sm font-semibold text-neutral-100 shadow-xs"
 				>
 					<span class="flex items-center gap-2.5">
-						<HugeiconsIcon icon={GithubIcon} size={18} color="#1a1a1a" />
+						<HugeiconsIcon icon={GithubIcon} size={18} color="#fafafa" />
 						<span>GitHub Repository</span>
 					</span>
-					<span class="rounded-lg bg-neutral-100 px-2 py-0.5 text-xs font-bold text-neutral-800">
+					<span class="rounded-lg bg-white/10 px-2 py-0.5 text-xs font-bold text-neutral-100">
 						{githubStars} ★
 					</span>
 				</Button>
 			{/if}
 			{#if showFrameworkSelector}
-				<div class="grid grid-cols-2 gap-1.5 rounded-xl bg-neutral-100 p-1.5">
+				<div class="grid grid-cols-2 gap-1.5 rounded-xl bg-white/10 p-1.5">
 					{#each frameworks as fw (fw.name)}
 						<button
 							class="flex items-center justify-center gap-2 rounded-lg py-2.5 text-xs font-medium transition-all {frameworkState.selected ===
 							fw.name
 								? 'bg-white font-semibold text-neutral-950 shadow-xs'
-								: 'text-neutral-600 hover:text-neutral-900'}"
+								: 'text-neutral-400 hover:text-white'}"
 							type="button"
 							onclick={() => {
 								frameworkState.selected = fw.name;

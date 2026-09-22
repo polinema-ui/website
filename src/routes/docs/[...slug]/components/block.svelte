@@ -16,7 +16,7 @@
 			import("@shikijs/langs/tsx"),
 			import("@shikijs/langs/html"),
 		],
-		themes: [import("@shikijs/themes/vitesse-light")],
+		themes: [import("@shikijs/themes/vitesse-dark")],
 	});
 
 	let {
@@ -40,14 +40,12 @@
 
 {#if code !== undefined}
 	{#await highlighterPromise then highlighter}
-		<div
-			class="group not-prose relative my-6 w-full overflow-hidden rounded-lg border border-neutral-200 bg-neutral-50"
-		>
+		<div class="group not-prose relative my-6 w-full overflow-hidden rounded-lg border border-white/10 bg-neutral-900">
 			<button
 				type="button"
 				onclick={handleCopy}
 				aria-label="Copy to clipboard"
-				class="absolute top-2 right-2 z-10 flex cursor-pointer items-center justify-center rounded-md p-2 text-neutral-400 transition-colors hover:bg-neutral-200/60 hover:text-neutral-900 active:scale-90"
+				class="absolute top-2 right-2 z-10 flex cursor-pointer items-center justify-center rounded-md p-2 text-neutral-400 transition-colors hover:bg-white/10 hover:text-white active:scale-90"
 			>
 				{#if copied}
 					<HugeiconsIcon icon={Tick01Icon} size={14} color="#10b981" />
@@ -57,22 +55,22 @@
 			</button>
 			<div class="overflow-x-auto px-4 py-4 text-[13px] [&_pre]:bg-transparent!">
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-				{@html DOMPurify.sanitize(highlighter.codeToHtml(code.trim(), { lang, theme: "vitesse-light" }))}
+				{@html DOMPurify.sanitize(highlighter.codeToHtml(code.trim(), { lang, theme: "vitesse-dark" }))}
 			</div>
 		</div>
 	{/await}
 {:else}
-	<div class="not-prose my-6 w-full overflow-hidden rounded-lg border border-neutral-200 bg-white">
+	<div class="not-prose my-6 w-full overflow-hidden rounded-lg border border-white/10 bg-neutral-900">
 		{#if command}
 			<div class="flex items-center justify-between px-4 py-3">
-				<code class="min-w-0 flex-1 overflow-x-auto text-[13px] font-medium text-neutral-900">
+				<code class="min-w-0 flex-1 overflow-x-auto text-[13px] font-medium text-neutral-100">
 					{activeCommand}
 				</code>
 				<button
 					type="button"
 					onclick={handleCopy}
 					aria-label="Copy to clipboard"
-					class="-mr-1 flex cursor-pointer items-center justify-center rounded-md p-2 text-neutral-400 transition-colors hover:bg-neutral-100 hover:text-neutral-900 active:scale-90"
+					class="-mr-1 flex cursor-pointer items-center justify-center rounded-md p-2 text-neutral-400 transition-colors hover:bg-white/10 hover:text-white active:scale-90"
 				>
 					{#if copied}
 						<HugeiconsIcon icon={Tick01Icon} size={14} color="#10b981" />
@@ -82,13 +80,13 @@
 				</button>
 			</div>
 		{:else}
-			<div class="flex items-center justify-between border-b border-neutral-100 py-1.5 pr-1.5 pl-3">
+			<div class="flex items-center justify-between border-b border-white/10 py-1.5 pr-1.5 pl-3">
 				<Tabs.Root bind:value={docsState.pkgManager}>
 					<Tabs.List class="flex gap-4">
 						{#each PKG_MANAGERS as pm (pm.id)}
 							<Tabs.Trigger
 								value={pm.id}
-								class="-mx-2 cursor-pointer rounded-md px-2 py-1 text-xs font-medium transition-colors data-[state=active]:bg-neutral-100 data-[state=active]:text-neutral-950 data-[state=inactive]:text-neutral-500 hover:data-[state=inactive]:text-neutral-900"
+								class="-mx-2 cursor-pointer rounded-md px-2 py-1 text-xs font-medium transition-colors data-[state=active]:bg-white/10 data-[state=active]:text-white data-[state=inactive]:text-neutral-400 hover:data-[state=inactive]:text-white"
 							>
 								{pm.label}
 							</Tabs.Trigger>
@@ -99,7 +97,7 @@
 					type="button"
 					onclick={handleCopy}
 					aria-label="Copy to clipboard"
-					class="flex cursor-pointer items-center justify-center rounded-md p-2 text-neutral-400 transition-colors hover:bg-neutral-100 hover:text-neutral-900 active:scale-90"
+					class="flex cursor-pointer items-center justify-center rounded-md p-2 text-neutral-400 transition-colors hover:bg-white/10 hover:text-white active:scale-90"
 				>
 					{#if copied}
 						<HugeiconsIcon icon={Tick01Icon} size={14} color="#10b981" />
@@ -109,7 +107,7 @@
 				</button>
 			</div>
 			<div class="flex items-center justify-between px-4 py-3">
-				<code class="min-w-0 flex-1 overflow-x-auto text-[13px] font-medium text-neutral-900">
+				<code class="min-w-0 flex-1 overflow-x-auto text-[13px] font-medium text-neutral-100">
 					{activeCommand}
 				</code>
 			</div>

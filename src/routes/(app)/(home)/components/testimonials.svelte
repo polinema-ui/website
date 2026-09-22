@@ -21,12 +21,12 @@
 	}
 </script>
 
-<section class="relative flex w-full flex-col items-center gap-12 overflow-hidden bg-white py-20">
+<section class="relative flex w-full flex-col items-center gap-12 overflow-hidden bg-[#0a0d13] py-20">
 	<header class="flex flex-col items-center gap-3 px-6 text-center">
-		<h2 class="font-sans text-3xl font-bold tracking-tight text-neutral-950 sm:text-4xl md:text-[44px]">
+		<h2 class="font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-[44px]">
 			Kata Mereka Tentang Polinema UI
 		</h2>
-		<p class="max-w-xl font-sans text-base text-neutral-600 sm:text-[17px]">
+		<p class="max-w-xl font-sans text-base text-neutral-300 sm:text-[17px]">
 			Lihat apa kata para pengembang dan mahasiswa yang sudah menggunakan Polinema UI untuk proyek mereka.
 		</p>
 	</header>
@@ -44,7 +44,7 @@
 					{#each [...row, ...row, ...row] as item, itemIndex (`${item.handle}-${rowIndex}-${itemIndex}`)}
 						<li class="min-w-0 flex-[0_0_85%] sm:flex-[0_0_48%] md:flex-[0_0_31%]">
 							<Card
-								class="h-full rounded-2xl border border-neutral-200/80 bg-white p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all hover:border-blue-300 hover:shadow-md"
+								class="h-full rounded-2xl border border-white/10 bg-neutral-900 p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all hover:border-blue-500/50 hover:shadow-md"
 							>
 								<article dir="ltr" class="flex h-full flex-col justify-between text-left">
 									<header class="flex items-center justify-between">
@@ -52,16 +52,16 @@
 											<img
 												src={item.avatar}
 												alt={item.name}
-												class="h-10 w-10 rounded-full bg-neutral-100 object-cover"
+												class="h-10 w-10 rounded-full bg-neutral-800 object-cover"
 											/>
 											<figcaption class="flex flex-col text-left">
-												<span class="font-sans text-sm font-semibold text-neutral-900">{item.name}</span>
+												<span class="font-sans text-sm font-semibold text-white">{item.name}</span>
 												<span class="font-sans text-xs text-neutral-500">{item.handle}</span>
 											</figcaption>
 										</figure>
 										<HugeiconsIcon icon={NewTwitterIcon} size={16} class="text-neutral-400" />
 									</header>
-									<blockquote class="mt-4 text-left font-sans text-sm leading-relaxed text-neutral-700">
+									<blockquote class="mt-4 text-left font-sans text-sm leading-relaxed text-neutral-300">
 										"{item.content}"
 									</blockquote>
 								</article>

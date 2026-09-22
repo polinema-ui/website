@@ -133,7 +133,7 @@
 	{#snippet trailing()}
 		<button
 			type="button"
-			class="flex size-8 cursor-pointer items-center justify-center rounded-lg text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 active:scale-95 md:hidden"
+			class="flex size-8 cursor-pointer items-center justify-center rounded-lg text-neutral-300 hover:bg-white/10 hover:text-white active:scale-95 md:hidden"
 			onclick={() => (sidebarOpen = !sidebarOpen)}
 			aria-label="Toggle navigation menu"
 			aria-expanded={sidebarOpen}
@@ -147,15 +147,15 @@
 	{/snippet}
 </Navbar>
 
-<div class="flex min-h-screen bg-white">
+<div class="flex min-h-screen bg-[#0a0d13]">
 	<aside
 		class="{sidebarOpen
 			? 'translate-x-0'
-			: '-translate-x-full'} fixed top-0 left-0 z-50 flex h-screen w-64 shrink-0 flex-col overflow-hidden bg-white transition-transform duration-300 ease-in-out md:sticky md:top-24 md:z-0 md:h-[calc(100dvh-4rem)] md:translate-x-0"
+			: '-translate-x-full'} fixed top-0 left-0 z-50 flex h-screen w-64 shrink-0 flex-col overflow-hidden bg-[#0a0d13] transition-transform duration-300 ease-in-out md:sticky md:top-24 md:z-0 md:h-[calc(100dvh-4rem)] md:translate-x-0"
 	>
 		<button
 			type="button"
-			class="absolute top-3 right-3 cursor-pointer rounded-lg p-1.5 text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 active:scale-95 md:hidden"
+			class="absolute top-3 right-3 cursor-pointer rounded-lg p-1.5 text-neutral-400 hover:bg-white/10 hover:text-white active:scale-95 md:hidden"
 			onclick={() => (sidebarOpen = false)}
 			aria-label="Close navigation menu"
 		>
@@ -178,8 +178,8 @@
 										aria-current={isActive ? "page" : undefined}
 										onclick={() => (sidebarOpen = false)}
 										class="block rounded-lg px-3 py-1.5 text-sm font-medium transition-colors {isActive
-											? 'bg-blue-50 font-semibold text-blue-600'
-											: 'text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900'}"
+											? 'bg-blue-500/15 font-semibold text-blue-400'
+											: 'text-neutral-400 hover:bg-white/5 hover:text-white'}"
 									>
 										{menu.title}
 									</a>
@@ -199,12 +199,12 @@
 		>
 			<div class="min-w-0">
 				<div class="mb-6 flex items-center justify-between">
-					<h1 class="font-serif text-4xl font-extralight tracking-tighter sm:text-5xl">{title}</h1>
+					<h1 class="font-serif text-4xl font-extralight tracking-tighter text-white sm:text-5xl">{title}</h1>
 					<nav aria-label="Documentation pagination" class="hidden gap-2 lg:flex">
 						{#if previousMenu}
 							<a
 								href={previousMenu.url}
-								class="inline-flex size-9 items-center justify-center rounded-lg bg-neutral-100 text-neutral-700 transition-colors hover:bg-neutral-200 hover:text-neutral-950"
+								class="inline-flex size-9 items-center justify-center rounded-lg bg-white/10 text-neutral-300 transition-colors hover:bg-white/20 hover:text-white"
 								aria-label={`Previous page: ${previousMenu.title}`}
 							>
 								<HugeiconsIcon icon={ArrowLeft01Icon} size={18} />
@@ -212,7 +212,7 @@
 						{:else}
 							<button
 								disabled
-								class="inline-flex size-9 cursor-not-allowed items-center justify-center rounded-lg bg-neutral-50 text-neutral-300"
+								class="inline-flex size-9 cursor-not-allowed items-center justify-center rounded-lg bg-white/5 text-neutral-600"
 								aria-label="Previous page"
 							>
 								<HugeiconsIcon icon={ArrowLeft01Icon} size={18} />
@@ -221,7 +221,7 @@
 						{#if nextMenu}
 							<a
 								href={nextMenu.url}
-								class="inline-flex size-9 items-center justify-center rounded-lg bg-neutral-100 text-neutral-700 transition-colors hover:bg-neutral-200 hover:text-neutral-950"
+								class="inline-flex size-9 items-center justify-center rounded-lg bg-white/10 text-neutral-300 transition-colors hover:bg-white/20 hover:text-white"
 								aria-label={`Next page: ${nextMenu.title}`}
 							>
 								<HugeiconsIcon icon={ArrowRight01Icon} size={18} />
@@ -229,7 +229,7 @@
 						{:else}
 							<button
 								disabled
-								class="inline-flex size-9 cursor-not-allowed items-center justify-center rounded-lg bg-neutral-50 text-neutral-300"
+								class="inline-flex size-9 cursor-not-allowed items-center justify-center rounded-lg bg-white/5 text-neutral-600"
 								aria-label="Next page"
 							>
 								<HugeiconsIcon icon={ArrowRight01Icon} size={18} />
@@ -239,15 +239,15 @@
 				</div>
 				<article
 					bind:this={articleElement}
-					class="prose max-w-none min-w-0 flex-1 prose-slate prose-headings:scroll-mt-24 prose-h2:mt-8 prose-h2:mb-1 prose-h2:text-2xl prose-h2:font-semibold prose-a:text-blue-600"
+					class="prose max-w-none min-w-0 flex-1 prose-slate dark:prose-invert prose-headings:scroll-mt-24 prose-h2:mt-8 prose-h2:mb-1 prose-h2:text-2xl prose-h2:font-semibold prose-a:text-blue-600 dark:prose-a:text-blue-400"
 				>
 					{@render children()}
 				</article>
 			</div>
 			<aside class="hidden lg:block">
 				<div class="sticky top-22 space-y-8">
-					<nav aria-label="On this page" class="border-l border-neutral-200 pl-4 text-sm">
-						<div class="mb-3 flex items-center gap-2 font-medium text-neutral-600">
+					<nav aria-label="On this page" class="border-l border-white/10 pl-4 text-sm">
+						<div class="mb-3 flex items-center gap-2 font-medium text-neutral-400">
 							<HugeiconsIcon icon={RightToLeftListBulletIcon} size={16} />
 							<span>On this page</span>
 						</div>
@@ -258,8 +258,8 @@
 										<a
 											href={`#${item.id}`}
 											class="block border-l-2 py-0.5 pl-3 transition-colors {activeHeadingId === item.id
-												? '-ml-4.25 border-neutral-950 font-medium text-neutral-950'
-												: '-ml-4.25 border-transparent text-neutral-500 hover:text-neutral-900'}"
+												? '-ml-4.25 border-white font-medium text-white'
+												: '-ml-4.25 border-transparent text-neutral-500 hover:text-white'}"
 										>
 											{item.title}
 										</a>
@@ -270,16 +270,16 @@
 							<p class="text-neutral-400">No sections.</p>
 						{/if}
 					</nav>
-					<section class="rounded-2xl bg-neutral-100 p-5">
-						<h2 class="text-lg leading-tight font-semibold text-neutral-950">
+					<section class="rounded-2xl bg-white/5 p-5">
+						<h2 class="text-lg leading-tight font-semibold text-white">
 							Gas kalo mau jadi contributor di open source ini
 						</h2>
-						<p class="mt-3 text-sm leading-relaxed text-neutral-600">
+						<p class="mt-3 text-sm leading-relaxed text-neutral-400">
 							Bantu bikin Polinema UI makin rapi, kepake, dan enak dipakai bareng-bareng.
 						</p>
 						<a
 							href="https://github.com/polinema-ui"
-							class="mt-4 inline-flex rounded-lg bg-neutral-900 px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-neutral-700"
+							class="mt-4 inline-flex rounded-lg bg-white px-3 py-2 text-sm font-semibold text-neutral-900 transition-colors hover:bg-neutral-200"
 						>
 							Contribute on GitHub
 						</a>
@@ -296,7 +296,7 @@
 						Built by
 						<a
 							href={authorUrl || "#"}
-							class="font-medium text-neutral-900 underline underline-offset-4 hover:text-neutral-700"
+							class="font-medium text-white underline underline-offset-4 hover:text-neutral-300"
 						>
 							{author}
 						</a>
@@ -304,9 +304,7 @@
 				</div>
 				<div>
 					{#if lastUpdated}
-						Last updated: <span
-							class="ml-1.5 rounded-md bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-800"
-						>
+						Last updated: <span class="ml-1.5 rounded-md bg-white/10 px-2.5 py-1 text-xs font-medium text-neutral-300">
 							{lastUpdated}
 						</span>
 					{/if}

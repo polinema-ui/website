@@ -22,14 +22,14 @@
 		<HugeiconsIcon icon={current.icon} size={15} color={current.color} />
 		<span class="hidden sm:inline">{selectedFramework}</span>
 		<span class="transition-transform duration-200 {open ? 'rotate-180' : ''}">
-			<HugeiconsIcon icon={ChevronDownIcon} size={13} color="#1c1c1c" />
+			<HugeiconsIcon icon={ChevronDownIcon} size={13} color="#e5e5e5" />
 		</span>
 	</Trigger>
 	<Content class={DROPDOWN_CONTENT_CLASS}>
 		{#each frameworks as fw (fw.name)}
 			<Item
 				onclick={() => (frameworkState.selected = fw.name)}
-				class="flex cursor-pointer items-center gap-2.5 rounded-lg px-2.5 py-2 text-xs font-medium text-neutral-800 transition-colors select-none hover:bg-[#f4f4f0] sm:text-[13.5px]"
+				class="flex cursor-pointer items-center gap-2.5 rounded-lg px-2.5 py-2 text-xs font-medium text-neutral-200 transition-colors select-none hover:bg-white/10 sm:text-[13.5px]"
 			>
 				<HugeiconsIcon icon={fw.icon} size={15} color={fw.color} />
 				<span>{fw.name}</span>
