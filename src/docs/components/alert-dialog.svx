@@ -1,5 +1,0 @@
----
-title: Alert Dialog
-description:
-order: 1
----

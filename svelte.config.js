@@ -21,6 +21,7 @@ const config = {
 		alias: {
 			$docs: "./src/docs",
 			$lib: "./src/lib",
+			$registry: "./src/registry",
 			$routes: "./src/routes",
 		},
 	},

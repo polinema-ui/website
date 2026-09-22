@@ -1,5 +1,56 @@
 ---
 title: Button
-description:
+description: Tombol yang bisa diklik buat React. Satu file, tinggal copy-paste ke project lo.
 order: 3
+author: Polinema UI
+authorUrl: https://github.com/polinema-ui
+lastUpdated: 22/9/2026
 ---
+
+<script lang="ts">
+	import { InstallTabs, PreviewTabs, PropsTable } from "$routes/docs/[...slug]/components";
+	import type { PreviewCode } from "$routes/docs/[...slug]/components";
+	import Preview from "$registry/button/preview.svelte";
+	import { BUTTON_PROPS } from "$registry/button/meta";
+	import type { ButtonVariant } from "$registry/button/meta";
+	import tsxSource from "$registry/button/button.tsx?raw";
+	import demoSource from "$registry/button/demo.tsx?raw";
+
+	const codes: PreviewCode[] = [{ id: "react", label: "React", code: tsxSource, lang: "tsx" }];
+
+	function snippet(name: string): string {
+		const body = demoSource.match(new RegExp(`export function ${name}\\(\\) \\{[\\s\\S]*?\\n\\}`))?.[0] ?? "";
+		const imports = demoSource
+			.split("\n")
+			.filter((line) => line.startsWith("import "))
+			.join("\n");
+		return `${imports}\n\n${body}`;
+	}
+
+	const variants: { variant: ButtonVariant; title: string; code: string }[] = [
+		{ variant: "default", title: "Default", code: snippet("ButtonDefault") },
+		{ variant: "secondary", title: "Secondary", code: snippet("ButtonSecondary") },
+		{ variant: "outline", title: "Outline", code: snippet("ButtonOutline") },
+		{ variant: "ghost", title: "Ghost", code: snippet("ButtonGhost") },
+		{ variant: "destructive", title: "Destructive", code: snippet("ButtonDestructive") },
+	];
+</script>
+
+Tombol standar buat aksi apa pun: submit form, pindah halaman, buka dialog. Nggak ada dependency, cuma Tailwind. Copy file-nya, tempel ke `components/ui/button.tsx`, terus tinggal import.
+
+## Installation
+
+<InstallTabs component="button" {codes} dependencies={["@hugeicons/react", "@hugeicons/core-free-icons"]} />
+
+## Preview
+
+{#each variants as item (item.variant)}
+	<h3 class="mt-8">{item.title}</h3>
+	<PreviewTabs codes={[{ id: "react", label: "React", code: item.code, lang: "tsx" }]}>
+		<Preview variant={item.variant} />
+	</PreviewTabs>
+{/each}
+
+<InstallTabs component="button" {codes} />
+
+<PropsTable props={BUTTON_PROPS} />

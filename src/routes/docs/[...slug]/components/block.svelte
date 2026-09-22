@@ -2,28 +2,13 @@
 	import { Copy01Icon, Tick01Icon } from "@hugeicons/core-free-icons";
 	import { HugeiconsIcon } from "@hugeicons/svelte";
 	import { Tabs } from "bits-ui";
-	import { createHighlighterCore } from "shiki/core";
-	import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 	import { PKG_MANAGERS } from "$lib/constants/pkg-managers";
 	import { docsState } from "$routes/docs/[...slug]/context/docs.svelte";
 	import DOMPurify from "dompurify";
+	import { highlighterPromise } from "./highlighter";
+	import type { DocsCodeLang } from "./highlighter";
 
-	const highlighterPromise = createHighlighterCore({
-		engine: createJavaScriptRegexEngine({ forgiving: true }),
-		langs: [
-			import("@shikijs/langs/typescript"),
-			import("@shikijs/langs/svelte"),
-			import("@shikijs/langs/tsx"),
-			import("@shikijs/langs/html"),
-		],
-		themes: [import("@shikijs/themes/vitesse-dark")],
-	});
-
-	let {
-		command,
-		code,
-		lang = "ts",
-	}: { command?: string; code?: string; lang?: "ts" | "svelte" | "tsx" | "html" } = $props();
+	let { command, code, lang = "ts" }: { command?: string; code?: string; lang?: DocsCodeLang } = $props();
 
 	let copied = $state(false);
 	let activeCommand = $derived(command ?? docsState.activeCmd);
@@ -40,7 +25,7 @@
 
 {#if code !== undefined}
 	{#await highlighterPromise then highlighter}
-		<div class="group not-prose relative my-6 w-full overflow-hidden rounded-lg border border-white/10 bg-neutral-900">
+		<div class="group not-prose relative my-6 w-full overflow-hidden rounded-lg border border-white/10 bg-black">
 			<button
 				type="button"
 				onclick={handleCopy}
@@ -53,14 +38,14 @@
 					<HugeiconsIcon icon={Copy01Icon} size={14} color="currentColor" />
 				{/if}
 			</button>
-			<div class="overflow-x-auto px-4 py-4 text-[13px] [&_pre]:bg-transparent!">
+			<div class="code-scroll overflow-x-auto px-4 py-4 text-[13px] [&_pre]:bg-transparent!">
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-				{@html DOMPurify.sanitize(highlighter.codeToHtml(code.trim(), { lang, theme: "vitesse-dark" }))}
+				{@html DOMPurify.sanitize(highlighter.codeToHtml(code.trim(), { lang, theme: "github-dark" }))}
 			</div>
 		</div>
 	{/await}
 {:else}
-	<div class="not-prose my-6 w-full overflow-hidden rounded-lg border border-white/10 bg-neutral-900">
+	<div class="not-prose my-6 w-full overflow-hidden rounded-lg border border-white/10 bg-black">
 		{#if command}
 			<div class="flex items-center justify-between px-4 py-3">
 				<code class="min-w-0 flex-1 overflow-x-auto text-[13px] font-medium text-neutral-100">
@@ -114,3 +99,10 @@
 		{/if}
 	</div>
 {/if}
+
+<style>
+	.code-scroll :global(.shiki),
+	.code-scroll :global(.shiki span) {
+		background-color: transparent !important;
+	}
+</style>

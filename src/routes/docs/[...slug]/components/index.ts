@@ -1,2 +1,10 @@
 export { default as Block } from "./block.svelte";
+export { default as InstallTabs } from "./install-tabs.svelte";
+export { default as PreviewTabs } from "./preview-tabs.svelte";
+export { default as PropsTable } from "./props-table.svelte";
+export type { PropDef } from "./props-table.svelte";
 export { default as Step } from "./step.svelte";
+export { default as Usage } from "./usage.svelte";
+export { highlighterPromise } from "./highlighter";
+export type { DocsCodeLang } from "./highlighter";
+export type { PreviewCode } from "./preview-tabs.svelte";

@@ -124,7 +124,7 @@
 {#if sidebarOpen}
 	<Button
 		type="button"
-		class="fixed inset-0 z-40 bg-neutral-950/20 backdrop-blur-xs md:hidden"
+		class="fixed inset-0 z-40 bg-black/60 backdrop-blur-xs md:hidden"
 		onclick={() => (sidebarOpen = false)}
 	></Button>
 {/if}
@@ -147,11 +147,11 @@
 	{/snippet}
 </Navbar>
 
-<div class="flex min-h-screen bg-[#0a0d13]">
+<div class="flex min-h-screen bg-black text-white">
 	<aside
 		class="{sidebarOpen
 			? 'translate-x-0'
-			: '-translate-x-full'} fixed top-0 left-0 z-50 flex h-screen w-64 shrink-0 flex-col overflow-hidden bg-[#0a0d13] transition-transform duration-300 ease-in-out md:sticky md:top-24 md:z-0 md:h-[calc(100dvh-4rem)] md:translate-x-0"
+			: '-translate-x-full'} fixed top-0 left-0 z-50 flex h-screen w-64 shrink-0 flex-col overflow-hidden bg-black transition-transform duration-300 ease-in-out md:sticky md:top-24 md:z-0 md:h-[calc(100dvh-4rem)] md:translate-x-0"
 	>
 		<button
 			type="button"
