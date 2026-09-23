@@ -6,5 +6,7 @@
 </script>
 
 <div class="flex items-center justify-center">
-	<button type="button" class="{BUTTON_BASE} {BUTTON_VARIANTS[variant]} {BUTTON_SIZES.default}"> Button </button>
+	<button type="button" class="{BUTTON_BASE} {BUTTON_VARIANTS[variant]} {BUTTON_SIZES.default}">
+		Klik Button ini!
+	</button>
 </div>

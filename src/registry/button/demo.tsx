@@ -1,21 +1,21 @@
 import { Button } from "@/components/ui/button";
 
 export function ButtonDefault() {
-	return <Button>Button</Button>;
+	return <Button>Klik Button ini!</Button>;
 }
 
 export function ButtonSecondary() {
-	return <Button variant="secondary">Button</Button>;
+	return <Button variant="secondary">Klik Button ini!</Button>;
 }
 
 export function ButtonOutline() {
-	return <Button variant="outline">Button</Button>;
+	return <Button variant="outline">Klik Button ini!</Button>;
 }
 
 export function ButtonGhost() {
-	return <Button variant="ghost">Button</Button>;
+	return <Button variant="ghost">Klik Button ini!</Button>;
 }
 
 export function ButtonDestructive() {
-	return <Button variant="destructive">Button</Button>;
+	return <Button variant="destructive">Klik Button ini!</Button>;
 }

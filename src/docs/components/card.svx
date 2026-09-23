@@ -1,5 +1,87 @@
 ---
 title: Card
-description:
+description: Koleksi kartu gelap buat React. Satu file, tinggal copy-paste ke project lo.
 order: 4
+author: Polinema UI
+authorUrl: https://github.com/polinema-ui
+lastUpdated: 23/9/2026
 ---
+
+<script lang="ts">
+	import { InstallTabs, PreviewTabs, PropsTable } from "$routes/docs/[...slug]/components";
+	import type { PreviewCode } from "$routes/docs/[...slug]/components";
+	import Preview from "$registry/card/preview.svelte";
+	import { CARD_IMAGE_PROPS, CARD_LOGIN_PROPS, CARD_PROPS, CARD_SCHEDULED_PROPS } from "$registry/card/meta";
+	import type { CardPreviewVariant } from "$registry/card/meta";
+	import tsxSource from "$registry/card/card.tsx?raw";
+	import demoSource from "$registry/card/demo.tsx?raw";
+
+	const codes: PreviewCode[] = [{ id: "react", label: "React", code: tsxSource, lang: "tsx" }];
+
+	function snippet(name: string, component: string): string {
+		const body = demoSource.match(new RegExp(`export function ${name}\\(\\) \\{[\\s\\S]*?\\n\\}`))?.[0] ?? "";
+		return `import { ${component} } from "@/components/ui/card";\n\n${body}`;
+	}
+
+	const variants: { variant: CardPreviewVariant; title: string; code: string; blurb: string }[] = [
+		{
+			variant: "job",
+			title: "Job",
+			code: snippet("CardDefault", "JobCard"),
+			blurb: "Kartu lowongan gaya job board: meta posting, logo perusahaan, skor match, tags, gaji, dan tombol Apply.",
+		},
+		{
+			variant: "login",
+			title: "Login",
+			code: snippet("CardLogin", "LoginCard"),
+			blurb: "Kartu sign-in: logo, field email dan password, remember me, dan tombol submit.",
+		},
+		{
+			variant: "image",
+			title: "Image",
+			code: snippet("CardImage", "ImageCard"),
+			blurb: "Kartu konten dengan cover image, badge kategori, dan footer penulis.",
+		},
+		{
+			variant: "scheduled",
+			title: "Scheduled Reports",
+			code: snippet("CardScheduled", "ScheduledReportsCard"),
+			blurb: "Kartu daftar laporan terjadwal dengan titik status aktif dan tombol tambah laporan.",
+		},
+	];
+</script>
+
+Koleksi kartu gelap: job, login, image, dan scheduled reports. Semua tinggal di satu file. Copy file-nya, tempel ke `components/ui/card.tsx`, terus tinggal import komponen yang lo butuhin. Varian login juga butuh file `components/ui/input.tsx` karena field-nya pakai komponen `Input`.
+
+## Installation
+
+<InstallTabs
+	component="card"
+	codes={[{ ...codes[0], code: `${tsxSource}\n\n// needs: components/ui/input.tsx` }]}
+	dependencies={["@hugeicons/react", "@hugeicons/core-free-icons"]}
+/>
+{#each variants as item (item.variant)}
+	<h3 class="mt-8">{item.title}</h3>
+	<p>{item.blurb}</p>
+	<PreviewTabs codes={[{ id: "react", label: "React", code: item.code, lang: "tsx" }]}>
+		<Preview variant={item.variant} />
+	</PreviewTabs>
+{/each}
+
+## Props
+
+<h3 class="mt-8">JobCard</h3>
+
+<PropsTable props={CARD_PROPS} />
+
+<h3 class="mt-8">LoginCard</h3>
+
+<PropsTable props={CARD_LOGIN_PROPS} />
+
+<h3 class="mt-8">ImageCard</h3>
+
+<PropsTable props={CARD_IMAGE_PROPS} />
+
+<h3 class="mt-8">ScheduledReportsCard</h3>
+
+<PropsTable props={CARD_SCHEDULED_PROPS} />

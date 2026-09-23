@@ -1,0 +1,113 @@
+---
+title: Input
+description: Field input teks gelap buat React. Satu file, tinggal copy-paste ke project lo.
+order: 5
+author: Polinema UI
+authorUrl: https://github.com/polinema-ui
+lastUpdated: 23/9/2026
+---
+
+<script lang="ts">
+	import { InstallTabs, PreviewTabs, PropsTable } from "$routes/docs/[...slug]/components";
+	import type { PreviewCode } from "$routes/docs/[...slug]/components";
+	import Preview from "$registry/input/preview.svelte";
+	import { INPUT_PROPS } from "$registry/input/meta";
+	import type { InputPreviewVariant } from "$registry/input/meta";
+	import tsxSource from "$registry/input/input.tsx?raw";
+	import demoSource from "$registry/input/demo.tsx?raw";
+
+	const codes: PreviewCode[] = [{ id: "react", label: "React", code: tsxSource, lang: "tsx" }];
+
+	function snippet(name: string): string {
+		const body = demoSource.match(new RegExp(`export function ${name}\\(\\) \\{[\\s\\S]*?\\n\\}`))?.[0] ?? "";
+		const used = new Set(body.match(/(?<![A-Za-z0-9_])([A-Z][A-Za-z0-9]*)/g) ?? []);
+		const imports = demoSource
+			.split("\n")
+			.filter((line) => line.startsWith("import "))
+			.map((line) => {
+				const names = line.match(/\{([^}]*)\}/)?.[1].split(",").map((n) => n.trim().split(" as ")[0].trim());
+				if (!names) return line;
+				const kept = names.filter((n) => n && used.has(n));
+				if (kept.length === 0) return null;
+				if (kept.length === names.length) return line;
+				return line.replace(/\{[^}]*\}/, `{ ${kept.join(", ")} }`);
+			})
+			.filter((line): line is string => line !== null)
+			.join("\n");
+		return `${imports}\n\n${body}`;
+	}
+
+	const variants: { variant: InputPreviewVariant; title: string; code: string; blurb: string }[] = [
+		{
+			variant: "basic",
+			title: "Basic",
+			code: snippet("InputBasic"),
+			blurb: "Input polos tanpa label. Buat pencarian atau field sekali pakai.",
+		},
+		{
+			variant: "grid",
+			title: "Grid Input",
+			code: snippet("InputGrid"),
+			blurb: "Dua field sejajar dalam satu grid. Buat nama depan dan belakang.",
+		},
+		{
+			variant: "disabled",
+			title: "Disabled",
+			code: snippet("InputDisabled"),
+			blurb: "Field yang dikunci. Nilainya tampil tapi nggak bisa diubah.",
+		},
+		{
+			variant: "invalid",
+			title: "Invalid",
+			code: snippet("InputInvalid"),
+			blurb: "Field error dengan border merah dan pesan validasi di bawahnya.",
+		},
+		{
+			variant: "file",
+			title: "File",
+			code: snippet("InputFile"),
+			blurb: "Input upload file dengan tombol pilih file dan teks bantuan.",
+		},
+		{
+			variant: "required",
+			title: "Required",
+			code: snippet("InputRequired"),
+			blurb: "Label dengan tanda bintang merah buat field wajib diisi.",
+		},
+		{
+			variant: "inline",
+			title: "Inline",
+			code: snippet("InputInline"),
+			blurb: "Field digabung komponen Button di kanannya. Buat newsletter atau pencarian.",
+		},
+		{
+			variant: "form",
+			title: "Form",
+			code: snippet("InputForm"),
+			blurb: "Form registrasi: nama, email, phone, address, plus komponen Button submit full-width.",
+		},
+	];
+</script>
+
+Field input standar: fokus biru, state disabled, dan pesan error. Copy file-nya, tempel ke `components/ui/input.tsx`, terus tinggal import. Varian inline dan form juga butuh file `components/ui/button.tsx` karena tombolnya pakai komponen `Button`.
+
+## Installation
+
+<InstallTabs
+	component="input"
+	codes={[{ ...codes[0], code: `${tsxSource}\n\n// needs: components/ui/button.tsx (inline, form)` }]}
+	dependencies={["@hugeicons/react", "@hugeicons/core-free-icons"]}
+/>
+## Preview
+
+{#each variants as item (item.variant)}
+	<h3 class="mt-8">{item.title}</h3>
+	<p>{item.blurb}</p>
+	<PreviewTabs codes={[{ id: "react", label: "React", code: item.code, lang: "tsx" }]}>
+		<Preview variant={item.variant} />
+	</PreviewTabs>
+{/each}
+
+## Props
+
+<PropsTable props={INPUT_PROPS} />
