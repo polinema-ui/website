@@ -1,0 +1,120 @@
+---
+title: Breadcrumb
+description: Navigasi hirarki halaman berbasis link dengan dukungan pemisah kustom dan ellipsis. Satu file, tinggal copy-paste ke project lo.
+order: 6
+author: Polinema UI
+authorUrl: https://github.com/polinema-ui
+lastUpdated: 23/9/2026
+---
+
+<script lang="ts">
+	import { InstallTabs, PreviewTabs, PropsTable } from "$routes/docs/[...slug]/components";
+	import type { PreviewCode } from "$routes/docs/[...slug]/components";
+	import Preview from "$registry/breadcrumb/preview.svelte";
+	import { BREADCRUMB_PROPS } from "$registry/breadcrumb/meta";
+	import type { BreadcrumbPreviewVariant } from "$registry/breadcrumb/meta";
+	import tsxSource from "$registry/breadcrumb/breadcrumb.tsx?raw";
+	import demoSource from "$registry/breadcrumb/demo.tsx?raw";
+
+	const codes: PreviewCode[] = [{ id: "react", label: "React", code: tsxSource, lang: "tsx" }];
+
+	function snippet(name: string): string {
+		const body = demoSource.match(new RegExp(`export function ${name}\\(\\) \\{[\\s\\S]*?\\n\\}`))?.[0] ?? "";
+		const used = new Set(body.match(/(?<![A-Za-z0-9_])([A-Z][A-Za-z0-9]*)/g) ?? []);
+		const importBlocks = demoSource.match(/import\s+[\s\S]*?\s+from\s+['"][^'"]+['"];?/g) ?? [];
+		const imports = importBlocks
+			.map((block) => {
+				const singleLine = block.replace(/\s+/g, " ");
+				const match = singleLine.match(/import\s*\{([^}]*)\}\s*from\s*(['"][^'"]+['"])/);
+				if (!match) return singleLine;
+				const names = match[1].split(",").map((n) => n.trim().split(" as ")[0].trim());
+				const kept = names.filter((n) => n && used.has(n));
+				if (kept.length === 0) return null;
+				return `import { ${kept.join(", ")} } from ${match[2]};`;
+			})
+			.filter((line): line is string => line !== null)
+			.join("\n");
+		return `${imports}\n\n${body}`;
+	}
+
+	const variants: { variant: BreadcrumbPreviewVariant; title: string; code: string; blurb: string }[] = [
+		{
+			variant: "default",
+			title: "Default",
+			code: snippet("BreadcrumbDefault"),
+			blurb: "Navigasi hirarki standar menggunakan pemisah karakter slash.",
+		},
+		{
+			variant: "chevron",
+			title: "Chevron",
+			code: snippet("BreadcrumbChevron"),
+			blurb: "Pemisah minimalis menggunakan ikon chevron.",
+		},
+		{
+			variant: "dropdown",
+			title: "Dropdown",
+			code: snippet("BreadcrumbDropdown"),
+			blurb: "Kompresi rute panjang dengan indikator titik tiga (ellipsis).",
+		},
+		{
+			variant: "icons",
+			title: "Icons",
+			code: snippet("BreadcrumbIcons"),
+			blurb: "Setiap link dilengkapi ikon visual untuk mempermudah identifikasi konteks.",
+		},
+		{
+			variant: "pills",
+			title: "Pill",
+			code: snippet("BreadcrumbPills"),
+			blurb: "Tampilan berbentuk chip/capsule yang terpisah bersih untuk setiap item.",
+		},
+		{
+			variant: "badge",
+			title: "Badge",
+			code: snippet("BreadcrumbBadge"),
+			blurb: "Kombinasi breadcrumb dengan badge jumlah item atau indikator status di bagian akhir.",
+		},
+		{
+			variant: "segmented",
+			title: "Segmented",
+			code: snippet("BreadcrumbSegmented"),
+			blurb: "Gaya segmen terstruktur dengan divider vertikal dan aksen teks kapital.",
+		},
+		{
+			variant: "truncated",
+			title: "Truncated",
+			code: snippet("BreadcrumbTruncated"),
+			blurb: "Pembatasan lebar teks link panjang dengan pemotongan ellipsis agar responsif.",
+		},
+		{
+			variant: "wizard",
+			title: "Wizard Steps",
+			code: snippet("BreadcrumbWizard"),
+			blurb: "Breadcrumb indikator alur multi-step dengan nomor langkah dan status penyelesaian.",
+		},
+	];
+</script>
+
+Indikator visual posisi hirarki halaman dalam aplikasi: mendukung pemisah kustom, ikon konteks, kompresi ellipsis, tampilan capsule, hingga indikator alur wizard multi-step. Copy kodenya, tempel ke `components/ui/breadcrumb.tsx`, lalu tinggal import.
+
+## Installation
+
+<InstallTabs
+	component="breadcrumb"
+	codes={codes}
+	dependencies={["@hugeicons/react", "@hugeicons/core-free-icons"]}
+/>
+
+## Preview
+
+{#each variants as item (item.variant)}
+	<h3 class="mt-8">{item.title}</h3>
+	<p>{item.blurb}</p>
+	<PreviewTabs codes={[{ id: "react", label: "React", code: item.code, lang: "tsx" }]}>
+		<Preview variant={item.variant} />
+	</PreviewTabs>
+{/each}
+
+## Props
+
+<PropsTable props={BREADCRUMB_PROPS} />
