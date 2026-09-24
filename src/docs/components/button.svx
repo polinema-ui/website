@@ -1,7 +1,7 @@
 ---
 title: Button
 description: Tombol yang bisa diklik buat React. Satu file, tinggal copy-paste ke project lo.
-order: 3
+order: 5
 author: Polinema UI
 authorUrl: https://github.com/polinema-ui
 lastUpdated: 22/9/2026

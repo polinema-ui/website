@@ -24,7 +24,7 @@
 {:else if variant === "disabled"}
 	<div class="w-full max-w-sm">
 		<label for="preview-input-disabled" class={INPUT_LABEL_CLASSES}>Email</label>
-		<input id="preview-input-disabled" type="email" value="you@polinema.ac.id" disabled class={INPUT_CLASSES} />
+		<input id="preview-input-disabled" type="email" value="user@polinema.ui" disabled class={INPUT_CLASSES} />
 	</div>
 {:else if variant === "invalid"}
 	<div class="w-full max-w-sm">
@@ -39,10 +39,10 @@
 	<div class="w-full max-w-sm">
 		<label
 			for="preview-input-file"
-			class="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-white/15 bg-white/5 px-4 py-8 text-center transition-colors hover:border-blue-600 hover:bg-white/10"
+			class="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-neutral-300 bg-white px-4 py-8 text-center transition-colors hover:border-blue-600 hover:bg-neutral-50 dark:border-white/15 dark:bg-white/5 dark:hover:bg-white/10"
 		>
 			<HugeiconsIcon icon={Upload01Icon} size={20} class="text-neutral-400" />
-			<span class="text-sm font-medium text-neutral-200">
+			<span class="text-sm font-medium text-neutral-900 dark:text-neutral-200">
 				Click to upload <span class="font-normal text-neutral-500">or drag and drop</span>
 			</span>
 			<span class="text-xs text-neutral-500">PNG or JPG up to 5MB.</span>
@@ -52,9 +52,9 @@
 {:else if variant === "required"}
 	<div class="w-full max-w-sm">
 		<label for="preview-input-required" class={INPUT_LABEL_CLASSES}>
-			Email <span class="text-red-400">*</span>
+			Email <span class="text-red-600 dark:text-red-400">*</span>
 		</label>
-		<input id="preview-input-required" type="email" placeholder="you@polinema.ac.id" class={INPUT_CLASSES} required />
+		<input id="preview-input-required" type="email" placeholder="user@polinema.ui" class={INPUT_CLASSES} required />
 	</div>
 {:else if variant === "inline"}
 	<div class="flex w-full max-w-sm gap-2">
@@ -77,12 +77,12 @@
 		</div>
 		<div>
 			<label for="preview-input-signup-email" class={INPUT_LABEL_CLASSES}>
-				Email <span class="text-red-400">*</span>
+				Email <span class="text-red-600 dark:text-red-400">*</span>
 			</label>
 			<input
 				id="preview-input-signup-email"
 				type="email"
-				placeholder="you@polinema.ac.id"
+				placeholder="user@polinema.ui"
 				class={INPUT_CLASSES}
 				required
 			/>

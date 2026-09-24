@@ -64,7 +64,7 @@
 		<span class={LOGIN_LOGO_CLASSES}>
 			<img src="/favicon.ico" alt="" width="28" height="28" class="size-7 object-contain" />
 		</span>
-		<h3 class={LOGIN_TITLE_CLASSES}>Welcome back</h3>
+		<h3 class={LOGIN_TITLE_CLASSES}>Sign In</h3>
 		<p class={LOGIN_SUBTITLE_CLASSES}>Sign in to your account to continue</p>
 
 		<div class="mt-5 space-y-4">
@@ -73,8 +73,8 @@
 				<input
 					id="preview-login-email"
 					type="email"
-					placeholder="you@polinema.ac.id"
-					class="h-10 w-full rounded-lg border border-white/10 bg-white/5 px-3 text-sm text-neutral-100 transition-colors outline-none placeholder:text-neutral-500 focus:border-blue-600"
+					placeholder="user@polinema.ui"
+					class="h-10 w-full rounded-lg border border-neutral-200 bg-white px-3 text-sm text-neutral-900 transition-colors outline-none placeholder:text-neutral-400 focus:border-blue-600 dark:border-white/10 dark:bg-white/5 dark:text-neutral-100 dark:placeholder:text-neutral-500"
 				/>
 			</div>
 
@@ -84,16 +84,19 @@
 					id="preview-login-password"
 					type="password"
 					placeholder="••••••••"
-					class="h-10 w-full rounded-lg border border-white/10 bg-white/5 px-3 text-sm text-neutral-100 transition-colors outline-none placeholder:text-neutral-500 focus:border-blue-600"
+					class="h-10 w-full rounded-lg border border-neutral-200 bg-white px-3 text-sm text-neutral-900 transition-colors outline-none placeholder:text-neutral-400 focus:border-blue-600 dark:border-white/10 dark:bg-white/5 dark:text-neutral-100 dark:placeholder:text-neutral-500"
 				/>
 			</div>
 
 			<div class="flex items-center justify-between text-[13px]">
-				<label for="preview-login-remember" class="flex cursor-pointer items-center gap-2 text-neutral-400">
+				<label
+					for="preview-login-remember"
+					class="flex cursor-pointer items-center gap-2 text-neutral-500 dark:text-neutral-400"
+				>
 					<input
 						id="preview-login-remember"
 						type="checkbox"
-						class="size-4 rounded border-white/10 bg-white/5 accent-blue-600"
+						class="size-4 rounded border-neutral-300 bg-white accent-blue-600 dark:border-white/10 dark:bg-white/5"
 					/>
 					Remember me
 				</label>
@@ -116,13 +119,13 @@
 				<HugeiconsIcon icon={Image01Icon} size={14} />
 				Tutorial
 			</span>
-			<h3 class={IMAGE_TITLE_CLASSES}>Belajar bikin dashboard PBL dalam 30 menit</h3>
-			<p class={IMAGE_DESC_CLASSES}>
-				Ikuti langkah demi langkah menyusun layout, tabel, dan form yang rapi buat project akhir semester kalian.
-			</p>
+			<h3 class={IMAGE_TITLE_CLASSES}>Dashboard Tutorial</h3>
+			<p class={IMAGE_DESC_CLASSES}>Step-by-step guide to building clean layouts, tables, and forms.</p>
 			<div class={IMAGE_FOOTER_CLASSES}>
 				<div class="flex min-w-0 items-center gap-2.5">
-					<span class="flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/5">
+					<span
+						class="flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-black/5 dark:bg-white/5"
+					>
 						<img src="/favicon.ico" alt="" width="20" height="20" class="size-5 object-contain" />
 					</span>
 					<div class="min-w-0">
@@ -136,7 +139,7 @@
 					</div>
 				</div>
 				<span
-					class="flex size-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-neutral-300"
+					class="flex size-8 shrink-0 items-center justify-center rounded-lg border border-neutral-200 bg-black/5 text-neutral-500 dark:border-white/10 dark:bg-white/5 dark:text-neutral-300"
 				>
 					<HugeiconsIcon icon={ArrowRight01Icon} size={14} />
 				</span>
@@ -148,17 +151,17 @@
 		<div class="flex items-start justify-between gap-4">
 			<div class="flex min-w-0 items-center gap-3">
 				<span
-					class="flex size-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-blue-400"
+					class="flex size-11 shrink-0 items-center justify-center rounded-xl border border-neutral-200 bg-black/5 text-blue-600 dark:border-white/10 dark:bg-white/5 dark:text-blue-400"
 				>
 					<HugeiconsIcon icon={Calendar01Icon} size={18} />
 				</span>
 				<div class="min-w-0">
-					<h3 class={SCHEDULED_TITLE_CLASSES}>Scheduled Reports</h3>
+					<h3 class={SCHEDULED_TITLE_CLASSES}>Reports</h3>
 					<p class={SCHEDULED_SUBTITLE_CLASSES}>Automate your insights</p>
 				</div>
 			</div>
 			<span
-				class="flex size-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-neutral-300"
+				class="flex size-8 shrink-0 items-center justify-center rounded-lg border border-neutral-200 bg-black/5 text-neutral-500 dark:border-white/10 dark:bg-white/5 dark:text-neutral-300"
 			>
 				<HugeiconsIcon icon={PlusSignIcon} size={14} />
 			</span>
@@ -168,7 +171,7 @@
 			{#each scheduledReports as report (report.name)}
 				<div class={SCHEDULED_ROW_CLASSES}>
 					<span
-						class="flex size-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-neutral-950 text-neutral-300"
+						class="flex size-9 shrink-0 items-center justify-center rounded-lg border border-neutral-200 bg-white text-neutral-500 dark:border-white/10 dark:bg-neutral-950 dark:text-neutral-300"
 					>
 						<HugeiconsIcon icon={File01Icon} size={16} />
 					</span>
@@ -184,7 +187,7 @@
 			{/each}
 		</div>
 
-		<div class="mt-4 border-t border-white/10 pt-4">
+		<div class="mt-4 border-t border-neutral-200 pt-4 dark:border-white/10">
 			<button type="button" class={SCHEDULED_FOOTER_BUTTON_CLASSES}>
 				<HugeiconsIcon icon={PlusSignIcon} size={14} />
 				New Report
@@ -196,7 +199,7 @@
 		<div class="flex items-center justify-between">
 			<p class={CARD_META_CLASSES}>Posted 6 hours ago</p>
 			<span
-				class="flex size-8 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-neutral-300"
+				class="flex size-8 items-center justify-center rounded-lg border border-neutral-200 bg-black/5 text-neutral-500 dark:border-white/10 dark:bg-white/5 dark:text-neutral-300"
 			>
 				<HugeiconsIcon icon={Bookmark01Icon} size={14} />
 			</span>
@@ -204,13 +207,15 @@
 
 		<div class="mt-4 flex items-start justify-between gap-4">
 			<div class="flex min-w-0 items-center gap-3">
-				<span class="flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-white/5">
+				<span
+					class="flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-black/5 dark:bg-white/5"
+				>
 					<img src="/favicon.ico" alt="" width="28" height="28" class="size-7 object-contain" />
 				</span>
 				<div class="min-w-0">
-					<h3 class={CARD_TITLE_CLASSES}>Software Engineer</h3>
+					<h3 class={CARD_TITLE_CLASSES}>Job Opening</h3>
 					<p class={CARD_SUBTITLE_CLASSES}>
-						Polinema UI <span class="mx-1 text-neutral-600">·</span> Malang, ID
+						Polinema UI <span class="mx-1 text-neutral-300 dark:text-neutral-600">·</span> Malang, ID
 					</p>
 				</div>
 			</div>
@@ -231,7 +236,7 @@
 			{/each}
 		</div>
 
-		<div class="mt-4 flex items-end justify-between gap-4 border-t border-white/10 pt-4">
+		<div class="mt-4 flex items-end justify-between gap-4 border-t border-neutral-200 pt-4 dark:border-white/10">
 			<div>
 				<p class={CARD_SALARY_CLASSES}>$185,000<span class={CARD_SALARY_SUFFIX_CLASSES}>/annually</span></p>
 				<p class={CARD_APPLICANTS_CLASSES}>167 Applicants</p>

@@ -1,7 +1,7 @@
 ---
 title: Card
 description: Koleksi kartu gelap buat React. Satu file, tinggal copy-paste ke project lo.
-order: 4
+order: 6
 author: Polinema UI
 authorUrl: https://github.com/polinema-ui
 lastUpdated: 23/9/2026
@@ -44,7 +44,7 @@ lastUpdated: 23/9/2026
 		},
 		{
 			variant: "scheduled",
-			title: "Scheduled Reports",
+			title: "Scheduled",
 			code: snippet("CardScheduled", "ScheduledReportsCard"),
 			blurb: "Kartu daftar laporan terjadwal dengan titik status aktif dan tombol tambah laporan.",
 		},
@@ -70,18 +70,18 @@ Koleksi kartu gelap: job, login, image, dan scheduled reports. Semua tinggal di 
 
 ## Props
 
-<h3 class="mt-8">JobCard</h3>
+<h3 class="mt-8">Job Card Props</h3>
 
 <PropsTable props={CARD_PROPS} />
 
-<h3 class="mt-8">LoginCard</h3>
+<h3 class="mt-8">Login Card Props</h3>
 
 <PropsTable props={CARD_LOGIN_PROPS} />
 
-<h3 class="mt-8">ImageCard</h3>
+<h3 class="mt-8">Image Card Props</h3>
 
 <PropsTable props={CARD_IMAGE_PROPS} />
 
-<h3 class="mt-8">ScheduledReportsCard</h3>
+<h3 class="mt-8">Scheduled Card Props</h3>
 
 <PropsTable props={CARD_SCHEDULED_PROPS} />

@@ -1,7 +1,7 @@
 ---
 title: Input
 description: Field input teks gelap buat React. Satu file, tinggal copy-paste ke project lo.
-order: 5
+order: 8
 author: Polinema UI
 authorUrl: https://github.com/polinema-ui
 lastUpdated: 23/9/2026
@@ -46,7 +46,7 @@ lastUpdated: 23/9/2026
 		},
 		{
 			variant: "grid",
-			title: "Grid Input",
+			title: "Grid",
 			code: snippet("InputGrid"),
 			blurb: "Dua field sejajar dalam satu grid. Buat nama depan dan belakang.",
 		},

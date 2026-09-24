@@ -26,26 +26,26 @@ export interface JobCardProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 const CARD_CLASSES =
-	"w-full max-w-md rounded-2xl border border-white/10 bg-neutral-950 p-5 text-neutral-100 shadow-[0_8px_30px_rgba(0,0,0,0.35)]";
-
-const META_CLASSES = "text-[13px] text-neutral-400";
-const TITLE_CLASSES = "text-xl leading-tight font-bold tracking-tight text-white";
-const SUBTITLE_CLASSES = "mt-1 text-sm text-neutral-400";
-const DESC_CLASSES = "mt-3 line-clamp-2 text-sm leading-relaxed text-neutral-400";
-const TAG_CLASSES = "rounded-md bg-white/10 px-2.5 py-1 text-xs font-medium text-neutral-200";
-const SALARY_CLASSES = "text-lg font-bold text-white";
-const SALARY_SUFFIX_CLASSES = "text-xs font-normal text-neutral-400";
-const APPLICANTS_CLASSES = "text-xs text-neutral-400";
-const MATCH_VALUE_CLASSES = "text-sm font-bold text-emerald-400";
-const MATCH_LABEL_CLASSES = "text-xs text-neutral-400";
+	"w-full max-w-md rounded-2xl border border-neutral-200 bg-white p-5 text-neutral-900 shadow-[0_8px_30px_rgba(0,0,0,0.08)] dark:border-white/10 dark:bg-neutral-950 dark:text-neutral-100 dark:shadow-[0_8px_30px_rgba(0,0,0,0.35)]";
+const META_CLASSES = "text-[13px] text-neutral-500 dark:text-neutral-400";
+const TITLE_CLASSES = "text-xl leading-tight font-bold tracking-tight text-neutral-900 dark:text-white";
+const SUBTITLE_CLASSES = "mt-1 text-sm text-neutral-500 dark:text-neutral-400";
+const DESC_CLASSES = "mt-3 line-clamp-2 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400";
+const TAG_CLASSES =
+	"rounded-md bg-black/5 px-2.5 py-1 text-xs font-medium text-neutral-700 dark:bg-white/10 dark:text-neutral-200";
+const SALARY_CLASSES = "text-lg font-bold text-neutral-900 dark:text-white";
+const SALARY_SUFFIX_CLASSES = "text-xs font-normal text-neutral-500 dark:text-neutral-400";
+const APPLICANTS_CLASSES = "text-xs text-neutral-500 dark:text-neutral-400";
+const MATCH_VALUE_CLASSES = "text-sm font-bold text-emerald-600 dark:text-emerald-400";
+const MATCH_LABEL_CLASSES = "text-xs text-neutral-500 dark:text-neutral-400";
 
 export function JobCard({
 	postedAt = "Posted 6 hours ago",
 	logoSrc = "/favicon.ico",
-	jobTitle = "Software Engineer",
+	jobTitle = "Job Opening",
 	company = "Polinema UI",
 	location = "Malang, ID",
-	description = "Seeking a Software Engineer with a proven track record in crafting innovative and user-centric digital experiences. This role involves leading design initiatives...",
+	description = "Join our team to craft user-centric digital experiences and lead design initiatives.",
 	tags = ["Remote", "Design Systems", "UX Research"],
 	salary = "$185,000",
 	salarySuffix = "/annually",
@@ -58,20 +58,20 @@ export function JobCard({
 		<article className={[CARD_CLASSES, className].filter(Boolean).join(" ")} {...props}>
 			<div className="flex items-center justify-between">
 				<p className={META_CLASSES}>{postedAt}</p>
-				<span className="flex size-8 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-neutral-300">
+				<span className="flex size-8 items-center justify-center rounded-lg border border-neutral-200 bg-black/5 text-neutral-500 dark:border-white/10 dark:bg-white/5 dark:text-neutral-300">
 					<HugeiconsIcon icon={Bookmark01Icon} size={14} />
 				</span>
 			</div>
 
 			<div className="mt-4 flex items-start justify-between gap-4">
 				<div className="flex min-w-0 items-center gap-3">
-					<span className="flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-white/5">
+					<span className="flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-black/5 dark:bg-white/5">
 						<img src={logoSrc} alt="" width={28} height={28} className="size-7 object-contain" />
 					</span>
 					<div className="min-w-0">
 						<h3 className={TITLE_CLASSES}>{jobTitle}</h3>
 						<p className={SUBTITLE_CLASSES}>
-							{company} <span className="mx-1 text-neutral-600">·</span> {location}
+							{company} <span className="mx-1 text-neutral-300 dark:text-neutral-600">·</span> {location}
 						</p>
 					</div>
 				</div>
@@ -91,7 +91,7 @@ export function JobCard({
 				))}
 			</div>
 
-			<div className="mt-4 flex items-end justify-between gap-4 border-t border-white/10 pt-4">
+			<div className="mt-4 flex items-end justify-between gap-4 border-t border-neutral-200 pt-4 dark:border-white/10">
 				<div>
 					<p className={SALARY_CLASSES}>
 						{salary}
@@ -115,20 +115,21 @@ export interface LoginCardProps extends React.HTMLAttributes<HTMLElement> {
 	className?: string;
 }
 
-const LOGIN_TITLE_CLASSES = "mt-4 text-xl font-bold tracking-tight text-white";
-const LOGIN_SUBTITLE_CLASSES = "mt-1 text-sm text-neutral-400";
-const LOGIN_LABEL_CLASSES = "mb-1.5 block text-[13px] font-medium text-neutral-300";
-const LOGIN_LOGO_CLASSES = "flex size-11 items-center justify-center overflow-hidden rounded-xl bg-white/5";
+const LOGIN_TITLE_CLASSES = "mt-4 text-xl font-bold tracking-tight text-neutral-900 dark:text-white";
+const LOGIN_SUBTITLE_CLASSES = "mt-1 text-sm text-neutral-500 dark:text-neutral-400";
+const LOGIN_LABEL_CLASSES = "mb-1.5 block text-[13px] font-medium text-neutral-700 dark:text-neutral-300";
+const LOGIN_LOGO_CLASSES =
+	"flex size-11 items-center justify-center overflow-hidden rounded-xl bg-black/5 dark:bg-white/5";
 const LOGIN_CARD_CLASSES =
-	"w-full max-w-sm rounded-2xl border border-white/10 bg-neutral-950 p-6 text-neutral-100 shadow-[0_8px_30px_rgba(0,0,0,0.35)]";
+	"w-full max-w-sm rounded-2xl border border-neutral-200 bg-white p-6 text-neutral-900 shadow-[0_8px_30px_rgba(0,0,0,0.08)] dark:border-white/10 dark:bg-neutral-950 dark:text-neutral-100 dark:shadow-[0_8px_30px_rgba(0,0,0,0.35)]";
 const LOGIN_BUTTON_CLASSES =
 	"inline-flex h-10 w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-blue-800 bg-blue-700 px-4 text-sm font-medium whitespace-nowrap text-white shadow-[0_1px_2px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.12)] transition-colors outline-none select-none hover:bg-blue-600";
-const LOGIN_FOOTER_CLASSES = "mt-4 text-center text-[13px] text-neutral-400";
-const LOGIN_LINK_CLASSES = "font-medium text-blue-400 hover:underline";
+const LOGIN_FOOTER_CLASSES = "mt-4 text-center text-[13px] text-neutral-500 dark:text-neutral-400";
+const LOGIN_LINK_CLASSES = "font-medium text-blue-600 hover:underline dark:text-blue-400";
 
 export function LoginCard({
 	logoSrc = "/favicon.ico",
-	title = "Welcome back",
+	title = "Sign In",
 	subtitle = "Sign in to your account to continue",
 	buttonText = "Sign in",
 	className = "",
@@ -150,8 +151,8 @@ export function LoginCard({
 					<input
 						id="login-email"
 						type="email"
-						placeholder="you@polinema.ac.id"
-						className="h-10 w-full rounded-lg border border-white/10 bg-white/5 px-3 text-sm text-neutral-100 transition-colors outline-none placeholder:text-neutral-500 focus:border-blue-600"
+						placeholder="user@polinema.ui"
+						className="h-10 w-full rounded-lg border border-neutral-200 bg-white px-3 text-sm text-neutral-900 transition-colors outline-none placeholder:text-neutral-400 focus:border-blue-600 dark:border-white/10 dark:bg-white/5 dark:text-neutral-100 dark:placeholder:text-neutral-500"
 					/>
 				</div>
 
@@ -163,16 +164,19 @@ export function LoginCard({
 						id="login-password"
 						type="password"
 						placeholder="••••••••"
-						className="h-10 w-full rounded-lg border border-white/10 bg-white/5 px-3 text-sm text-neutral-100 transition-colors outline-none placeholder:text-neutral-500 focus:border-blue-600"
+						className="h-10 w-full rounded-lg border border-neutral-200 bg-white px-3 text-sm text-neutral-900 transition-colors outline-none placeholder:text-neutral-400 focus:border-blue-600 dark:border-white/10 dark:bg-white/5 dark:text-neutral-100 dark:placeholder:text-neutral-500"
 					/>
 				</div>
 
 				<div className="flex items-center justify-between text-[13px]">
-					<label htmlFor="login-remember" className="flex cursor-pointer items-center gap-2 text-neutral-400">
+					<label
+						htmlFor="login-remember"
+						className="flex cursor-pointer items-center gap-2 text-neutral-500 dark:text-neutral-400"
+					>
 						<input
 							id="login-remember"
 							type="checkbox"
-							className="size-4 rounded border-white/10 bg-white/5 accent-blue-600"
+							className="size-4 rounded border-neutral-300 bg-white accent-blue-600 dark:border-white/10 dark:bg-white/5"
 						/>
 						Remember me
 					</label>
@@ -207,22 +211,23 @@ export interface ImageCardProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 const IMAGE_CARD_CLASSES =
-	"w-full max-w-sm overflow-hidden rounded-2xl border border-white/10 bg-neutral-950 text-neutral-100 shadow-[0_8px_30px_rgba(0,0,0,0.35)]";
+	"w-full max-w-sm overflow-hidden rounded-2xl border border-neutral-200 bg-white text-neutral-900 shadow-[0_8px_30px_rgba(0,0,0,0.08)] dark:border-white/10 dark:bg-neutral-950 dark:text-neutral-100 dark:shadow-[0_8px_30px_rgba(0,0,0,0.35)]";
 const IMAGE_COVER_CLASSES = "h-44 w-full object-cover";
 const IMAGE_BODY_CLASSES = "p-5";
 const IMAGE_BADGE_CLASSES =
-	"inline-flex items-center gap-1.5 rounded-md bg-blue-600/15 px-2.5 py-1 text-xs font-medium text-blue-400";
-const IMAGE_TITLE_CLASSES = "mt-3 text-lg leading-snug font-bold tracking-tight text-white";
-const IMAGE_DESC_CLASSES = "mt-2 line-clamp-2 text-sm leading-relaxed text-neutral-400";
-const IMAGE_FOOTER_CLASSES = "mt-4 flex items-center justify-between border-t border-white/10 pt-4";
-const IMAGE_AUTHOR_CLASSES = "text-[13px] font-medium text-neutral-300";
+	"inline-flex items-center gap-1.5 rounded-md bg-blue-600/10 px-2.5 py-1 text-xs font-medium text-blue-700 dark:bg-blue-600/15 dark:text-blue-400";
+const IMAGE_TITLE_CLASSES = "mt-3 text-lg leading-snug font-bold tracking-tight text-neutral-900 dark:text-white";
+const IMAGE_DESC_CLASSES = "mt-2 line-clamp-2 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400";
+const IMAGE_FOOTER_CLASSES =
+	"mt-4 flex items-center justify-between border-t border-neutral-200 pt-4 dark:border-white/10";
+const IMAGE_AUTHOR_CLASSES = "text-[13px] font-medium text-neutral-700 dark:text-neutral-300";
 const IMAGE_DATE_CLASSES = "mt-0.5 text-xs text-neutral-500";
 
 export function ImageCard({
 	imageSrc = "/us.webp",
 	badge = "Tutorial",
-	title = "Belajar bikin dashboard PBL dalam 30 menit",
-	description = "Ikuti langkah demi langkah menyusun layout, tabel, dan form yang rapi buat project akhir semester kalian.",
+	title = "Dashboard Tutorial",
+	description = "Step-by-step guide to building clean layouts, tables, and forms.",
 	authorName = "Polinema UI",
 	date = "Sep 23, 2026",
 	className = "",
@@ -240,7 +245,7 @@ export function ImageCard({
 				<p className={IMAGE_DESC_CLASSES}>{description}</p>
 				<div className={IMAGE_FOOTER_CLASSES}>
 					<div className="flex min-w-0 items-center gap-2.5">
-						<span className="flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/5">
+						<span className="flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-black/5 dark:bg-white/5">
 							<img src="/favicon.ico" alt="" width={20} height={20} className="size-5 object-contain" />
 						</span>
 						<div className="min-w-0">
@@ -253,7 +258,7 @@ export function ImageCard({
 							</p>
 						</div>
 					</div>
-					<span className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-neutral-300">
+					<span className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-neutral-200 bg-black/5 text-neutral-500 dark:border-white/10 dark:bg-white/5 dark:text-neutral-300">
 						<HugeiconsIcon icon={ArrowRight01Icon} size={14} />
 					</span>
 				</div>
@@ -277,19 +282,20 @@ export interface ScheduledReportsCardProps extends React.HTMLAttributes<HTMLElem
 }
 
 const SCHEDULED_CARD_CLASSES =
-	"w-full max-w-md rounded-2xl border border-white/10 bg-neutral-950 p-5 text-neutral-100 shadow-[0_8px_30px_rgba(0,0,0,0.35)]";
-const SCHEDULED_TITLE_CLASSES = "text-lg font-bold tracking-tight text-white";
-const SCHEDULED_SUBTITLE_CLASSES = "mt-0.5 text-[13px] text-neutral-400";
-const SCHEDULED_ROW_CLASSES = "flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-3";
-const SCHEDULED_ROW_NAME_CLASSES = "text-sm font-medium text-white";
-const SCHEDULED_ROW_META_CLASSES = "mt-0.5 flex items-center gap-1.5 text-xs text-neutral-400";
-const SCHEDULED_STATUS_ACTIVE_CLASSES = "size-2 shrink-0 rounded-full bg-emerald-400";
-const SCHEDULED_STATUS_IDLE_CLASSES = "size-2 shrink-0 rounded-full bg-neutral-600";
+	"w-full max-w-md rounded-2xl border border-neutral-200 bg-white p-5 text-neutral-900 shadow-[0_8px_30px_rgba(0,0,0,0.08)] dark:border-white/10 dark:bg-neutral-950 dark:text-neutral-100 dark:shadow-[0_8px_30px_rgba(0,0,0,0.35)]";
+const SCHEDULED_TITLE_CLASSES = "text-lg font-bold tracking-tight text-neutral-900 dark:text-white";
+const SCHEDULED_SUBTITLE_CLASSES = "mt-0.5 text-[13px] text-neutral-500 dark:text-neutral-400";
+const SCHEDULED_ROW_CLASSES =
+	"flex items-center gap-3 rounded-xl border border-neutral-200 bg-black/[0.03] p-3 dark:border-white/10 dark:bg-white/5";
+const SCHEDULED_ROW_NAME_CLASSES = "text-sm font-medium text-neutral-900 dark:text-white";
+const SCHEDULED_ROW_META_CLASSES = "mt-0.5 flex items-center gap-1.5 text-xs text-neutral-500 dark:text-neutral-400";
+const SCHEDULED_STATUS_ACTIVE_CLASSES = "size-2 shrink-0 rounded-full bg-emerald-500 dark:bg-emerald-400";
+const SCHEDULED_STATUS_IDLE_CLASSES = "size-2 shrink-0 rounded-full bg-neutral-300 dark:bg-neutral-600";
 const SCHEDULED_FOOTER_BUTTON_CLASSES =
-	"inline-flex h-10 w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-white/10 bg-transparent px-4 text-sm font-medium whitespace-nowrap text-neutral-100 transition-colors outline-none select-none hover:bg-white/10";
+	"inline-flex h-10 w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-neutral-200 bg-transparent px-4 text-sm font-medium whitespace-nowrap text-neutral-900 transition-colors outline-none select-none hover:bg-black/5 dark:border-white/10 dark:text-neutral-100 dark:hover:bg-white/10";
 
 export function ScheduledReportsCard({
-	title = "Scheduled Reports",
+	title = "Reports",
 	subtitle = "Automate your insights",
 	reports = [
 		{ name: "Weekly traffic summary", schedule: "Every Monday · 08:00", active: true },
@@ -304,7 +310,7 @@ export function ScheduledReportsCard({
 		<article className={[SCHEDULED_CARD_CLASSES, className].filter(Boolean).join(" ")} {...props}>
 			<div className="flex items-start justify-between gap-4">
 				<div className="flex min-w-0 items-center gap-3">
-					<span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-blue-400">
+					<span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-neutral-200 bg-black/5 text-blue-600 dark:border-white/10 dark:bg-white/5 dark:text-blue-400">
 						<HugeiconsIcon icon={Calendar01Icon} size={18} />
 					</span>
 					<div className="min-w-0">
@@ -312,7 +318,7 @@ export function ScheduledReportsCard({
 						<p className={SCHEDULED_SUBTITLE_CLASSES}>{subtitle}</p>
 					</div>
 				</div>
-				<span className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-neutral-300">
+				<span className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-neutral-200 bg-black/5 text-neutral-500 dark:border-white/10 dark:bg-white/5 dark:text-neutral-300">
 					<HugeiconsIcon icon={PlusSignIcon} size={14} />
 				</span>
 			</div>
@@ -320,7 +326,7 @@ export function ScheduledReportsCard({
 			<div className="mt-4 space-y-2">
 				{reports.map((report) => (
 					<div key={report.name} className={SCHEDULED_ROW_CLASSES}>
-						<span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-neutral-950 text-neutral-300">
+						<span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-neutral-200 bg-white text-neutral-500 dark:border-white/10 dark:bg-neutral-950 dark:text-neutral-300">
 							<HugeiconsIcon icon={File01Icon} size={16} />
 						</span>
 						<div className="min-w-0 flex-1">
@@ -337,7 +343,7 @@ export function ScheduledReportsCard({
 				))}
 			</div>
 
-			<div className="mt-4 border-t border-white/10 pt-4">
+			<div className="mt-4 border-t border-neutral-200 pt-4 dark:border-white/10">
 				<button type="button" className={SCHEDULED_FOOTER_BUTTON_CLASSES}>
 					<HugeiconsIcon icon={PlusSignIcon} size={14} />
 					{buttonText}
