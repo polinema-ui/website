@@ -1,0 +1,109 @@
+---
+title: Spinner
+description: Indikator loading berputar gelap buat React. Satu file, tinggal copy-paste ke project lo.
+order: 9
+author: Polinema UI
+authorUrl: https://github.com/polinema-ui
+lastUpdated: 23/9/2026
+---
+
+<script lang="ts">
+	import { InstallTabs, PreviewTabs, PropsTable } from "$routes/docs/[...slug]/components";
+	import type { PreviewCode } from "$routes/docs/[...slug]/components";
+	import Preview from "$registry/spinner/preview.svelte";
+	import { SPINNER_PROPS } from "$registry/spinner/meta";
+	import type { SpinnerPreviewVariant } from "$registry/spinner/meta";
+	import tsxSource from "$registry/spinner/spinner.tsx?raw";
+	import demoSource from "$registry/spinner/demo.tsx?raw";
+
+	const codes: PreviewCode[] = [{ id: "react", label: "React", code: tsxSource, lang: "tsx" }];
+
+	function snippet(name: string): string {
+		const body = demoSource.match(new RegExp(`export function ${name}\\(\\) \\{[\\s\\S]*?\\n\\}`))?.[0] ?? "";
+		const used = new Set(body.match(/(?<![A-Za-z0-9_])([A-Z][A-Za-z0-9]*)/g) ?? []);
+		const imports = demoSource
+			.split("\n")
+			.filter((line) => line.startsWith("import "))
+			.map((line) => {
+				const names = line.match(/\{([^}]*)\}/)?.[1].split(",").map((n) => n.trim().split(" as ")[0].trim());
+				if (!names) return line;
+				const kept = names.filter((n) => n && used.has(n));
+				if (kept.length === 0) return null;
+				if (kept.length === names.length) return line;
+				return line.replace(/\{[^}]*\}/, `{ ${kept.join(", ")} }`);
+			})
+			.filter((line): line is string => line !== null)
+			.join("\n");
+		return `${imports}\n\n${body}`;
+	}
+
+	const variants: { variant: SpinnerPreviewVariant; title: string; code: string; blurb: string }[] = [
+		{
+			variant: "default",
+			title: "Default",
+			code: snippet("SpinnerDefault"),
+			blurb: "Ring putar klasik dengan track redup dan kepala warna biru.",
+		},
+		{
+			variant: "sizes",
+			title: "Sizes",
+			code: snippet("SpinnerSizes"),
+			blurb: "Pilihan ukuran ring dari xs, sm, md, lg, hingga xl.",
+		},
+		{
+			variant: "colors",
+			title: "Colors",
+			code: snippet("SpinnerColors"),
+			blurb: "Variasi warna status: default (netral), secondary (netral), success (hijau), destructive (merah), dan warning (amber).",
+		},
+		{
+			variant: "button",
+			title: "Button",
+			code: snippet("SpinnerButton"),
+			blurb: "Integrasi spinner loading di dalam tombol Button saat memproses aksi atau pengiriman data.",
+		},
+		{
+			variant: "label",
+			title: "Label",
+			code: snippet("SpinnerLabel"),
+			blurb: "Spinner terpusat dengan teks judul dan keterangan status proses di bawahnya.",
+		},
+		{
+			variant: "card",
+			title: "Card",
+			code: snippet("SpinnerCard"),
+			blurb: "Tampilan state loading di dalam kontainer kartu saat mengambil data asynchronous.",
+		},
+		{
+			variant: "input",
+			title: "Input",
+			code: snippet("SpinnerInput"),
+			blurb: "Indikator loading mini di sisi kanan elemen Input untuk asynchronous search atau cek ketersediaan username.",
+		},
+	];
+</script>
+
+Indikator visual proses pemuatan data atau aksi asynchronous: ring putar klasik, variasi ukuran, warna status tematik, dan kompatibel disematkan ke dalam tombol maupun field input. Copy kodenya, tempel ke `components/ui/spinner.tsx`, lalu tinggal import. Varian button dan input memanfaatkan komponen `Button` dan `Input`.
+
+## Installation
+
+<InstallTabs
+	component="spinner"
+	codes={[
+		{ ...codes[0], code: `${tsxSource}\n\n// optional needs: components/ui/button.tsx, components/ui/input.tsx` },
+	]}
+/>
+
+## Preview
+
+{#each variants as item (item.variant)}
+	<h3 class="mt-8">{item.title}</h3>
+	<p>{item.blurb}</p>
+	<PreviewTabs codes={[{ id: "react", label: "React", code: item.code, lang: "tsx" }]}>
+		<Preview variant={item.variant} />
+	</PreviewTabs>
+{/each}
+
+## Props
+
+<PropsTable props={SPINNER_PROPS} />
