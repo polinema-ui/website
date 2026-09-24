@@ -1,0 +1,126 @@
+---
+title: Avatar
+description: Elemen visual foto profil pengguna dengan dukungan fallback inisial dan ikon. Satu file, tinggal copy-paste ke project lo.
+order: 3
+author: Polinema UI
+authorUrl: https://github.com/polinema-ui
+lastUpdated: 23/9/2026
+---
+
+<script lang="ts">
+	import { InstallTabs, PreviewTabs, PropsTable } from "$routes/docs/[...slug]/components";
+	import type { PreviewCode } from "$routes/docs/[...slug]/components";
+	import Preview from "$registry/avatar/preview.svelte";
+	import { AVATAR_PROPS } from "$registry/avatar/meta";
+	import type { AvatarPreviewVariant } from "$registry/avatar/meta";
+	import tsxSource from "$registry/avatar/avatar.tsx?raw";
+	import demoSource from "$registry/avatar/demo.tsx?raw";
+
+	const codes: PreviewCode[] = [{ id: "react", label: "React", code: tsxSource, lang: "tsx" }];
+
+	function snippet(name: string): string {
+		const body = demoSource.match(new RegExp(`export function ${name}\\(\\) \\{[\\s\\S]*?\\n\\}`))?.[0] ?? "";
+		const used = new Set(body.match(/(?<![A-Za-z0-9_])([A-Z][A-Za-z0-9]*)/g) ?? []);
+		const importBlocks = demoSource.match(/import\s+[\s\S]*?\s+from\s+['"][^'"]+['"];?/g) ?? [];
+		const imports = importBlocks
+			.map((block) => {
+				const singleLine = block.replace(/\s+/g, " ");
+				const match = singleLine.match(/import\s*\{([^}]*)\}\s*from\s*(['"][^'"]+['"])/);
+				if (!match) return singleLine;
+				const names = match[1].split(",").map((n) => n.trim().split(" as ")[0].trim());
+				const kept = names.filter((n) => n && used.has(n));
+				if (kept.length === 0) return null;
+				return `import { ${kept.join(", ")} } from ${match[2]};`;
+			})
+			.filter((line): line is string => line !== null)
+			.join("\n");
+		return `${imports}\n\n${body}`;
+	}
+
+	const variants: { variant: AvatarPreviewVariant; title: string; code: string; blurb: string }[] = [
+		{
+			variant: "default",
+			title: "Default",
+			code: snippet("AvatarDefault"),
+			blurb: "Avatar lingkaran standar dengan fallback inisial nama saat foto gagal dimuat.",
+		},
+		{
+			variant: "sizes",
+			title: "Sizes",
+			code: snippet("AvatarSizes"),
+			blurb: "Pilihan fleksibel variasi ukuran avatar dari xs, sm, md, lg, xl, hingga 2xl.",
+		},
+		{
+			variant: "shapes",
+			title: "Shapes",
+			code: snippet("AvatarShapes"),
+			blurb: "Variasi bentuk bingkai foto profil: lingkaran (circle), sudut melengkung (rounded), dan squircle.",
+		},
+		{
+			variant: "status",
+			title: "Status",
+			code: snippet("AvatarStatus"),
+			blurb: "Indikator kehadiran pengguna real-time: Online, Busy, Away, dan Offline.",
+		},
+		{
+			variant: "group",
+			title: "Group",
+			code: snippet("AvatarGroup"),
+			blurb: "Tampilan tumpukan avatar bertumpuk untuk daftar tim atau kontributor dilengkapi chip sisa kuota.",
+		},
+		{
+			variant: "badge",
+			title: "Badge",
+			code: snippet("AvatarBadge"),
+			blurb: "Disertai badge jumlah pesan/notifikasi baru atau lencana verifikasi akun.",
+		},
+		{
+			variant: "icons",
+			title: "Icons",
+			code: snippet("AvatarIconFallback"),
+			blurb: "Alternatif fallback menggunakan ikon vektor sesuai kategori pengguna atau role.",
+		},
+		{
+			variant: "gradient",
+			title: "Gradient",
+			code: snippet("AvatarGradient"),
+			blurb: "Tampilan estetik dengan kombinasi warna gradient latar belakang pada fallback inisial.",
+		},
+		{
+			variant: "interactive",
+			title: "Interactive",
+			code: snippet("AvatarInteractive"),
+			blurb: "Efek interaksi hover dengan overlay kamera untuk aksi unggah/ganti foto profil.",
+		},
+		{
+			variant: "user-card",
+			title: "User Card",
+			code: snippet("AvatarUserCard"),
+			blurb: "Komposisi avatar bersanding dengan label nama lengkap, email, dan badge peran pengguna.",
+		},
+	];
+</script>
+
+Komponen visual foto profil pengguna: otomatis menggunakan gambar URL, fallback inisial nama/ikon saat loading atau error, serta mendukung variasi bentuk, ukuran, indikator status, dan tumpukan group. Copy kodenya, tempel ke `components/ui/avatar.tsx`, lalu tinggal import.
+
+## Installation
+
+<InstallTabs
+	component="avatar"
+	codes={codes}
+	dependencies={["@hugeicons/react", "@hugeicons/core-free-icons"]}
+/>
+
+## Preview
+
+{#each variants as item (item.variant)}
+	<h3 class="mt-8">{item.title}</h3>
+	<p>{item.blurb}</p>
+	<PreviewTabs codes={[{ id: "react", label: "React", code: item.code, lang: "tsx" }]}>
+		<Preview variant={item.variant} />
+	</PreviewTabs>
+{/each}
+
+## Props
+
+<PropsTable props={AVATAR_PROPS} />
