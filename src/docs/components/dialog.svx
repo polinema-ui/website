@@ -1,0 +1,156 @@
+---
+title: Dialog
+description: Accessible modal dialog component built on Bits UI & Radix UI. Single file, copy and paste into your project.
+order: 8
+author: Polinema UI
+authorUrl: https://github.com/polinema-ui
+lastUpdated: 24/9/2026
+---
+
+<script lang="ts">
+	import { InstallTabs, PreviewTabs, PropsTable } from "$routes/docs/[...slug]/components";
+	import type { PreviewCode } from "$routes/docs/[...slug]/components";
+	import Preview from "$registry/dialog/preview.svelte";
+	import { DIALOG_PROPS } from "$registry/dialog/meta";
+	import type { DialogPreviewVariant } from "$registry/dialog/meta";
+	import tsxSource from "$registry/dialog/dialog.tsx?raw";
+	import demoSource from "$registry/dialog/demo.tsx?raw";
+
+	const codes: PreviewCode[] = [{ id: "react", label: "React", code: tsxSource, lang: "tsx" }];
+
+	function snippet(name: string): string {
+		const body = demoSource.match(new RegExp(`export function ${name}\\(\\) \\{[\\s\\S]*?\\n\\}`))?.[0] ?? "";
+		const used = new Set(body.match(/(?<![A-Za-z0-9_])([A-Z][A-Za-z0-9]*)/g) ?? []);
+		const importBlocks = demoSource.match(/import\s+[\s\S]*?\s+from\s+['"][^'"]+['"];?/g) ?? [];
+		const imports = importBlocks
+			.map((block) => {
+				const singleLine = block.replace(/\s+/g, " ");
+				const match = singleLine.match(/import\s*\{([^}]*)\}\s*from\s*(['"][^'"]+['"])/);
+				if (!match) return singleLine;
+				const names = match[1].split(",").map((n) => n.trim().split(" as ")[0].trim());
+				const kept = names.filter((n) => n && used.has(n));
+				if (kept.length === 0) return null;
+				return `import { ${kept.join(", ")} } from ${match[2]};`;
+			})
+			.filter((line): line is string => line !== null)
+			.join("\n");
+		return `${imports}\n\n${body}`;
+	}
+
+	const variants: { variant: DialogPreviewVariant; title: string; code: string; blurb: string }[] = [
+		{
+			variant: "default",
+			title: "Default",
+			code: snippet("DialogDefault"),
+			blurb: "Standard profile edit dialog with name, job title, and bio fields.",
+		},
+		{
+			variant: "custom-close",
+			title: "Custom Close",
+			code: snippet("DialogCustomClose"),
+			blurb: "Confirmation dialog with custom close action and confirmation trigger.",
+		},
+		{
+			variant: "scrollable",
+			title: "Scrollable",
+			code: snippet("DialogScrollable"),
+			blurb: "Long agreement terms with scrollable body and fixed header/footer.",
+		},
+		{
+			variant: "destructive",
+			title: "Destructive",
+			code: snippet("DialogDestructive"),
+			blurb: "High-risk delete confirmation requiring keyword verification to unlock.",
+		},
+		{
+			variant: "share",
+			title: "Share",
+			code: snippet("DialogShare"),
+			blurb: "Team invite dialog with email invite, active members list, and link copy.",
+		},
+		{
+			variant: "command",
+			title: "Command",
+			code: snippet("DialogCommand"),
+			blurb: "Quick search palette with filterable action shortcuts and keyboard hints.",
+		},
+		{
+			variant: "wizard",
+			title: "Wizard",
+			code: snippet("DialogWizard"),
+			blurb: "Three-step onboarding flow with progress bar and step validation.",
+		},
+		{
+			variant: "auth",
+			title: "Auth",
+			code: snippet("DialogAuth"),
+			blurb: "Authentication modal supporting social logins and email credentials.",
+		},
+		{
+			variant: "file-upload",
+			title: "File Upload",
+			code: snippet("DialogFileUpload"),
+			blurb: "Attachment dialog with drag-and-drop dropzone and upload progress.",
+		},
+		{
+			variant: "cookie-consent",
+			title: "Cookie Consent",
+			code: snippet("DialogCookieConsent"),
+			blurb: "Privacy preference center with switches for essential and analytics tracking.",
+		},
+		{
+			variant: "media",
+			title: "Media Lightbox",
+			code: snippet("DialogMedia"),
+			blurb: "High-resolution image lightbox with metadata stats and download action.",
+		},
+		{
+			variant: "fullscreen",
+			title: "Fullscreen Editor",
+			code: snippet("DialogFullscreen"),
+			blurb: "Expansive workspace dialog for drafting documentation with formatting toolbar.",
+		},
+		{
+			variant: "status",
+			title: "Status Alert",
+			code: snippet("DialogStatus"),
+			blurb: "Transaction success notification with receipt breakdown and download action.",
+		},
+		{
+			variant: "form",
+			title: "Support Form",
+			code: snippet("DialogForm"),
+			blurb: "Support ticket form with topic selection chips, inputs, and confirmation state.",
+		},
+		{
+			variant: "sheet",
+			title: "Side Sheet",
+			code: snippet("DialogSheet"),
+			blurb: "Right-aligned slide-over panel for quick workspace configuration.",
+		},
+	];
+</script>
+
+Interactive modal dialog windows: supports profile forms, security confirmation, scrollable text, multi-step wizards, command search, and side panels. Copy the code into `components/ui/dialog.tsx` or `components/ui/dialog.svelte`.
+
+## Installation
+
+<InstallTabs
+	component="dialog"
+	codes={codes}
+	dependencies={["@radix-ui/react-dialog", "bits-ui", "@hugeicons/react", "@hugeicons/svelte", "@hugeicons/core-free-icons"]}
+/>
+
+## Preview
+
+{#each variants as item (item.variant)}
+	<h3 class="mt-8">{item.title}</h3>
+	<p>{item.blurb}</p>
+	<PreviewTabs codes={[{ id: "react", label: "React", code: item.code, lang: "tsx" }]}>
+		<Preview variant={item.variant} />
+	</PreviewTabs>
+{/each}
+
+## Props
+
+<PropsTable props={DIALOG_PROPS} />
