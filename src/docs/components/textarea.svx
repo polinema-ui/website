@@ -1,0 +1,104 @@
+---
+title: Textarea
+description: Area input teks multi-baris gelap buat React. Satu file, tinggal copy-paste ke project lo.
+order: 10
+author: Polinema UI
+authorUrl: https://github.com/polinema-ui
+lastUpdated: 23/9/2026
+---
+
+<script lang="ts">
+	import { InstallTabs, PreviewTabs, PropsTable } from "$routes/docs/[...slug]/components";
+	import type { PreviewCode } from "$routes/docs/[...slug]/components";
+	import Preview from "$registry/textarea/preview.svelte";
+	import { TEXTAREA_PROPS } from "$registry/textarea/meta";
+	import type { TextareaPreviewVariant } from "$registry/textarea/meta";
+	import tsxSource from "$registry/textarea/textarea.tsx?raw";
+	import demoSource from "$registry/textarea/demo.tsx?raw";
+
+	const codes: PreviewCode[] = [{ id: "react", label: "React", code: tsxSource, lang: "tsx" }];
+
+	function snippet(name: string): string {
+		const body = demoSource.match(new RegExp(`export function ${name}\\(\\) \\{[\\s\\S]*?\\n\\}`))?.[0] ?? "";
+		const used = new Set(body.match(/(?<![A-Za-z0-9_])([A-Z][A-Za-z0-9]*)/g) ?? []);
+		const imports = demoSource
+			.split("\n")
+			.filter((line) => line.startsWith("import "))
+			.map((line) => {
+				const names = line.match(/\{([^}]*)\}/)?.[1].split(",").map((n) => n.trim().split(" as ")[0].trim());
+				if (!names) return line;
+				const kept = names.filter((n) => n && used.has(n));
+				if (kept.length === 0) return null;
+				if (kept.length === names.length) return line;
+				return line.replace(/\{[^}]*\}/, `{ ${kept.join(", ")} }`);
+			})
+			.filter((line): line is string => line !== null)
+			.join("\n");
+		return `${imports}\n\n${body}`;
+	}
+
+	const variants: { variant: TextareaPreviewVariant; title: string; code: string; blurb: string }[] = [
+		{
+			variant: "default",
+			title: "Default",
+			code: snippet("TextareaDefault"),
+			blurb: "Textarea lengkap dengan label dan petunjuk teks bantuan di bawahnya.",
+		},
+		{
+			variant: "limit",
+			title: "Character Limit",
+			code: snippet("TextareaLimit"),
+			blurb: "Header dengan counter karakter untuk membatasi panjang teks pengguna.",
+		},
+		{
+			variant: "disabled",
+			title: "Disabled",
+			code: snippet("TextareaDisabled"),
+			blurb: "State terkunci saat data teks hanya bersifat read-only.",
+		},
+		{
+			variant: "invalid",
+			title: "Invalid",
+			code: snippet("TextareaInvalid"),
+			blurb: "Peringatan validasi gagal dengan border dan ring merah serta icon peringatan.",
+		},
+		{
+			variant: "actions",
+			title: "Actions",
+			code: snippet("TextareaActions"),
+			blurb: "Kotak komentar atau post dengan footer aksi Cancel dan Kirim menggunakan Button.",
+		},
+		{
+			variant: "form",
+			title: "Form",
+			code: snippet("TextareaForm"),
+			blurb: "Formulir laporan masalah yang mengombinasikan Input judul, Textarea rincian, dan tombol submit Button.",
+		},
+	];
+</script>
+
+Area input teks multi-baris standar: resize vertikal, fokus ring biru, state disabled, dan penanganan error invalid. Copy file-nya, tempel ke `components/ui/textarea.tsx`, lalu tinggal import. Varian actions dan form memanfaatkan komponen `Button` dan `Input`.
+
+## Installation
+
+<InstallTabs
+	component="textarea"
+	codes={[
+		{ ...codes[0], code: `${tsxSource}\n\n// optional needs: components/ui/button.tsx, components/ui/input.tsx` },
+	]}
+	dependencies={["@hugeicons/react", "@hugeicons/core-free-icons"]}
+/>
+
+## Preview
+
+{#each variants as item (item.variant)}
+	<h3 class="mt-8">{item.title}</h3>
+	<p>{item.blurb}</p>
+	<PreviewTabs codes={[{ id: "react", label: "React", code: item.code, lang: "tsx" }]}>
+		<Preview variant={item.variant} />
+	</PreviewTabs>
+{/each}
+
+## Props
+
+<PropsTable props={TEXTAREA_PROPS} />
