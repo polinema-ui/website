@@ -1,0 +1,120 @@
+---
+title: Carousel
+description: Slider & pergeseran konten interaktif berbasis Embla Carousel. Satu file, tinggal copy-paste ke project lo.
+order: 7
+author: Polinema UI
+authorUrl: https://github.com/polinema-ui
+lastUpdated: 23/9/2026
+---
+
+<script lang="ts">
+	import { InstallTabs, PreviewTabs, PropsTable } from "$routes/docs/[...slug]/components";
+	import type { PreviewCode } from "$routes/docs/[...slug]/components";
+	import Preview from "$registry/carousel/preview.svelte";
+	import { CAROUSEL_PROPS } from "$registry/carousel/meta";
+	import type { CarouselPreviewVariant } from "$registry/carousel/meta";
+	import tsxSource from "$registry/carousel/carousel.tsx?raw";
+	import demoSource from "$registry/carousel/demo.tsx?raw";
+
+	const codes: PreviewCode[] = [{ id: "react", label: "React", code: tsxSource, lang: "tsx" }];
+
+	function snippet(name: string): string {
+		const body = demoSource.match(new RegExp(`export function ${name}\\(\\) \\{[\\s\\S]*?\\n\\}`))?.[0] ?? "";
+		const used = new Set(body.match(/(?<![A-Za-z0-9_])([A-Za-z0-9_$]+)/g) ?? []);
+		const importBlocks = demoSource.match(/import\s+[\s\S]*?\s+from\s+['"][^'"]+['"];?/g) ?? [];
+		const imports = importBlocks
+			.map((block) => {
+				const singleLine = block.replace(/\s+/g, " ");
+				const match = singleLine.match(/import\s*\{([^}]*)\}\s*from\s*(['"][^'"]+['"])/);
+				if (!match) return singleLine;
+				const names = match[1].split(",").map((n) => n.trim().split(" as ")[0].trim());
+				const kept = names.filter((n) => n && used.has(n));
+				if (kept.length === 0) return null;
+				return `import { ${kept.join(", ")} } from ${match[2]};`;
+			})
+			.filter((line): line is string => line !== null)
+			.join("\n");
+		return `${imports}\n\n${body}`;
+	}
+
+	const variants: { variant: CarouselPreviewVariant; title: string; code: string; blurb: string }[] = [
+		{
+			variant: "default",
+			title: "Default",
+			code: snippet("CarouselDefault"),
+			blurb: "Carousel horizontal klasik dengan kartu slide dan navigasi tombol Previous / Next.",
+		},
+		{
+			variant: "multiple",
+			title: "Multiple",
+			code: snippet("CarouselMultiple"),
+			blurb: "Menampilkan beberapa item sekaligus dalam satu tampilan layar.",
+		},
+		{
+			variant: "vertical",
+			title: "Vertical",
+			code: snippet("CarouselVertical"),
+			blurb: "Transisi pergeseran slide secara vertikal dari atas ke bawah.",
+		},
+		{
+			variant: "autoplay",
+			title: "Autoplay",
+			code: snippet("CarouselAutoplay"),
+			blurb: "Carousel berputar otomatis tanpa henti dengan interval waktu yang dapat diatur.",
+		},
+		{
+			variant: "dots",
+			title: "Dots",
+			code: snippet("CarouselDots"),
+			blurb: "Indikator navigasi berupa titik (dots) interaktif di bagian bawah.",
+		},
+		{
+			variant: "fraction",
+			title: "Fraction",
+			code: snippet("CarouselFraction"),
+			blurb: "Indikator posisi slide minimalis berbentuk counter angka.",
+		},
+		{
+			variant: "thumbnail",
+			title: "Thumbnails",
+			code: snippet("CarouselThumbnail"),
+			blurb: "Galeri foto dengan deretan thumbnail interaktif di bagian bawah.",
+		},
+		{
+			variant: "testimonial",
+			title: "Testimonials",
+			code: snippet("CarouselTestimonial"),
+			blurb: "Slider khusus kartu ulasan pengguna dengan rating bintang dan profil pengulas.",
+		},
+		{
+			variant: "product",
+			title: "Product",
+			code: snippet("CarouselProduct"),
+			blurb: "Etalase produk dengan badge diskon, harga, dan tombol aksi beli.",
+		},
+	];
+</script>
+
+Slider & pergeseran konten interaktif: mendukung pergeseran horizontal/vertikal, autoplay, navigasi dots & fraction, galeri thumbnail, hingga slider etalase produk. Copy kodenya, tempel ke `components/ui/carousel.tsx`, lalu tinggal import.
+
+## Installation
+
+<InstallTabs
+	component="carousel"
+	codes={codes}
+	dependencies={["embla-carousel-react", "embla-carousel-autoplay", "@hugeicons/react", "@hugeicons/core-free-icons"]}
+/>
+
+## Preview
+
+{#each variants as item (item.variant)}
+	<h3 class="mt-8">{item.title}</h3>
+	<p>{item.blurb}</p>
+	<PreviewTabs codes={[{ id: "react", label: "React", code: item.code, lang: "tsx" }]}>
+		<Preview variant={item.variant} />
+	</PreviewTabs>
+{/each}
+
+## Props
+
+<PropsTable props={CAROUSEL_PROPS} />
