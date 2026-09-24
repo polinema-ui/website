@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Copy01Icon, Tick01Icon } from "@hugeicons/core-free-icons";
 	import { HugeiconsIcon } from "@hugeicons/svelte";
+	import { mode as themeMode } from "mode-watcher";
 	import { PKG_MANAGERS } from "$lib/constants/pkg-managers";
 	import { docsState } from "$routes/docs/[...slug]/context/docs.svelte";
 	import DOMPurify from "dompurify";
@@ -14,7 +15,7 @@
 		dependencies = [],
 	}: { component: string; codes: readonly PreviewCode[]; dependencies?: readonly string[] } = $props();
 
-	let mode = $state<"command" | "manual">("command");
+	let installMode = $state<"command" | "manual">("command");
 	let copiedCommand = $state(false);
 	let copiedInstall = $state(false);
 	let copiedFile = $state(false);
@@ -81,36 +82,40 @@
 </script>
 
 <div class="not-prose my-6 w-full">
-	<div class="flex gap-6 border-b border-white/10" role="tablist" aria-label="Installation method">
+	<div
+		class="flex gap-6 border-b border-neutral-200 dark:border-white/10"
+		role="tablist"
+		aria-label="Installation method"
+	>
 		<button
 			type="button"
 			role="tab"
-			aria-selected={mode === "command"}
-			onclick={() => (mode = "command")}
-			class="cursor-pointer pb-2 text-[15px] font-semibold transition-colors {mode === 'command'
-				? '-mb-px border-b-2 border-white text-white'
-				: 'text-neutral-400 hover:text-white'}"
+			aria-selected={installMode === "command"}
+			onclick={() => (installMode = "command")}
+			class="cursor-pointer pb-2 text-[15px] font-semibold transition-colors {installMode === 'command'
+				? '-mb-px border-b-2 border-neutral-900 text-neutral-900 dark:border-white dark:text-white'
+				: 'text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white'}"
 		>
 			Command
 		</button>
 		<button
 			type="button"
 			role="tab"
-			aria-selected={mode === "manual"}
-			onclick={() => (mode = "manual")}
-			class="cursor-pointer pb-2 text-[15px] font-semibold transition-colors {mode === 'manual'
-				? '-mb-px border-b-2 border-white text-white'
-				: 'text-neutral-400 hover:text-white'}"
+			aria-selected={installMode === "manual"}
+			onclick={() => (installMode = "manual")}
+			class="cursor-pointer pb-2 text-[15px] font-semibold transition-colors {installMode === 'manual'
+				? '-mb-px border-b-2 border-neutral-900 text-neutral-900 dark:border-white dark:text-white'
+				: 'text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white'}"
 		>
 			Manual
 		</button>
 	</div>
 
-	{#if mode === "command"}
-		<div class="mt-4 overflow-hidden rounded-lg border border-white/10 bg-black">
-			<div class="flex items-center gap-2 border-b border-white/10 py-1.5 pr-1.5 pl-3">
+	{#if installMode === "command"}
+		<div class="mt-4 overflow-hidden rounded-lg border border-neutral-200 bg-white dark:border-white/10 dark:bg-black">
+			<div class="flex items-center gap-2 border-b border-neutral-200 py-1.5 pr-1.5 pl-3 dark:border-white/10">
 				<span
-					class="flex size-6 shrink-0 items-center justify-center rounded-md border border-white/10 bg-white/5 font-mono text-[11px] font-bold text-neutral-300"
+					class="flex size-6 shrink-0 items-center justify-center rounded-md border border-neutral-200 bg-neutral-50 font-mono text-[11px] font-bold text-neutral-600 dark:border-white/10 dark:bg-white/5 dark:text-neutral-300"
 					aria-hidden="true"
 				>
 					&gt;_
@@ -122,8 +127,8 @@
 							onclick={() => (docsState.pkgManager = pm.id)}
 							class="cursor-pointer rounded-md px-2 py-1 text-xs font-medium transition-colors {docsState.pkgManager ===
 							pm.id
-								? 'bg-white/10 text-white'
-								: 'text-neutral-400 hover:text-white'}"
+								? 'bg-black/5 text-neutral-900 dark:bg-white/10 dark:text-white'
+								: 'text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white'}"
 						>
 							{pm.label}
 						</button>
@@ -133,7 +138,7 @@
 					type="button"
 					onclick={copyCommand}
 					aria-label="Copy to clipboard"
-					class="ml-auto flex shrink-0 cursor-pointer items-center justify-center rounded-md p-2 text-neutral-400 transition-colors hover:bg-white/10 hover:text-white active:scale-95"
+					class="ml-auto flex shrink-0 cursor-pointer items-center justify-center rounded-md p-2 text-neutral-500 transition-colors hover:bg-black/5 hover:text-neutral-900 active:scale-95 dark:text-neutral-400 dark:hover:bg-white/10 dark:hover:text-white"
 				>
 					{#if copiedCommand}
 						<HugeiconsIcon icon={Tick01Icon} size={14} color="#10b981" />
@@ -142,7 +147,9 @@
 					{/if}
 				</button>
 			</div>
-			<code class="block overflow-x-auto px-4 py-3 font-mono text-[13px] font-medium text-neutral-100">
+			<code
+				class="block overflow-x-auto px-4 py-3 font-mono text-[13px] font-medium text-neutral-800 dark:text-neutral-100"
+			>
 				{activeCommand}
 			</code>
 		</div>
@@ -151,19 +158,23 @@
 			<li class="flex gap-4">
 				<div class="flex flex-col items-center" aria-hidden="true">
 					<span
-						class="flex size-7 shrink-0 items-center justify-center rounded-full bg-white/10 text-[13px] font-semibold text-white"
+						class="flex size-7 shrink-0 items-center justify-center rounded-full bg-black/5 text-[13px] font-semibold text-neutral-900 dark:bg-white/10 dark:text-white"
 					>
 						1
 					</span>
-					<span class="mt-2 w-px flex-1 bg-white/10"></span>
+					<span class="mt-2 w-px flex-1 bg-neutral-200 dark:bg-white/10"></span>
 				</div>
 				<div class="min-w-0 flex-1 pb-1">
-					<p class="pt-0.5 text-[15px] font-semibold text-white">Install the following dependencies:</p>
+					<p class="pt-0.5 text-[15px] font-semibold text-neutral-900 dark:text-white">
+						Install the following dependencies:
+					</p>
 					{#if dependencies.length > 0}
-						<div class="mt-3 overflow-hidden rounded-lg border border-white/10 bg-black">
-							<div class="flex items-center gap-2 border-b border-white/10 py-1.5 pr-1.5 pl-3">
+						<div
+							class="mt-3 overflow-hidden rounded-lg border border-neutral-200 bg-white dark:border-white/10 dark:bg-black"
+						>
+							<div class="flex items-center gap-2 border-b border-neutral-200 py-1.5 pr-1.5 pl-3 dark:border-white/10">
 								<span
-									class="flex size-6 shrink-0 items-center justify-center rounded-md border border-white/10 bg-white/5 font-mono text-[11px] font-bold text-neutral-300"
+									class="flex size-6 shrink-0 items-center justify-center rounded-md border border-neutral-200 bg-neutral-50 font-mono text-[11px] font-bold text-neutral-600 dark:border-white/10 dark:bg-white/5 dark:text-neutral-300"
 									aria-hidden="true"
 								>
 									&gt;_
@@ -175,8 +186,8 @@
 											onclick={() => (docsState.pkgManager = pm.id)}
 											class="cursor-pointer rounded-md px-2 py-1 text-xs font-medium transition-colors {docsState.pkgManager ===
 											pm.id
-												? 'bg-white/10 text-white'
-												: 'text-neutral-400 hover:text-white'}"
+												? 'bg-black/5 text-neutral-900 dark:bg-white/10 dark:text-white'
+												: 'text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white'}"
 										>
 											{pm.label}
 										</button>
@@ -186,7 +197,7 @@
 									type="button"
 									onclick={copyInstall}
 									aria-label="Copy to clipboard"
-									class="ml-auto flex shrink-0 cursor-pointer items-center justify-center rounded-md p-2 text-neutral-400 transition-colors hover:bg-white/10 hover:text-white active:scale-95"
+									class="ml-auto flex shrink-0 cursor-pointer items-center justify-center rounded-md p-2 text-neutral-500 transition-colors hover:bg-black/5 hover:text-neutral-900 active:scale-95 dark:text-neutral-400 dark:hover:bg-white/10 dark:hover:text-white"
 								>
 									{#if copiedInstall}
 										<HugeiconsIcon icon={Tick01Icon} size={14} color="#10b981" />
@@ -195,13 +206,15 @@
 									{/if}
 								</button>
 							</div>
-							<code class="block overflow-x-auto px-4 py-3 font-mono text-[13px] font-medium text-neutral-100">
+							<code
+								class="block overflow-x-auto px-4 py-3 font-mono text-[13px] font-medium text-neutral-800 dark:text-neutral-100"
+							>
 								{installCommand}
 							</code>
 						</div>
 					{:else}
 						<p
-							class="mt-3 rounded-lg border border-white/10 bg-black px-4 py-3 text-[13px] leading-relaxed text-neutral-400"
+							class="mt-3 rounded-lg border border-neutral-200 bg-white px-4 py-3 text-[13px] leading-relaxed text-neutral-500 dark:border-white/10 dark:bg-black dark:text-neutral-400"
 						>
 							Nggak butuh dependency tambahan. Pastiin Tailwind CSS udah terkonfigurasi di project lo.
 						</p>
@@ -212,14 +225,14 @@
 			<li class="flex gap-4">
 				<div class="flex flex-col items-center" aria-hidden="true">
 					<span
-						class="flex size-7 shrink-0 items-center justify-center rounded-full bg-white/10 text-[13px] font-semibold text-white"
+						class="flex size-7 shrink-0 items-center justify-center rounded-full bg-black/5 text-[13px] font-semibold text-neutral-900 dark:bg-white/10 dark:text-white"
 					>
 						2
 					</span>
-					<span class="mt-2 w-px flex-1 bg-white/10"></span>
+					<span class="mt-2 w-px flex-1 bg-neutral-200 dark:bg-white/10"></span>
 				</div>
 				<div class="min-w-0 flex-1 pb-1">
-					<p class="pt-0.5 text-[15px] font-semibold text-white">
+					<p class="pt-0.5 text-[15px] font-semibold text-neutral-900 dark:text-white">
 						Copy and paste the following code into your project.
 					</p>
 					{#if codes.length > 1}
@@ -230,8 +243,8 @@
 									onclick={() => selectFile(file.id)}
 									class="cursor-pointer rounded-md px-2.5 py-1 text-xs font-medium transition-colors {activeFile?.id ===
 									file.id
-										? 'bg-white/10 text-white'
-										: 'text-neutral-400 hover:text-white'}"
+										? 'bg-black/5 text-neutral-900 dark:bg-white/10 dark:text-white'
+										: 'text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white'}"
 								>
 									{file.label}
 								</button>
@@ -239,30 +252,34 @@
 						</div>
 					{/if}
 					{#if activeFile}
-						<div class="mt-3 overflow-hidden rounded-lg border border-white/10 bg-black">
-							<div class="flex items-center gap-2 border-b border-white/10 px-3 py-2">
+						<div
+							class="mt-3 overflow-hidden rounded-lg border border-neutral-200 bg-white dark:border-white/10 dark:bg-black"
+						>
+							<div class="flex items-center gap-2 border-b border-neutral-200 px-3 py-2 dark:border-white/10">
 								<span
-									class="flex h-5 shrink-0 items-center rounded bg-white/10 px-1.5 font-mono text-[10px] font-bold text-neutral-200"
+									class="flex h-5 shrink-0 items-center rounded bg-black/5 px-1.5 font-mono text-[10px] font-bold text-neutral-600 dark:bg-white/10 dark:text-neutral-200"
 									aria-hidden="true"
 								>
 									{langBadge(activeFile.lang)}
 								</span>
-								<code class="min-w-0 flex-1 truncate font-mono text-xs text-neutral-300">{filePath}</code>
+								<code class="min-w-0 flex-1 truncate font-mono text-xs text-neutral-500 dark:text-neutral-300"
+									>{filePath}</code
+								>
 								{#if !expandedFile}
 									<button
 										type="button"
 										onclick={() => (expandedFile = true)}
-										class="shrink-0 cursor-pointer text-xs font-medium text-neutral-400 transition-colors hover:text-white"
+										class="shrink-0 cursor-pointer text-xs font-medium text-neutral-500 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
 									>
 										Expand
 									</button>
-									<span class="h-4 w-px shrink-0 bg-white/10" aria-hidden="true"></span>
+									<span class="h-4 w-px shrink-0 bg-neutral-200 dark:bg-white/10" aria-hidden="true"></span>
 								{/if}
 								<button
 									type="button"
 									onclick={copyFile}
 									aria-label="Copy to clipboard"
-									class="flex shrink-0 cursor-pointer items-center justify-center rounded-md p-1.5 text-neutral-400 transition-colors hover:bg-white/10 hover:text-white active:scale-95"
+									class="flex shrink-0 cursor-pointer items-center justify-center rounded-md p-1.5 text-neutral-500 transition-colors hover:bg-black/5 hover:text-neutral-900 active:scale-95 dark:text-neutral-400 dark:hover:bg-white/10 dark:hover:text-white"
 								>
 									{#if copiedFile}
 										<HugeiconsIcon icon={Tick01Icon} size={14} color="#10b981" />
@@ -280,13 +297,16 @@
 									>
 										<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 										{@html DOMPurify.sanitize(
-											highlighter.codeToHtml(activeFile.code.trim(), { lang: activeFile.lang, theme: "github-dark" }),
+											highlighter.codeToHtml(activeFile.code.trim(), {
+												lang: activeFile.lang,
+												theme: themeMode.current === "dark" ? "github-dark" : "github-light",
+											}),
 										)}
 									</div>
 								{/await}
 								{#if !expandedFile}
 									<div
-										class="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-b from-transparent to-black"
+										class="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-b from-transparent to-white dark:to-black"
 										aria-hidden="true"
 									></div>
 								{/if}
@@ -299,19 +319,21 @@
 			<li class="flex gap-4">
 				<div class="flex flex-col items-center" aria-hidden="true">
 					<span
-						class="flex size-7 shrink-0 items-center justify-center rounded-full bg-white/10 text-[13px] font-semibold text-white"
+						class="flex size-7 shrink-0 items-center justify-center rounded-full bg-black/5 text-[13px] font-semibold text-neutral-900 dark:bg-white/10 dark:text-white"
 					>
 						3
 					</span>
 				</div>
 				<div class="min-w-0 flex-1">
-					<p class="pt-0.5 text-[15px] font-semibold text-white">
+					<p class="pt-0.5 text-[15px] font-semibold text-neutral-900 dark:text-white">
 						Update the import paths to match your project setup.
 					</p>
-					<p class="mt-3 text-[13px] leading-relaxed text-neutral-400">
-						Sesuaikan alias <code class="font-mono text-neutral-200">@/components/...</code> sama konfigurasi di project
-						lo (<code class="font-mono text-neutral-200">tsconfig.json</code>,
-						<code class="font-mono text-neutral-200">vite.config.ts</code>).
+					<p class="mt-3 text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+						Sesuaikan alias <code class="font-mono text-neutral-700 dark:text-neutral-200">@/components/...</code> sama
+						konfigurasi di project lo (<code class="font-mono text-neutral-700 dark:text-neutral-200"
+							>tsconfig.json</code
+						>,
+						<code class="font-mono text-neutral-700 dark:text-neutral-200">vite.config.ts</code>).
 					</p>
 				</div>
 			</li>

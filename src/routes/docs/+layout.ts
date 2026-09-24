@@ -10,7 +10,10 @@ export const load: LayoutLoad = async () => {
 		const segments = slug.split("/");
 
 		const folderName = segments.length > 1 ? segments[0].replace(/-/g, " ") : "Getting Started";
-		const fallbackCategory = folderName.charAt(0).toUpperCase() + folderName.slice(1);
+		const fallbackCategory = folderName
+			.split(" ")
+			.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+			.join(" ");
 
 		const title = module.metadata?.title || segments[segments.length - 1].replace(/-/g, " ");
 		const category = module.metadata?.category || fallbackCategory;

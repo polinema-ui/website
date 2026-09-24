@@ -13,5 +13,5 @@ export const highlighterPromise = createHighlighterCore({
 		import("@shikijs/langs/php"),
 		import("@shikijs/langs/blade"),
 	],
-	themes: [import("@shikijs/themes/github-dark")],
+	themes: [import("@shikijs/themes/github-light"), import("@shikijs/themes/github-dark")],
 });

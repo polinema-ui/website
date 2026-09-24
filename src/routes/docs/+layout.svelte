@@ -30,7 +30,7 @@
 	let author = $derived(page.data.meta?.author);
 	let authorUrl = $derived(page.data.meta?.authorUrl);
 	let lastUpdated = $derived(page.data.meta?.lastUpdated);
-	const CATEGORY_ORDER = ["Getting started", "Guides", "Components"];
+	const CATEGORY_ORDER = ["Getting Started", "Guides", "Components"];
 
 	let filteredMenus = $derived(
 		data.menus.filter((menu) => menu.title.toLowerCase().includes(docsState.searchQuery.toLowerCase())),
@@ -49,8 +49,8 @@
 
 	let sortedCategories = $derived(
 		Object.keys(groupedMenus).sort((a, b) => {
-			const indexA = CATEGORY_ORDER.indexOf(a);
-			const indexB = CATEGORY_ORDER.indexOf(b);
+			const indexA = CATEGORY_ORDER.findIndex((c) => c.toLowerCase() === a.toLowerCase());
+			const indexB = CATEGORY_ORDER.findIndex((c) => c.toLowerCase() === b.toLowerCase());
 			if (indexA !== -1 && indexB !== -1) return indexA - indexB;
 			if (indexA !== -1) return -1;
 			if (indexB !== -1) return 1;
@@ -80,15 +80,23 @@
 			.replace(/-+/g, "-");
 	}
 
+	function isTocHeading(element: Element) {
+		return !element.closest(".not-prose");
+	}
+
 	function updateActiveHeading() {
-		const headings = Array.from(articleElement?.querySelectorAll<HTMLElement>("h2[id], h3[id]") ?? []);
+		const headings = Array.from(articleElement?.querySelectorAll<HTMLElement>("h2[id], h3[id]") ?? []).filter(
+			isTocHeading,
+		);
 		activeHeadingId =
 			headings.findLast((heading) => heading.getBoundingClientRect().top <= 120)?.id ?? headings[0]?.id ?? "";
 	}
 
 	function updateToc() {
 		const usedIds: string[] = [];
-		const headings = Array.from(articleElement?.querySelectorAll<HTMLHeadingElement>("h2, h3") ?? []);
+		const headings = Array.from(articleElement?.querySelectorAll<HTMLHeadingElement>("h2, h3") ?? []).filter(
+			isTocHeading,
+		);
 
 		tocItems = headings.map((heading) => {
 			const baseId = heading.id || slugify(heading.textContent ?? "section");
@@ -147,15 +155,15 @@
 	{/snippet}
 </Navbar>
 
-<div class="flex min-h-screen bg-black text-white">
+<div class="flex min-h-screen bg-white text-neutral-900 dark:bg-black dark:text-white">
 	<aside
 		class="{sidebarOpen
 			? 'translate-x-0'
-			: '-translate-x-full'} fixed top-0 left-0 z-50 flex h-screen w-64 shrink-0 flex-col overflow-hidden bg-black transition-transform duration-300 ease-in-out md:sticky md:top-24 md:z-0 md:h-[calc(100dvh-4rem)] md:translate-x-0"
+			: '-translate-x-full'} fixed top-0 left-0 z-50 flex h-screen w-64 shrink-0 flex-col overflow-hidden bg-white transition-transform duration-300 ease-in-out md:sticky md:top-24 md:z-0 md:h-[calc(100dvh-4rem)] md:translate-x-0 dark:bg-black"
 	>
 		<button
 			type="button"
-			class="absolute top-3 right-3 cursor-pointer rounded-lg p-1.5 text-neutral-400 hover:bg-white/10 hover:text-white active:scale-95 md:hidden"
+			class="absolute top-3 right-3 cursor-pointer rounded-lg p-1.5 text-neutral-500 hover:bg-black/5 hover:text-neutral-900 active:scale-95 md:hidden dark:text-neutral-400 dark:hover:bg-white/10 dark:hover:text-white"
 			onclick={() => (sidebarOpen = false)}
 			aria-label="Close navigation menu"
 		>
@@ -166,7 +174,7 @@
 				{#each sortedCategories as category (category)}
 					{@const menus = [...(groupedMenus[category] ?? [])].sort((a, b) => (a.order ?? 99) - (b.order ?? 99))}
 					<section class="mb-4">
-						<h3 class="px-3 py-1.5 text-xs font-semibold tracking-wider text-neutral-400 uppercase">
+						<h3 class="px-3 py-1.5 text-xs font-semibold text-neutral-500 dark:text-neutral-400">
 							{category}
 						</h3>
 						<ul class="mt-1 space-y-0.5">
@@ -178,8 +186,8 @@
 										aria-current={isActive ? "page" : undefined}
 										onclick={() => (sidebarOpen = false)}
 										class="block rounded-lg px-3 py-1.5 text-sm font-medium transition-colors {isActive
-											? 'bg-blue-500/15 font-semibold text-blue-400'
-											: 'text-neutral-400 hover:bg-white/5 hover:text-white'}"
+											? 'bg-blue-500/10 font-semibold text-blue-600 dark:bg-blue-500/15 dark:text-blue-400'
+											: 'text-neutral-600 hover:bg-black/5 hover:text-neutral-900 dark:text-white dark:hover:bg-white/10'}"
 									>
 										{menu.title}
 									</a>
@@ -199,12 +207,14 @@
 		>
 			<div class="min-w-0">
 				<div class="mb-6 flex items-center justify-between">
-					<h1 class="font-serif text-4xl font-extralight tracking-tighter text-white sm:text-5xl">{title}</h1>
+					<h1 class="font-serif text-4xl font-extralight tracking-tighter text-neutral-900 sm:text-5xl dark:text-white">
+						{title}
+					</h1>
 					<nav aria-label="Documentation pagination" class="hidden gap-2 lg:flex">
 						{#if previousMenu}
 							<a
 								href={previousMenu.url}
-								class="inline-flex size-9 items-center justify-center rounded-lg bg-white/10 text-neutral-300 transition-colors hover:bg-white/20 hover:text-white"
+								class="inline-flex size-9 items-center justify-center rounded-lg bg-black/5 text-neutral-600 transition-colors hover:bg-black/10 hover:text-neutral-900 dark:bg-white/10 dark:text-neutral-300 dark:hover:bg-white/20 dark:hover:text-white"
 								aria-label={`Previous page: ${previousMenu.title}`}
 							>
 								<HugeiconsIcon icon={ArrowLeft01Icon} size={18} />
@@ -212,7 +222,7 @@
 						{:else}
 							<button
 								disabled
-								class="inline-flex size-9 cursor-not-allowed items-center justify-center rounded-lg bg-white/5 text-neutral-600"
+								class="inline-flex size-9 cursor-not-allowed items-center justify-center rounded-lg bg-black/[0.03] text-neutral-400 dark:bg-white/5 dark:text-neutral-600"
 								aria-label="Previous page"
 							>
 								<HugeiconsIcon icon={ArrowLeft01Icon} size={18} />
@@ -221,7 +231,7 @@
 						{#if nextMenu}
 							<a
 								href={nextMenu.url}
-								class="inline-flex size-9 items-center justify-center rounded-lg bg-white/10 text-neutral-300 transition-colors hover:bg-white/20 hover:text-white"
+								class="inline-flex size-9 items-center justify-center rounded-lg bg-black/5 text-neutral-600 transition-colors hover:bg-black/10 hover:text-neutral-900 dark:bg-white/10 dark:text-neutral-300 dark:hover:bg-white/20 dark:hover:text-white"
 								aria-label={`Next page: ${nextMenu.title}`}
 							>
 								<HugeiconsIcon icon={ArrowRight01Icon} size={18} />
@@ -229,7 +239,7 @@
 						{:else}
 							<button
 								disabled
-								class="inline-flex size-9 cursor-not-allowed items-center justify-center rounded-lg bg-white/5 text-neutral-600"
+								class="inline-flex size-9 cursor-not-allowed items-center justify-center rounded-lg bg-black/[0.03] text-neutral-400 dark:bg-white/5 dark:text-neutral-600"
 								aria-label="Next page"
 							>
 								<HugeiconsIcon icon={ArrowRight01Icon} size={18} />
@@ -246,8 +256,8 @@
 			</div>
 			<aside class="hidden lg:block">
 				<div class="sticky top-22 space-y-8">
-					<nav aria-label="On this page" class="border-l border-white/10 pl-4 text-sm">
-						<div class="mb-3 flex items-center gap-2 font-medium text-neutral-400">
+					<nav aria-label="On this page" class="border-l border-neutral-200 pl-4 text-sm dark:border-white/10">
+						<div class="mb-3 flex items-center gap-2 font-medium text-neutral-500 dark:text-neutral-400">
 							<HugeiconsIcon icon={RightToLeftListBulletIcon} size={16} />
 							<span>On this page</span>
 						</div>
@@ -258,8 +268,8 @@
 										<a
 											href={`#${item.id}`}
 											class="block border-l-2 py-0.5 pl-3 transition-colors {activeHeadingId === item.id
-												? '-ml-4.25 border-white font-medium text-white'
-												: '-ml-4.25 border-transparent text-neutral-500 hover:text-white'}"
+												? '-ml-4.25 border-neutral-900 font-medium text-neutral-900 dark:border-white dark:text-white'
+												: '-ml-4.25 border-transparent text-neutral-500 hover:text-neutral-900 dark:text-neutral-500 dark:hover:text-white'}"
 										>
 											{item.title}
 										</a>
@@ -270,16 +280,16 @@
 							<p class="text-neutral-400">No sections.</p>
 						{/if}
 					</nav>
-					<section class="rounded-2xl bg-white/5 p-5">
-						<h2 class="text-lg leading-tight font-semibold text-white">
+					<section class="rounded-2xl bg-black/[0.03] p-5 dark:bg-white/5">
+						<h2 class="text-lg leading-tight font-semibold text-neutral-900 dark:text-white">
 							Gas kalo mau jadi contributor di open source ini
 						</h2>
-						<p class="mt-3 text-sm leading-relaxed text-neutral-400">
+						<p class="mt-3 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
 							Bantu bikin Polinema UI makin rapi, kepake, dan enak dipakai bareng-bareng.
 						</p>
 						<a
 							href="https://github.com/polinema-ui"
-							class="mt-4 inline-flex rounded-lg bg-white px-3 py-2 text-sm font-semibold text-neutral-900 transition-colors hover:bg-neutral-200"
+							class="mt-4 inline-flex rounded-lg bg-neutral-900 px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-neutral-700 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200"
 						>
 							Contribute on GitHub
 						</a>
@@ -296,7 +306,7 @@
 						Built by
 						<a
 							href={authorUrl || "#"}
-							class="font-medium text-white underline underline-offset-4 hover:text-neutral-300"
+							class="font-medium text-neutral-900 underline underline-offset-4 hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300"
 						>
 							{author}
 						</a>
@@ -304,7 +314,9 @@
 				</div>
 				<div>
 					{#if lastUpdated}
-						Last updated: <span class="ml-1.5 rounded-md bg-white/10 px-2.5 py-1 text-xs font-medium text-neutral-300">
+						Last updated: <span
+							class="ml-1.5 rounded-md bg-black/5 px-2.5 py-1 text-xs font-medium text-neutral-600 dark:bg-white/10 dark:text-neutral-300"
+						>
 							{lastUpdated}
 						</span>
 					{/if}
