@@ -7,11 +7,11 @@ export const FRAMEWORKS: readonly FrameworkMetadata[] = [
 		logo: "/lang/html.webp",
 		description:
 			"Copy markupnya langsung ke file .html lau. Semua struktur udah di group rapi dari parent sampe child. Kalo butuh interaksi, tinggal pasang Alpine.js atau Vanilla JS tanpa takut styling berantakan.",
-		code: `<div class="flex flex-col space-y-2 p-6 rounded-2xl border border-neutral-200">
-			<h3 class="text-lg font-bold tracking-tight text-neutral-900">
+		code: `<div class="flex flex-col space-y-2 p-6 rounded-2xl border border-neutral-200 bg-white dark:border-white/10 dark:bg-black">
+			<h3 class="text-lg font-bold tracking-tight text-neutral-900 dark:text-white">
 				Project Based Learning
 			</h3>
-			<p class="text-sm text-neutral-500">
+			<p class="text-sm text-neutral-500 dark:text-neutral-400">
 				Sistem Informasi Akademik Terpadu.
 			</p>
 			<button class="mt-4 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-700">
@@ -29,10 +29,10 @@ export const FRAMEWORKS: readonly FrameworkMetadata[] = [
 			$title = "Sistem Inventaris";
 			$status = "Active";
 		?>
-		<div class="p-6 rounded-2xl border border-neutral-200">
+		<div class="p-6 rounded-2xl border border-neutral-200 bg-white dark:border-white/10 dark:bg-black">
 			<div class="flex items-center justify-between">
-				<h3 class="text-lg font-bold text-neutral-900"><?= $title ?></h3>
-				<span class="rounded-full bg-green-100 px-2 py-1 text-xs text-green-700">
+				<h3 class="text-lg font-bold text-neutral-900 dark:text-white"><?= $title ?></h3>
+				<span class="rounded-full bg-green-100 px-2 py-1 text-xs text-green-700 dark:bg-green-500/20 dark:text-green-400">
 					<?= $status ?>
 				</span>
 			</div>
@@ -44,13 +44,13 @@ export const FRAMEWORKS: readonly FrameworkMetadata[] = [
 		logo: "/lang/laravel.webp",
 		description:
 			"Pecah aja jadi sub-komponen di resources/views/. Kita sengaja tetep pake tag HTML asli (kayak <button> atau <table>) alih-alih custom tag biar auto-complete code editor lo tetep jalan.",
-		code: `<div {{ $attributes->merge(['class' => 'rounded-2xl border bg-white p-6 shadow-sm']) }}>
+		code: `<div {{ $attributes->merge(['class' => 'rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-black']) }}>
 				{{ $slot }}
 		</div>
 
 		<x-card class="max-w-md">
-				<h3 class="font-bold">Data Mahasiswa</h3>
-				<p>Total: {{ $count }} orang</p>
+				<h3 class="font-bold text-neutral-900 dark:text-white">Data Mahasiswa</h3>
+				<p class="text-neutral-500 dark:text-neutral-400">Total: {{ $count }} orang</p>
 		</x-card>`,
 	},
 	{
@@ -64,8 +64,8 @@ export const FRAMEWORKS: readonly FrameworkMetadata[] = [
 
 		export function Showcase() {
 			return (
-				<div className="space-y-4 rounded-2xl border p-6">
-					<h3 className="text-xl font-bold">Siap Pakai</h3>
+				<div className="space-y-4 rounded-2xl border border-neutral-200 bg-white p-6 dark:border-white/10 dark:bg-black">
+					<h3 className="text-xl font-bold text-neutral-900 dark:text-white">Siap Pakai</h3>
 					<Button variant="default" onClick={() => alert("Gas!")}>
 						Deploy Sekarang
 					</Button>

@@ -21,7 +21,7 @@
 
 {@render children()}
 
-<footer class="bg-[#0a0d13] px-5 pt-12 pb-6 text-white sm:px-10 sm:pt-20 lg:px-18">
+<footer class="bg-white px-5 pt-12 pb-6 text-neutral-900 sm:px-10 sm:pt-20 lg:px-18 dark:bg-black dark:text-white">
 	<div class="mx-auto grid max-w-295 gap-10 md:grid-cols-[1.5fr_.65fr_.85fr] md:gap-20 lg:gap-32">
 		<section>
 			<h2
@@ -74,14 +74,14 @@
 		</section>
 	</div>
 	<div class="mx-auto mt-14 grid max-w-295 items-end gap-10 md:grid-cols-[245px_1fr] md:gap-20 lg:gap-32">
-		<ul class="border-t border-white/10">
+		<ul class="border-t border-neutral-200 dark:border-white/10">
 			{#each socials as social (social.label)}
 				<li>
 					<a
 						href={social.href}
 						target={social.label === "Github" ? "_blank" : undefined}
 						rel={social.label === "Github" ? "noopener noreferrer" : undefined}
-						class="flex justify-between border-b border-white/10 py-3 text-sm transition-opacity hover:opacity-50"
+						class="flex justify-between border-b border-neutral-200 py-3 text-sm transition-opacity hover:opacity-50 dark:border-white/10"
 					>
 						<span class="flex items-center gap-2">
 							<HugeiconsIcon icon={social.icon} size={16} strokeWidth={1.8} aria-hidden="true" />
@@ -98,7 +98,9 @@
 			POLINEMA UI
 		</h2>
 	</div>
-	<h6 class="mx-auto mt-12 max-w-295 border-t border-white/10 pt-4 text-center text-xs text-neutral-400">
+	<h6
+		class="mx-auto mt-12 max-w-295 border-t border-neutral-200 pt-4 text-center text-xs text-neutral-500 dark:border-white/10 dark:text-neutral-400"
+	>
 		Copyright © Polinema UI. All Rights Reserved
 	</h6>
 </footer>

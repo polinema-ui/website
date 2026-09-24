@@ -10,7 +10,7 @@
 </script>
 
 <section
-	class="relative flex w-full flex-col items-center justify-center gap-8 overflow-hidden bg-[linear-gradient(180deg,#0a0d13_0%,#11151f_100%)] px-4 pt-32 pb-20 sm:px-6 sm:pt-40 sm:pb-28 lg:min-h-screen"
+	class="relative flex w-full flex-col items-center justify-center gap-8 overflow-hidden bg-linear-to-b from-[#f8fafc] to-[#eef2f7] px-4 pt-32 pb-20 sm:px-6 sm:pt-40 sm:pb-28 lg:min-h-screen dark:bg-black dark:bg-none dark:from-black dark:to-black"
 >
 	<figure
 		aria-hidden="true"
@@ -18,7 +18,7 @@
 		style="background-image: url('/us.webp')"
 	></figure>
 	<div
-		class="pointer-events-none absolute inset-x-0 bottom-0 z-1 h-16 bg-linear-to-b from-transparent to-[#11151f]"
+		class="pointer-events-none absolute inset-x-0 bottom-0 z-1 h-16 bg-linear-to-b from-transparent to-[#eef2f7] dark:to-black"
 	></div>
 	<article class="relative z-10 flex flex-col items-center gap-4 text-center sm:gap-6">
 		<h1
@@ -43,14 +43,16 @@
 	</article>
 	<Tabs.Root
 		bind:value={activeTab}
-		class="relative z-10 w-full max-w-85 overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/90 shadow-[0_8px_30px_rgb(0,0,0,0.4)] backdrop-blur-md sm:max-w-md md:max-w-lg"
+		class="relative z-10 w-full max-w-85 overflow-hidden rounded-2xl border border-neutral-200 bg-white/90 shadow-[0_8px_30px_rgb(0,0,0,0.06)] backdrop-blur-md sm:max-w-md md:max-w-lg dark:border-white/10 dark:bg-black/90 dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)]"
 	>
-		<header class="flex items-center justify-between border-b border-white/10 px-3 py-1.5 sm:px-4 sm:py-2">
+		<header
+			class="flex items-center justify-between border-b border-neutral-200 px-3 py-1.5 sm:px-4 sm:py-2 dark:border-white/10"
+		>
 			<Tabs.List class="flex gap-1">
 				{#each PKG_MANAGERS as pm (pm.id)}
 					<Tabs.Trigger
 						value={pm.id}
-						class="rounded-lg px-2.5 py-1 text-xs font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-neutral-900 data-[state=inactive]:text-neutral-400 data-[state=inactive]:hover:text-white sm:px-3 sm:text-[13px]"
+						class="rounded-lg px-2.5 py-1 text-xs font-medium transition-all data-[state=active]:bg-neutral-900 data-[state=active]:text-white data-[state=inactive]:text-neutral-500 data-[state=inactive]:hover:text-neutral-900 sm:px-3 sm:text-[13px] dark:data-[state=active]:bg-white dark:data-[state=active]:text-neutral-900 dark:data-[state=inactive]:text-neutral-400 dark:data-[state=inactive]:hover:text-white"
 					>
 						{pm.label}
 					</Tabs.Trigger>
@@ -61,7 +63,7 @@
 				size="icon"
 				onclick={handleCopy}
 				aria-label="Copy to clipboard"
-				class="h-7 w-7 text-neutral-400 hover:bg-white/10 hover:text-white active:scale-90 sm:h-8 sm:w-8"
+				class="h-7 w-7 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900 active:scale-90 sm:h-8 sm:w-8 dark:text-neutral-400 dark:hover:bg-white/10 dark:hover:text-white"
 			>
 				{#if copied}
 					<HugeiconsIcon icon={Tick01Icon} size={14} color="#10b981" />
@@ -72,7 +74,7 @@
 		</header>
 		{#each PKG_MANAGERS as pm (pm.id)}
 			<Tabs.Content value={pm.id} class="px-3.5 py-3 sm:px-4 sm:py-3.5">
-				<code class="block overflow-x-auto text-xs font-medium text-neutral-100 sm:text-[13px]">
+				<code class="block overflow-x-auto text-xs font-medium text-neutral-900 sm:text-[13px] dark:text-neutral-100">
 					<span class="mr-1.5 font-bold text-neutral-500 select-none">$</span>{pm.cmd}
 				</code>
 			</Tabs.Content>

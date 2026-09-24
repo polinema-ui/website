@@ -8,10 +8,12 @@
 <Card
 	class="flex w-60 flex-col justify-center gap-1.5! rounded-xl border px-6 py-4.5 transition-all duration-300 hover:scale-[1.02] {metric.position ===
 	'featured'
-		? 'border-blue-500/20 bg-linear-to-b from-neutral-900 to-blue-950/40 shadow-[0_12px_40px_rgba(59,130,246,0.08)]'
-		: 'border-white/10 bg-neutral-900 shadow-[0_8px_30px_rgb(0,0,0,0.02)]'}"
+		? 'border-blue-500/20 bg-linear-to-b from-blue-50 to-white shadow-[0_12px_40px_rgba(59,130,246,0.08)] dark:from-black dark:to-blue-950/40'
+		: 'border-neutral-200 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.02)] dark:border-white/10 dark:bg-black'}"
 >
-	<p class="font-sans text-[28px] leading-tight font-bold tracking-tight text-white md:text-[30px]">
+	<p
+		class="font-sans text-[28px] leading-tight font-bold tracking-tight text-neutral-900 md:text-[30px] dark:text-white"
+	>
 		{metric.value}
 	</p>
 	<p class="font-sans text-xs font-normal whitespace-nowrap text-neutral-400 md:text-[13.5px]">

@@ -16,17 +16,19 @@
 	let subMetrics = $derived(metrics.filter((m) => m.position !== "featured"));
 </script>
 
-<section class="relative w-full scroll-mt-28 bg-[#0a0d13] px-6 py-16">
+<section class="relative w-full scroll-mt-28 bg-white px-6 py-16 dark:bg-black">
 	<InteractiveGrid />
 	<div class="relative z-10 mx-auto flex max-w-7xl flex-col gap-16">
 		<header class="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-16">
 			<h2
-				class="font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-[44px] md:leading-tight lg:col-span-5"
+				class="font-sans text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl md:text-[44px] md:leading-tight lg:col-span-5 dark:text-white"
 			>
 				Nggak fancy, <br /> tapi kepake
 			</h2>
 			<div class="lg:col-span-7">
-				<p class="font-sans text-base leading-relaxed font-normal text-neutral-300 md:text-[17px]">
+				<p
+					class="font-sans text-base leading-relaxed font-normal text-neutral-600 md:text-[17px] dark:text-neutral-300"
+				>
 					Kita nggak ngejar jadi library paling viral atau paling banyak dipuji minggu ini. Yang kita pentingin,
 					komponen ini masih bisa lo pakai tanpa masalah setahun dari sekarang. Nggak ada dependency yang gampang
 					di-deprecate, nggak ada pendekatan yang bakal ketinggalan zaman dalam waktu dekat.
@@ -91,19 +93,21 @@
 				<img src="/icon.png" alt="Polinema UI Mark" class="h-7 w-7 object-contain" />
 			</div>
 			<Card
-				class="w-full overflow-hidden rounded-xl border border-blue-500/20 bg-linear-to-b from-neutral-900 to-blue-950/40 px-6 py-5 text-center shadow-[0_12px_40px_rgba(59,130,246,0.08)]"
+				class="w-full overflow-hidden rounded-xl border border-blue-500/20 bg-linear-to-b from-blue-50 to-white px-6 py-5 text-center shadow-[0_12px_40px_rgba(59,130,246,0.08)] dark:from-black dark:to-blue-950/40"
 			>
-				<p class="font-sans text-2xl font-bold tracking-tight text-white">{featured.value}</p>
-				<p class="mt-1 font-sans text-xs text-neutral-400">{featured.mobileLabel}</p>
+				<p class="font-sans text-2xl font-bold tracking-tight text-neutral-900 dark:text-white">{featured.value}</p>
+				<p class="mt-1 font-sans text-xs text-neutral-500 dark:text-neutral-400">{featured.mobileLabel}</p>
 			</Card>
 			<ul class="grid w-full grid-cols-2 gap-3.5">
 				{#each subMetrics as item (item.position)}
 					<li>
 						<Card
-							class="flex h-full flex-col items-center justify-center rounded-xl border border-white/10 bg-neutral-900 p-4 text-center shadow-[0_8px_30px_rgb(0,0,0,0.02)]"
+							class="flex h-full flex-col items-center justify-center rounded-xl border border-neutral-200 bg-white p-4 text-center shadow-[0_8px_30px_rgb(0,0,0,0.02)] dark:border-white/10 dark:bg-black"
 						>
-							<p class="font-sans text-xl font-bold tracking-tight text-white">{item.value}</p>
-							<p class="mt-1 font-sans text-[11px] leading-tight text-neutral-400">{item.mobileLabel}</p>
+							<p class="font-sans text-xl font-bold tracking-tight text-neutral-900 dark:text-white">{item.value}</p>
+							<p class="mt-1 font-sans text-[11px] leading-tight text-neutral-500 dark:text-neutral-400">
+								{item.mobileLabel}
+							</p>
 						</Card>
 					</li>
 				{/each}
