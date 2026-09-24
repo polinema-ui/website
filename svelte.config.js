@@ -23,6 +23,8 @@ const config = {
 			$lib: "./src/lib",
 			$registry: "./src/registry",
 			$routes: "./src/routes",
+			"@/components/ui": "./src/components/ui",
+			"@": "./src",
 		},
 	},
 	preprocess: [mdsvex({ extensions: [".svx", ".md"] }), vitePreprocess()],

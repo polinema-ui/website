@@ -5,6 +5,7 @@
 		"checkJs": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
+		"jsx": "react-jsx",
 		"moduleResolution": "bundler",
 		"resolveJsonModule": true,
 		"rewriteRelativeImportExtensions": true,
